@@ -1,0 +1,17 @@
+{
+  "name": "line108508",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ."
+  },
+  "author": "Joe",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3",
+    "linebot": "^1.4.1",
+    "pg": "^7.9.0"
+  },
+  "devDependencies": {},
+  "description": ""
+}
