@@ -23,25 +23,9 @@ bot.on('follow', function (event){
     event.source.profile().then(
         function (profile) {
             //取得使用者資料
-            const userName = profile.displayName;
-            const userId = profile.userId;    
             event.reply('phone?');
             //呼叫API, 將使用者資料寫入資料庫
-            bot.on('message', function(event) {    
-                event.source.profile().then(
-                    function (profile) {
-                        //使用者傳來的學號
-                        const phone = event.message.text;
-                        member.addMember(userId, userName, phone).then(data => {  
-                            if (data == -9){
-                                event.reply('執行錯誤');
-                            }else{                   
-                                event.reply('已加入會員, 廢物 !');
-                            }
-                        })
-                    }
-                );
-            });
+            
               
         }
     );
@@ -70,15 +54,17 @@ bot.on('unfollow', function (event) {
 bot.on('message', function(event) {    
     event.source.profile().then(
         function (profile) {
-            //取得使用者資料
-            const userName = profile.displayName;
-            const userId = profile.userId;
-	    
             //使用者傳來的學號
-            const no = event.message.text;
-
-            //回覆使用者資訊
-            event.reply(userName + ', 你好');
+            const userName = profile.displayName;
+            const userId = profile.userId;    
+            const phone = event.message.text;
+            member.addMember(userId, userName, phone).then(data => {  
+                if (data == -9){
+                    event.reply('執行錯誤');
+                }else{                   
+                    event.reply('已加入會員, 廢物 !');
+                }
+            })
         }
     );
 });
