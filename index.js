@@ -24,7 +24,7 @@ bot.on('follow', function (event){
         function (profile) {
             //取得使用者資料
             //呼叫API, 將使用者資料寫入資料庫
-            member.addMember(userId, userName, phone).then(data => {  
+            member.addMember(userId, userName).then(data => {  
                 if (data == -9){
                     event.reply('執行錯誤');
                 }else{                   

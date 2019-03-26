@@ -6,7 +6,7 @@ const query = require('./asyncDB');
 //------------------------------------------
 // 新增會員資料
 //------------------------------------------
-var addMember = async function(id, name, phone){
+var addMember = async function(id, name){
     //存放結果
     let result;  
 
