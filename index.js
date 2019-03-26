@@ -23,14 +23,57 @@ bot.on('follow', function (event){
     event.source.profile().then(
         function (profile) {
             //取得使用者資料
-            event.reply('phone?');
             //呼叫API, 將使用者資料寫入資料庫
+            member.addMember(userId, userName, phone).then(data => {  
+                if (data == -9){
+                    event.reply('執行錯誤');
+                }else{                   
+                    event.reply('已加入會員, 廢物 !');
+                }
+            })
             
               
         }
     );
 });
-
+// var msgArrList = {
+//     '訂餐點': "查看所有指令",
+//     'view root': "查看根目錄",
+//     'check now': "立刻檢查",
+//     'clear set': "刪除該群組的「監控資料夾列表」",
+// }    
+// var msgarr = []
+// for (var i in msgArrList) {
+//     msgarr.push(i);
+// }
+//--------------------------------
+// 機器人接受訊息的處理
+//--------------------------------
+bot.on('message', function(event) {    
+    event.source.profile().then(
+        function (profile) {
+            //使用者傳來的學號
+            const userName = profile.displayName;
+            const userId = profile.userId;    
+            const phone = event.message.text;
+            const msg = event.message.text;
+            switch(msg){
+                case "訂餐點" : 
+                    event.reply('訂餐點, 廢物 !');
+                    break;
+                case "查詢店家" : 
+                    event.reply('查詢店家, 廢物 !');
+                    break;
+                case "訂單查詢" : 
+                    event.reply('訂單查詢, 廢物 !');
+                    break;
+                case "會員資料" : 
+                    event.reply('會員資料, 廢物 !');
+                    break;
+            }
+        }
+    );
+});
 //--------------------------------
 // 使用者封鎖群組
 //--------------------------------
@@ -48,26 +91,6 @@ bot.on('unfollow', function (event) {
     });  
 });
 
-//--------------------------------
-// 機器人接受訊息的處理
-//--------------------------------
-bot.on('message', function(event) {    
-    event.source.profile().then(
-        function (profile) {
-            //使用者傳來的學號
-            const userName = profile.displayName;
-            const userId = profile.userId;    
-            const phone = event.message.text;
-            member.addMember(userId, userName, phone).then(data => {  
-                if (data == -9){
-                    event.reply('執行錯誤');
-                }else{                   
-                    event.reply('已加入會員, 廢物 !');
-                }
-            })
-        }
-    );
-});
 
 
 //----------------------------------------

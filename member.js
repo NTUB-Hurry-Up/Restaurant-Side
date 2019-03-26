@@ -11,7 +11,7 @@ var addMember = async function(id, name, phone){
     let result;  
 
     //新增會員資料
-    await query('insert into member (userid, name, phone) values ($1, $2, $3)', [id, name, phone])
+    await query('insert into member (userid, name) values ($1, $2)', [id, name])
         .then((data) => {
             result = data.rowCount;  //新增資料數 
         }, (error) => {
