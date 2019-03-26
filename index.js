@@ -36,44 +36,34 @@ bot.on('follow', function (event) {
         }
     );
 });
-// var msgArrList = {
-//     '訂餐點': "查看所有指令",
-//     'view root': "查看根目錄",
-//     'check now': "立刻檢查",
-//     'clear set': "刪除該群組的「監控資料夾列表」",
-// }    
-// var msgarr = []
-// for (var i in msgArrList) {
-//     msgarr.push(i);
-// }
 // --------------------------------
 // 機器人接受訊息的處理
 // --------------------------------
-// bot.on('message', function (event) {
-//     event.source.profile().then(
-//         function (profile) {
-//             //使用者傳來的學號
-//             const userName = profile.displayName;
-//             const userId = profile.userId;
-//             const phone = event.message.text;
-//             const msg = event.message.text;
-//             switch (msg) {
-//                 case "訂餐點":
-//                     event.reply('訂餐點, 廢物 !');
-//                     break;
-//                 case "查詢店家":
-//                     event.reply('查詢店家, 廢物 !');
-//                     break;
-//                 case "訂單查詢":
-//                     event.reply('訂單查詢, 廢物 !');
-//                     break;
-//                 case "會員資料":
-//                     event.reply('會員資料, 廢物 !');
-//                     break;
-//             }
-//         }
-//     );
-// });
+bot.on('message', function (event) {
+    event.source.profile().then(
+        function (profile) {
+            //使用者傳來的學號
+            const userName = profile.displayName;
+            const userId = profile.userId;
+            const phone = event.message.text;
+            const msg = event.message.text;
+            switch (msg) {
+                case "訂餐點":
+                    event.reply('訂餐點, 廢物 !');
+                    break;
+                case "查詢店家":
+                    event.reply('查詢店家, 廢物 !');
+                    break;
+                case "訂單查詢":
+                    event.reply('訂單查詢, 廢物 !');
+                    break;
+                case "會員資料":
+                    event.reply('會員資料, 廢物 !');
+                    break;
+            }
+        }
+    );
+});
 //--------------------------------
 // 使用者封鎖群組
 //--------------------------------
@@ -92,44 +82,6 @@ bot.on('unfollow', function (event) {
 });
 
 
-
-bot.on('message', function (event) {
-    event.reply({
-        "type": "template",
-        "altText": "This is a buttons template",
-        "template": {
-            "type": "buttons",
-            "thumbnailImageUrl": "https://example.com/bot/images/image.jpg",
-            "imageAspectRatio": "rectangle",
-            "imageSize": "cover",
-            "imageBackgroundColor": "#FFFFFF",
-            "title": "Menu",
-            "text": "Please select",
-            "defaultAction": {
-                "type": "uri",
-                "label": "View detail",
-                "uri": "http://example.com/page/123"
-            },
-            "actions": [
-                {
-                    "type": "postback",
-                    "label": "Buy",
-                    "data": "action=buy&itemid=123"
-                },
-                {
-                    "type": "postback",
-                    "label": "Add to cart",
-                    "data": "action=add&itemid=123"
-                },
-                {
-                    "type": "uri",
-                    "label": "View detail",
-                    "uri": "http://example.com/page/123"
-                }
-            ]
-        }
-    });
-});
 //----------------------------------------
 // 建立一個網站應用程式app
 // 如果連接根目錄, 交給機器人處理
