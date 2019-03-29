@@ -140,6 +140,7 @@ bot.on('message', function (event) {
                 //         event.reply('已修改完成');
                 //     }
                 // })
+                states="";
             }
         }
     );
