@@ -109,7 +109,7 @@ bot.on('message', function (event) {
                         }
                     })
                 }else if(msg2=="修改電話"){
-                    states="會員,進入修改電話";
+                    states="進入修改電話程序";
                     // event.reply(userId);
                     event.reply('請輸入您的電話\nex: 09xxxxxxxx');
                     
