@@ -53,28 +53,27 @@ bot.on('message', function (event) {
             var msg2 = NewArray[1];
             // event.reply(msg1);
             if(msg1=="會員"){
-                event.reply(msg1
-                //     {
-                //     "type": "template",
-                //     "altText": "this is a buttons template",
-                //     "template": {
-                //       "type": "buttons",
-                //       "actions": [
-                //         {
-                //           "type": "會員,姓名修改",
-                //           "label": "會員,姓名修改",
-                //           "text": "動作 2"
-                //         },
-                //         {
-                //           "type": "message",
-                //           "label": "會員,電話修改",
-                //           "text": "會員,電話修改"
-                //         }
-                //       ],
-                //       "title": "會員資訊",
-                //       "text": ""
-                //     }
-                //   }
+                event.reply({
+                    "type": "template",
+                    "altText": "this is a buttons template",
+                    "template": {
+                      "type": "buttons",
+                      "actions": [
+                        {
+                          "type": "message",
+                          "label": "動作 1",
+                          "text": "動作 1"
+                        },
+                        {
+                          "type": "message",
+                          "label": "動作 2",
+                          "text": "動作 2"
+                        }
+                      ],
+                      "title": "標題",
+                      "text": "文字"
+                    }
+                  }
                   );
             }
             // switch (msg1) {
