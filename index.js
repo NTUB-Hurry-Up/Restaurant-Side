@@ -128,6 +128,7 @@ bot.on('message', function (event) {
                 // }
             }
             if(states="會員,進入修改電話"){
+                states="";
                 event.reply(states+" "+msg);
                 // states="";
                 // event.reply(userId);
@@ -140,7 +141,6 @@ bot.on('message', function (event) {
                 //         event.reply('已修改完成');
                 //     }
                 // })
-                states="";
             }
         }
     );
