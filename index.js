@@ -84,7 +84,7 @@ bot.on('message', function (event) {
                                         }
                                     ],
                                     "title": "會員資訊",
-                                    "text": data.userid+"\n"+data.name
+                                    "text": "姓名 : "+data.name+"\n電話 : "+data.phone
                                 }
                             });
 
