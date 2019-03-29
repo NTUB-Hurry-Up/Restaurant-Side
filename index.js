@@ -46,65 +46,78 @@ bot.on('message', function (event) {
             const userName = profile.displayName;
             const userId = profile.userId;
             const phone = event.message.text;
-            const msg = event.message.text;
+            const no = event.message.text;
             var NewArray = new Array();
             var NewArray = msg.split(",");
             var msg1 = NewArray[0];
             var msg2 = NewArray[1];
-            var no = '120001';
+            // var no = '120001';
+            student.fetchStudent(no).then(data => {  
+                if (data == -1){
+                    event.reply('找不到資料');
+                }else if(data == -9){                    
+                    event.reply('執行錯誤');
+                }else{
+                    event.reply([
+                        {'type':'text', 'text':data.stuno},
+                        {'type':'text', 'text':data.stuname},
+                        {'type':'text', 'text':data.gender}]
+                    );  
+                }  
+            })  
             // event.reply(msg1);
-            if(msg1=="會員"){
-                if(msg2=="資訊"){
-                    // event.reply(userId);
-                    student.fetchStudent(no).then(data => {  
-                        if (data == -1){
-                            event.reply('找不到資料');
-                        }else if(data == -9){                    
-                            event.reply('執行錯誤');
-                        }else{
-                            event.reply([
-                                {'type':'text', 'text':data.stuno},
-                                {'type':'text', 'text':data.stuname},
-                                {'type':'text', 'text':data.gender}]
-                            );  
-                        }  
-                    })  
-                    // member.fetchMember(userId).then(data => {  
-                    //     if (data == -1){
-                    //         event.reply('找不到資料');
-                    //     }else if(data == -9){                    
-                    //         event.reply('執行錯誤');
-                    //     }else{
-                    //         event.reply({
-                    //             "type": "template",
-                    //             "altText": "this is a buttons template",
-                    //             "template": {
-                    //             "type": "buttons",
-                    //             "actions": [
-                    //                 {
-                    //                 "type": "message",
-                    //                 "label": "修改姓名",
-                    //                 "text": "會員,修改姓名"
-                    //                 },
-                    //                 {
-                    //                 "type": "message",
-                    //                 "label": "修改姓名",
-                    //                 "text": "會員,修改姓名"
-                    //                 }
-                    //             ],
-                    //             "title": "會員資訊",
-                    //             "text": "會員資訊"
-                    //             // [
-                    //             //     {'type':'text', 'text':data.name},
-                    //             //     {'type':'text', 'text':data.phone}
-                    //             // ]
-                    //             }
-                    //         });
-                    //     }
-                    // })  
-                }
+            // if(msg1=="會員"){
+            //     if(msg2=="資訊"){
+            //         // event.reply(userId);
+            //         student.fetchStudent(no).then(data => {  
+            //             if (data == -1){
+            //                 event.reply('找不到資料');
+            //             }else if(data == -9){                    
+            //                 event.reply('執行錯誤');
+            //             }else{
+            //                 event.reply([
+            //                     {'type':'text', 'text':data.stuno},
+            //                     {'type':'text', 'text':data.stuname},
+            //                     {'type':'text', 'text':data.gender}]
+            //                 );  
+            //             }  
+            //         })  
+            //         // member.fetchMember(userId).then(data => {  
+            //         //     if (data == -1){
+            //         //         event.reply('找不到資料');
+            //         //     }else if(data == -9){                    
+            //         //         event.reply('執行錯誤');
+            //         //     }else{
+            //         //         event.reply({
+            //         //             "type": "template",
+            //         //             "altText": "this is a buttons template",
+            //         //             "template": {
+            //         //             "type": "buttons",
+            //         //             "actions": [
+            //         //                 {
+            //         //                 "type": "message",
+            //         //                 "label": "修改姓名",
+            //         //                 "text": "會員,修改姓名"
+            //         //                 },
+            //         //                 {
+            //         //                 "type": "message",
+            //         //                 "label": "修改姓名",
+            //         //                 "text": "會員,修改姓名"
+            //         //                 }
+            //         //             ],
+            //         //             "title": "會員資訊",
+            //         //             "text": "會員資訊"
+            //         //             // [
+            //         //             //     {'type':'text', 'text':data.name},
+            //         //             //     {'type':'text', 'text':data.phone}
+            //         //             // ]
+            //         //             }
+            //         //         });
+            //         //     }
+            //         // })  
+            //     }
                 
-            }
+            // }
             // switch (msg1) {
             //     case "點餐":
             //         
