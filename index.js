@@ -77,8 +77,8 @@ bot.on('message', function (event) {
                                     },
                                     {
                                     "type": "message",
-                                    "label": "修改姓名",
-                                    "text": "會員,修改姓名"
+                                    "label": "修改電話",
+                                    "text": "會員,修改電話"
                                     }
                                 ],
                                 "title": "會員資訊",
