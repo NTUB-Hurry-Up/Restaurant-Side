@@ -46,26 +46,26 @@ bot.on('message', function (event) {
             const userName = profile.displayName;
             const userId = profile.userId;
             const phone = event.message.text;
-            const msg = event.message.text.substring(0,2);
+            const msg = event.message.text;
+            var msg1 = msg.substring(0,2);
+            event.reply(msg1);
+            // switch (msg) {
+            //     case "點餐":
+            //         event.reply(temp1);
+            //         break;
+            //     case "查詢店家":
+            //         event.reply('查詢店家, 廢物 !');
+            //         break;
+            //     case "訂單查詢":
+            //         event.reply('訂單查詢, 廢物 !');
+            //         break;
+            //     case "會員資料":
+            //         event.reply('會員資料, 廢物 !');
+            //         break;
+            //     case "點餐,傳回來的值":
 
-            
-            switch (msg) {
-                case "點餐":
-                    event.reply(temp1);
-                    break;
-                case "查詢店家":
-                    event.reply('查詢店家, 廢物 !');
-                    break;
-                case "訂單查詢":
-                    event.reply('訂單查詢, 廢物 !');
-                    break;
-                case "會員資料":
-                    event.reply('會員資料, 廢物 !');
-                    break;
-                case "點餐,傳回來的值":
-
-                default:
-                    // if(msg=="點餐,傳回來的ㄋ值")event.reply('好喔好喔');
+            //     default:
+            //         // if(msg=="點餐,傳回來的ㄋ值")event.reply('好喔好喔');
             }
         }
     );
