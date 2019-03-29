@@ -48,7 +48,7 @@ bot.on('message', function (event) {
             const phone = event.message.text;
             const msg = event.message.text;
             var msg1 = msg.substring(0,2);
-            event.reply(msg1);
+            // event.reply(msg1);
             switch (msg1) {
                 case "點餐":
                     event.reply(temp1);
