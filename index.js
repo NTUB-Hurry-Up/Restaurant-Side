@@ -82,11 +82,11 @@ bot.on('message', function (event) {
                                     }
                                 ],
                                 "title": "會員資訊",
-                                "text": "會員資訊"
-                                // [
-                                //     {'type':'text', 'text':data.userid},
-                                //     {'type':'text', 'text':data.name}
-                                // ]
+                                "text": 
+                                [
+                                    {'type':'text', 'text':data.userid},
+                                    {'type':'text', 'text':data.name}
+                                ]
                                 }
                             });
                         }
