@@ -51,6 +51,7 @@ bot.on('message', function (event) {
             var NewArray = msg.split(",");
             var msg1 = NewArray[0];
             var msg2 = NewArray[1];
+            var no = '120001';
             // event.reply(msg1);
             if(msg1=="會員"){
                 if(msg2=="資訊"){
