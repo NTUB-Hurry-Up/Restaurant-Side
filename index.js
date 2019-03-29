@@ -14,8 +14,6 @@ var bot = linebot({
     channelSecret: '633baa5dafd610ad5bb69a495df003a0',
     channelAccessToken: 'gU+RO41W5nTJOrZrepX2AsvPOO9Qp+oC7eX3pYrcBaSIeD4+kYh30iN375Rh+6hJB5Bk5hotterHhDSF2GNzHC4poNA0i55YXayxMMnsmePMhKqsujJsgOnc+XR5HoAihNYaGwK54qRxD28M2ULx3gdB04t89/1O/w1cDnyilFU='
 });
-
-
 //--------------------------------
 // 使用者加入群組或解除封鎖
 //--------------------------------
@@ -39,6 +37,8 @@ bot.on('follow', function (event) {
 // --------------------------------
 // 機器人接受訊息的處理
 // --------------------------------
+
+
 bot.on('message', function (event) {
     event.source.profile().then(
         function (profile) {
@@ -46,10 +46,12 @@ bot.on('message', function (event) {
             const userName = profile.displayName;
             const userId = profile.userId;
             const phone = event.message.text;
-            const msg = event.message.text;
+            const msg = event.message.text.substring(0,2);
+
+            
             switch (msg) {
-                case "訂餐點":
-                    event.reply('訂餐點, 廢物 !');
+                case "點餐":
+                    event.reply(temp1);
                     break;
                 case "查詢店家":
                     event.reply('查詢店家, 廢物 !');
@@ -60,6 +62,10 @@ bot.on('message', function (event) {
                 case "會員資料":
                     event.reply('會員資料, 廢物 !');
                     break;
+                case "點餐,傳回來的值":
+
+                default:
+                    // if(msg=="點餐,傳回來的ㄋ值")event.reply('好喔好喔');
             }
         }
     );
