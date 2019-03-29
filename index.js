@@ -77,7 +77,7 @@ bot.on('message', function (event) {
             // event.reply(msg1);
             if(msg1=="會員"){
                 if(msg2=="資訊"){
-                    event.reply(states);
+                    // event.reply(states);
                     member.fetchMember(userId).then(data => {
                         if (data == -1){
                             event.reply('找不到資料');
