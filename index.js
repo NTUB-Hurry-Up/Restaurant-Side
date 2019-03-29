@@ -54,7 +54,7 @@ bot.on('message', function (event) {
             // event.reply(msg1);
             if(msg1=="會員"){
                 if(msg2=="資訊"){
-                    event.reply(userId);
+                    // event.reply(userId);
                     student.fetchStudent(no).then(data => {  
                         if (data == -1){
                             event.reply('找不到資料');
