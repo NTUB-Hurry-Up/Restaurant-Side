@@ -5,7 +5,7 @@ var linebot = require('linebot');
 var express = require('express');
 
 const member = require('./member');
-const student = require('./student');
+// const student = require('./student');
 //----------------------------------------
 // 填入自己在Line Developers的channel值
 //----------------------------------------
@@ -52,16 +52,15 @@ bot.on('message', function (event) {
             // var msg1 = NewArray[0];
             // var msg2 = NewArray[1];
             // var no = '120001';
-            student.fetchStudent(no).then(data => {  
+            member.fetchMember(no).then(data => {  
                 if (data == -1){
                     event.reply('找不到資料');
                 }else if(data == -9){                    
                     event.reply('執行錯誤');
                 }else{
                     event.reply([
-                        {'type':'text', 'text':data.stuno},
-                        {'type':'text', 'text':data.stuname},
-                        {'type':'text', 'text':data.gender}]
+                        {'type':'text', 'text':data.id},
+                        {'type':'text', 'text':data.name}]
                     );  
                 }  
             })  
