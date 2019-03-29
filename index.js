@@ -52,7 +52,8 @@ bot.on('message', function (event) {
             var msg1 = NewArray[0];
             var msg2 = NewArray[1];
             // event.reply(msg1);
-            if(msg1=="會員"){
+            switch (msg1) {
+                case "會員" :
                 event.reply({
                     "type": "template",
                     "altText": "this is a buttons template",
@@ -75,6 +76,7 @@ bot.on('message', function (event) {
                     }
                   }
                   );
+                  break;
             }
             // switch (msg1) {
             //     case "點餐":
