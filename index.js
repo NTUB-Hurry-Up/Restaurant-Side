@@ -53,7 +53,7 @@ bot.on('message', function (event) {
                 case "點餐":
                     event.reply(temp1);
                     break;
-                case "查詢店家":
+                case "查詢":
                     event.reply('查詢店家, 廢物 !');
                     break;
                 case "訂單查詢":
