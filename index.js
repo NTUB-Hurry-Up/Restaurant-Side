@@ -38,7 +38,7 @@ bot.on('follow', function (event) {
 // --------------------------------
 // 機器人接受訊息的處理
 // --------------------------------
-var o=
+var temp1=
 {
     "type": "template",
     "altText": "this is a buttons template",
@@ -73,7 +73,7 @@ bot.on('message', function (event) {
             var NewArray = msg.split(",");
             var msg1 = NewArray[0];
             var msg2 = NewArray[1];
-            
+            var states = "";
 
             // event.reply(msg1);
             if(msg1=="會員"){
@@ -85,49 +85,60 @@ bot.on('message', function (event) {
                         }else if(data == -9){                    
                             event.reply('執行錯誤');
                         }else{
-                            o.template.actions[0].type="message";
-                            o.template.actions[0].label="修改姓名";
-                            o.template.actions[0].text="會員,修改姓名";
-                            o.template.actions[1].type="message";
-                            o.template.actions[1].label="修改電話";
-                            o.template.actions[1].text="會員,修改電話";
-                            o.template.title="會員資訊"
-                            o.template.text="姓名 : "+data.name+"\n電話 : "+data.phone
-                            event.reply(o);
+                            temp1.template.actions[0].type="message";
+                            temp1.template.actions[0].label="修改姓名";
+                            temp1.template.actions[0].text="會員,修改姓名";
+
+                            temp1.template.actions[1].type="message";
+                            temp1.template.actions[1].label="修改電話";
+                            temp1.template.actions[1].text="會員,修改電話";
+                            temp1.template.title="會員資訊"
+                            temp1.template.text="姓名 : "+data.name+"\n電話 : "+data.phone
+                            event.reply(temp1);
                         }
-                    })  
-                }/*else if(msg2=="修改電話"){
+                    })
+                }else if(msg2=="修改姓名"){
                     // event.reply(userId);
-                    member.fetchMember(userId).then(data => {
+                    member.UpdateName(userId).then(data => {
                         if (data == -1){
                             event.reply('找不到資料');
-                        }else if(data == -9){                    
+                        }else if(data == -9){
                             event.reply('執行錯誤');
                         }else{
-                            event.reply({
-                                "type": "template",
-                                "altText": "this is a buttons template",
-                                "template": {
-                                    "type": "buttons",
-                                    "actions": [
-                                        {
-                                        "type": "message",
-                                        "label": "修改姓名",
-                                        "text": "會員,修改姓名"
-                                        },
-                                        {
-                                        "type": "message",
-                                        "label": "修改電話",
-                                        "text": "會員,修改電話"
-                                        }
-                                    ],
-                                    "title": "會員資訊",
-                                    "text": "姓名 : "+data.name+"\n電話 : "+data.phone
-                                }
-                            });
+                            event.reply('請輸入您的姓名');
                         }
-                    })  
-                }*/
+                    })
+                }else if(msg2=="修改電話"){
+                    states="會員,進入修改電話";
+                    // event.reply(userId);
+                    event.reply('請輸入您的電話\nex: 09xxxxxxxx');
+                    
+                }//else if(states="會員,進入修改電話"){
+                //     states="";
+                //     // event.reply(userId);
+                //     member.UpdatePhone(msg).then(data => {
+                //         if (data == -1){
+                //             event.reply('找不到資料');
+                //         }else if(data == -9){
+                //             event.reply('執行錯誤');
+                //         }else{
+                //             event.reply('已修改完成');
+                //         }
+                //     })
+                // }
+            }
+            if(states="會員,進入修改電話"){
+                states="";
+                // event.reply(userId);
+                member.UpdatePhone(msg).then(data => {
+                    if (data == -1){
+                        event.reply('找不到資料');
+                    }else if(data == -9){
+                        event.reply('執行錯誤');
+                    }else{
+                        event.reply('已修改完成');
+                    }
+                })
             }
         }
     );

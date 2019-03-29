@@ -60,6 +60,26 @@ var fetchMember = async function(id){
     //回傳執行結果
     return result;
 }
+//------------------------------------------
+var UpdatePhone = async function(id){
+    //存放結果
+    let result;  
+
+    //讀取資料庫UPDATE table_name SET field1=new-value1, field2=new-value2
+    await query('UPDATE member SET phone = $1 where userid = $2', [phone, id])
+        .then((data) => {
+            if(data.rows.length > 0){
+                result = data.rows[0];  //學生資料(物件)
+            }else{
+                result = -1;  //找不到資料
+            }    
+        }, (error) => {
+            result = -9;  //執行錯誤
+        });
+
+    //回傳執行結果
+    return result;
+}
 
 //匯出
-module.exports = {addMember, deleteMember, fetchMember};
+module.exports = {addMember, deleteMember, fetchMember, UpdatePhone};
