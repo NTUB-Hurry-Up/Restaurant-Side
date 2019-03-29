@@ -128,17 +128,18 @@ bot.on('message', function (event) {
                 // }
             }
             if(states="會員,進入修改電話"){
-                states="";
+                event.reply(states);
+                // states="";
                 // event.reply(userId);
-                member.UpdatePhone(msg).then(data => {
-                    if (data == -1){
-                        event.reply('找不到資料');
-                    }else if(data == -9){
-                        event.reply('執行錯誤');
-                    }else{
-                        event.reply('已修改完成');
-                    }
-                })
+                // member.UpdatePhone(msg).then(data => {
+                //     if (data == -1){
+                //         event.reply('找不到資料');
+                //     }else if(data == -9){
+                //         event.reply('執行錯誤');
+                //     }else{
+                //         event.reply('已修改完成');
+                //     }
+                // })
             }
         }
     );
