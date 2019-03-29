@@ -41,14 +41,18 @@ var deleteMember = async function(id){
     return result;  
 }
 //------------------------------------------
-var fetchMember = async function(id){
+var fetchMember = async function(stuNo){
     //存放結果
     let result;  
 
-    //新增會員資料
-    await query('SELECT * FROM member where userid = $1;', [id])
+    //讀取資料庫
+    await query('select * from member where userid = $1', [stuNo])
         .then((data) => {
-            result = data.rowCount;  //新增資料數 
+            if(data.rows.length > 0){
+                result = data.rows[0];  //學生資料(物件)
+            }else{
+                result = -1;  //找不到資料
+            }    
         }, (error) => {
             result = -9;  //執行錯誤
         });

@@ -73,16 +73,15 @@ bot.on('message', function (event) {
             const no = event.message.text;
           
             //呼叫API取得學生資料
-            student.fetchStudent(no).then(data => {  
+            member.fetchMember(no).then(data => {  
                 if (data == -1){
                     event.reply('找不到資料');
                 }else if(data == -9){                    
                     event.reply('執行錯誤');
                 }else{
                     event.reply([
-                        {'type':'text', 'text':data.stuno},
-                        {'type':'text', 'text':data.stuname},
-                        {'type':'text', 'text':data.gender}]
+                        {'type':'text', 'text':data.userid},
+                        {'type':'text', 'text':data.name}]
                     );  
                 }  
             })
