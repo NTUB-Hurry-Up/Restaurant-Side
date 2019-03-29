@@ -5,6 +5,7 @@ var linebot = require('linebot');
 var express = require('express');
 
 const member = require('./member');
+const student = require('./student');
 // const student = require('./student');
 //----------------------------------------
 // 填入自己在Line Developers的channel值
@@ -43,27 +44,48 @@ bot.on('message', function (event) {
     event.source.profile().then(
         function (profile) {
             //使用者傳來的學號
-            const userName = profile.displayName;
-            const userId = profile.userId;
+            // const userName = profile.displayName;
+            // const userId = profile.userId;
             const phone = event.message.text;
-            const no = event.message.text;
+            // const msg = event.message.text;
             // var NewArray = new Array();
             // var NewArray = msg.split(",");
             // var msg1 = NewArray[0];
             // var msg2 = NewArray[1];
             // var no = '120001';
-            member.fetchMember(no).then(data => {  
+            // member.fetchMember(no).then(data => {  
+            //     if (data == -1){
+            //         event.reply('找不到資料');
+            //     }else if(data == -9){                    
+            //         event.reply('執行錯誤');
+            //     }else{
+            //         event.reply([
+            //             {'type':'text', 'text':data.id},
+            //             {'type':'text', 'text':data.name}]
+            //         );  
+            //     }  
+            // })  
+            //取得使用者資料
+            const userName = profile.displayName;
+            const userId = profile.userId;
+	    
+            //使用者傳來的學號
+            const no = event.message.text;
+          
+            //呼叫API取得學生資料
+            student.fetchStudent(no).then(data => {  
                 if (data == -1){
                     event.reply('找不到資料');
                 }else if(data == -9){                    
                     event.reply('執行錯誤');
                 }else{
                     event.reply([
-                        {'type':'text', 'text':data.id},
-                        {'type':'text', 'text':data.name}]
+                        {'type':'text', 'text':data.stuno},
+                        {'type':'text', 'text':data.stuname},
+                        {'type':'text', 'text':data.gender}]
                     );  
                 }  
-            })  
+            })
         }
     );
 });
