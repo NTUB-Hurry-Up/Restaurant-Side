@@ -47,26 +47,52 @@ bot.on('message', function (event) {
             const userId = profile.userId;
             const phone = event.message.text;
             const msg = event.message.text;
-            var msg1 = msg.substring(0,2);
+            var NewArray = new Array();
+            var NewArray = msg.split(",");
+            var msg1 = NewArray[1];
+            var msg2 = NewArray[2];
             // event.reply(msg1);
-            switch (msg1) {
-                case "點餐":
-                    event.reply(temp1);
-                    break;
-                case "查詢":
-                    event.reply('查詢店家, 廢物 !');
-                    break;
-                case "訂單查詢":
-                    event.reply('訂單查詢, 廢物 !');
-                    break;
-                case "會員資料":
-                    event.reply('會員資料, 廢物 !');
-                    break;
-                case "點餐,傳回來的值":
-
-                default:
-                    // if(msg=="點餐,傳回來的ㄋ值")event.reply('好喔好喔');
+            if(msg1=="會員"){
+                event.reply({
+                    "type": "template",
+                    "altText": "this is a buttons template",
+                    "template": {
+                      "type": "buttons",
+                      "actions": [
+                        {
+                          "type": "會員,姓名修改",
+                          "label": "會員,姓名修改",
+                          "text": "動作 2"
+                        },
+                        {
+                          "type": "message",
+                          "label": "會員,電話修改",
+                          "text": "會員,電話修改"
+                        }
+                      ],
+                      "title": "會員資訊",
+                      "text": ""
+                    }
+                  });
             }
+            // switch (msg1) {
+            //     case "點餐":
+            //         
+            //         break;
+            //     case "查詢":
+            //         event.reply('查詢店家, 廢物 !');
+            //         break;
+            //     case "訂單查詢":
+            //         event.reply('訂單查詢, 廢物 !');
+            //         break;
+            //     case "會員資訊":
+            //         event.reply('會員資訊, 廢物 !');
+            //         break;
+            //     case "點餐,傳回來的值":
+
+            //     default:
+            //         // if(msg=="點餐,傳回來的ㄋ值")event.reply('好喔好喔');
+            // }
         }
     );
 });
