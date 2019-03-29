@@ -44,47 +44,54 @@ bot.on('message', function (event) {
     event.source.profile().then(
         function (profile) {
             //使用者傳來的學號
-            // const userName = profile.displayName;
-            // const userId = profile.userId;
-            const phone = event.message.text;
-            // const msg = event.message.text;
-            // var NewArray = new Array();
-            // var NewArray = msg.split(",");
-            // var msg1 = NewArray[0];
-            // var msg2 = NewArray[1];
-            // var no = '120001';
-            // member.fetchMember(no).then(data => {  
-            //     if (data == -1){
-            //         event.reply('找不到資料');
-            //     }else if(data == -9){                    
-            //         event.reply('執行錯誤');
-            //     }else{
-            //         event.reply([
-            //             {'type':'text', 'text':data.id},
-            //             {'type':'text', 'text':data.name}]
-            //         );  
-            //     }  
-            // })  
-            //取得使用者資料
             const userName = profile.displayName;
             const userId = profile.userId;
-	    
-            //使用者傳來的學號
-            const no = event.message.text;
-          
-            //呼叫API取得學生資料
-            member.fetchMember(no).then(data => {  
-                if (data == -1){
-                    event.reply('找不到資料');
-                }else if(data == -9){                    
-                    event.reply('執行錯誤');
-                }else{
-                    event.reply([
-                        {'type':'text', 'text':data.userid},
-                        {'type':'text', 'text':data.name}]
-                    );  
-                }  
-            })
+            const phone = event.message.text;
+            const msg = event.message.text;
+            var NewArray = new Array();
+            var NewArray = msg.split(",");
+            var msg1 = NewArray[0];
+            var msg2 = NewArray[1];
+            
+
+            event.reply(msg1);
+            if(msg1=="會員"){
+                if(msg2=="資訊"){
+                    // event.reply(userId);
+                    // member.fetchMember(userId).then(data => {  
+                        if (data == -1){
+                            event.reply('找不到資料');
+                        }else if(data == -9){                    
+                            event.reply('執行錯誤');
+                        }else{
+                            event.reply({
+                                "type": "template",
+                                "altText": "this is a buttons template",
+                                "template": {
+                                "type": "buttons",
+                                "actions": [
+                                    {
+                                    "type": "message",
+                                    "label": "修改姓名",
+                                    "text": "會員,修改姓名"
+                                    },
+                                    {
+                                    "type": "message",
+                                    "label": "修改姓名",
+                                    "text": "會員,修改姓名"
+                                    }
+                                ],
+                                "title": "會員資訊",
+                                "text": "會員資訊"
+                                [
+                                    {'type':'text', 'text':data.userid},
+                                    {'type':'text', 'text':data.name}
+                                ]
+                                }
+                            });
+                        }
+                    })  
+                }
         }
     );
 });
