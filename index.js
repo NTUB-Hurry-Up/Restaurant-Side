@@ -66,7 +66,7 @@ bot.on('message', function (event) {
 
             //     default:
             //         // if(msg=="點餐,傳回來的ㄋ值")event.reply('好喔好喔');
-            }
+            // }
         }
     );
 });
