@@ -4,7 +4,6 @@
 var linebot = require('linebot');
 var express = require('express');
 
-const student = require('./student');
 const member = require('./member');
 //----------------------------------------
 // 填入自己在Line Developers的channel值
@@ -54,7 +53,7 @@ bot.on('message', function (event) {
             // event.reply(msg1);
             if(msg1=="會員"){
                 if(msg2=="資訊"){
-                    member.fetchMember(userId).then(data => {  
+                    // member.fetchMember(userId).then(data => {  
                         if (data == -1){
                             event.reply('找不到資料');
                         }else if(data == -9){                    
@@ -78,13 +77,15 @@ bot.on('message', function (event) {
                                     }
                                 ],
                                 "title": "會員資訊",
-                                "text": [
-                                    {'type':'text', 'text':data.name},
-                                    {'type':'text', 'text':data.phone}]
+                                "text": "會員資訊"
+                                // [
+                                //     {'type':'text', 'text':data.name},
+                                //     {'type':'text', 'text':data.phone}
+                                // ]
                                 }
                             });
                         }  
-                    })  
+                    // })  
                 }
                 
             }
