@@ -51,30 +51,30 @@ bot.on('message', function (event) {
             var NewArray = msg.split(",");
             var msg1 = NewArray[0];
             var msg2 = NewArray[1];
-            event.reply(msg1);
-            // if(msg1=="會員"){
-            //     event.reply({
-            //         "type": "template",
-            //         "altText": "this is a buttons template",
-            //         "template": {
-            //           "type": "buttons",
-            //           "actions": [
-            //             {
-            //               "type": "會員,姓名修改",
-            //               "label": "會員,姓名修改",
-            //               "text": "動作 2"
-            //             },
-            //             {
-            //               "type": "message",
-            //               "label": "會員,電話修改",
-            //               "text": "會員,電話修改"
-            //             }
-            //           ],
-            //           "title": "會員資訊",
-            //           "text": ""
-            //         }
-            //       });
-            // }
+            // event.reply(msg1);
+            if(msg1=="會員"){
+                event.reply({
+                    "type": "template",
+                    "altText": "this is a buttons template",
+                    "template": {
+                      "type": "buttons",
+                      "actions": [
+                        {
+                          "type": "會員,姓名修改",
+                          "label": "會員,姓名修改",
+                          "text": "動作 2"
+                        },
+                        {
+                          "type": "message",
+                          "label": "會員,電話修改",
+                          "text": "會員,電話修改"
+                        }
+                      ],
+                      "title": "會員資訊",
+                      "text": ""
+                    }
+                  });
+            }
             // switch (msg1) {
             //     case "點餐":
             //         
