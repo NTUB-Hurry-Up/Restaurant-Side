@@ -41,6 +41,21 @@ var deleteMember = async function(id){
     return result;  
 }
 //------------------------------------------
+var fetchMember = async function(id){
+    //存放結果
+    let result;  
+
+    //新增會員資料
+    await query('SELECT * FROM member where userid = $1;', [id])
+        .then((data) => {
+            result = data.rowCount;  //新增資料數 
+        }, (error) => {
+            result = -9;  //執行錯誤
+        });
+
+    //回傳執行結果
+    return result;  
+}
 
 //匯出
-module.exports = {addMember, deleteMember};
+module.exports = {addMember, deleteMember, fetchMember};

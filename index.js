@@ -52,31 +52,41 @@ bot.on('message', function (event) {
             var msg1 = NewArray[0];
             var msg2 = NewArray[1];
             // event.reply(msg1);
-            switch (msg1) {
-                case "會員" :
-                event.reply({
-                    "type": "template",
-                    "altText": "this is a buttons template",
-                    "template": {
-                      "type": "buttons",
-                      "actions": [
-                        {
-                          "type": "message",
-                          "label": "動作 1",
-                          "text": "動作 1"
-                        },
-                        {
-                          "type": "message",
-                          "label": "動作 2",
-                          "text": "動作 2"
-                        }
-                      ],
-                      "title": "標題",
-                      "text": "文字"
-                    }
-                  }
-                  );
-                  break;
+            if(msg1=="會員"){
+                if(msg2=="資訊"){
+                    member.fetchMember(userId).then(data => {  
+                        if (data == -1){
+                            event.reply('找不到資料');
+                        }else if(data == -9){                    
+                            event.reply('執行錯誤');
+                        }else{
+                            event.reply({
+                                "type": "template",
+                                "altText": "this is a buttons template",
+                                "template": {
+                                "type": "buttons",
+                                "actions": [
+                                    {
+                                    "type": "message",
+                                    "label": "修改姓名",
+                                    "text": "會員,修改姓名"
+                                    },
+                                    {
+                                    "type": "message",
+                                    "label": "修改姓名",
+                                    "text": "會員,修改姓名"
+                                    }
+                                ],
+                                "title": "會員資訊",
+                                "text": [
+                                    {'type':'text', 'text':data.name},
+                                    {'type':'text', 'text':data.phone}]
+                                }
+                            });
+                        }  
+                    })  
+                }
+                
             }
             // switch (msg1) {
             //     case "點餐":
