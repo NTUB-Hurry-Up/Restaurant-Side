@@ -129,7 +129,7 @@ bot.on('message', function (event) {
             }
             if(states=="進入修改電話程序"){
                 states="";
-                event.reply(msg+" "+userId+" states: "+states);
+                event.reply(" "+userId+" states: "+states);
                 // member.UpdatePhone(msg, userid).then(data => {
                 //     if (data == -1){
                 //         event.reply('找不到資料');
