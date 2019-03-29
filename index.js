@@ -64,10 +64,29 @@ bot.on('message', function (event) {
                         }else if(data == -9){                    
                             event.reply('執行錯誤');
                         }else{
-                            event.reply([
-                                {'type':'text', 'text':data.userid},
-                                {'type':'text', 'text':data.name}]
-                            );
+
+
+                            event.reply({
+                                "type": "template",
+                                "altText": "this is a buttons template",
+                                "template": {
+                                    "type": "buttons",
+                                    "actions": [
+                                        {
+                                        "type": "message",
+                                        "label": "修改姓名",
+                                        "text": "會員,修改姓名"
+                                        },
+                                        {
+                                        "type": "message",
+                                        "label": "修改電話",
+                                        "text": "會員,修改電話"
+                                        }
+                                    ],
+                                    "title": "會員資訊",
+                                    "text": data.userid+"\n"+data.name
+                                }
+                            });
 
                         }
                     })  
