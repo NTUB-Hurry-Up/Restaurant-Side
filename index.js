@@ -73,6 +73,7 @@ bot.on('message', function (event) {
             var NewArray = msg.split(",");
             var msg1 = NewArray[0];
             var msg2 = NewArray[1];
+            var states = "";
 
             // event.reply(msg1);
             if(msg1=="會員"){
