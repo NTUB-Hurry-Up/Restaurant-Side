@@ -54,11 +54,11 @@ bot.on('message', function (event) {
             var msg2 = NewArray[1];
             
 
-            event.reply(msg1);
+            // event.reply(msg1);
             if(msg1=="會員"){
                 if(msg2=="資訊"){
                     // event.reply(userId);
-                    // member.fetchMember(userId).then(data => {  
+                    member.fetchMember(userId).then(data => {  
                         if (data == -1){
                             event.reply('找不到資料');
                         }else if(data == -9){                    
@@ -92,6 +92,7 @@ bot.on('message', function (event) {
                         }
                     })  
                 }
+            }
         }
     );
 });
