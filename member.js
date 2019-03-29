@@ -41,12 +41,12 @@ var deleteMember = async function(id){
     return result;  
 }
 //------------------------------------------
-var fetchMember = async function(stuNo){
+var fetchMember = async function(id){
     //存放結果
     let result;  
 
     //讀取資料庫
-    await query('select * from member where userid = $1', [stuNo])
+    await query('select * from member where userid = $1', [id])
         .then((data) => {
             if(data.rows.length > 0){
                 result = data.rows[0];  //學生資料(物件)
@@ -58,7 +58,7 @@ var fetchMember = async function(stuNo){
         });
 
     //回傳執行結果
-    return result;  
+    return result;
 }
 
 //匯出
