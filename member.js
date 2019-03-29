@@ -61,7 +61,7 @@ var fetchMember = async function(id){
     return result;
 }
 //------------------------------------------
-var UpdatePhone = async function(id){
+var UpdatePhone = async function(phone, id){
     //存放結果
     let result;  
 
