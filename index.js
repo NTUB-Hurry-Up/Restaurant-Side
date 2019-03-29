@@ -38,7 +38,28 @@ bot.on('follow', function (event) {
 // --------------------------------
 // 機器人接受訊息的處理
 // --------------------------------
-
+var o=
+{
+    "type": "template",
+    "altText": "this is a buttons template",
+    "template": {
+        "type": "buttons",
+        "actions": [
+            {
+            "type": "message",
+            "label": "看到的字",
+            "text": "傳出的字"
+            },
+            {
+            "type": "message",
+            "label": "看到的字",
+            "text": "傳出的字"
+            }
+        ],
+        "title": "標題",
+        "text": "內文"
+    }
+}
 
 bot.on('message', function (event) {
     event.source.profile().then(
@@ -64,8 +85,25 @@ bot.on('message', function (event) {
                         }else if(data == -9){                    
                             event.reply('執行錯誤');
                         }else{
-
-
+                            o.template.actions[0].type="message";
+                            o.template.actions[0].label="修改姓名";
+                            o.template.actions[0].text="會員,修改姓名";
+                            o.template.actions[1].type="message";
+                            o.template.actions[1].label="修改電話";
+                            o.template.actions[1].text="會員,修改電話";
+                            o.template.title="會員資訊"
+                            o.template.text="姓名 : "+data.name+"\n電話 : "+data.phone
+                            event.reply(o);
+                        }
+                    })  
+                }/*else if(msg2=="修改電話"){
+                    // event.reply(userId);
+                    member.fetchMember(userId).then(data => {
+                        if (data == -1){
+                            event.reply('找不到資料');
+                        }else if(data == -9){                    
+                            event.reply('執行錯誤');
+                        }else{
                             event.reply({
                                 "type": "template",
                                 "altText": "this is a buttons template",
@@ -87,10 +125,9 @@ bot.on('message', function (event) {
                                     "text": "姓名 : "+data.name+"\n電話 : "+data.phone
                                 }
                             });
-
                         }
                     })  
-                }
+                }*/
             }
         }
     );
