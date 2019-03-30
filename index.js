@@ -111,6 +111,7 @@ bot.on('message', function (event) {
                 }else if(msg2=="修改電話"){
                     states="進入修改電話程序";
                     // event.reply(userId);
+                    console.log("修改電話 states: "+states);
                     event.reply('請輸入您的電話\nex: 09xxxxxxxx');
                     
                 }//else if(states="會員,進入修改電話"){
@@ -127,17 +128,19 @@ bot.on('message', function (event) {
                 //     })
                 // }
             }else if(states=="進入修改電話程序"){
+                console.log("進入修改電話程序 states1: "+states);
                 states="";
+                console.log("進入修改電話程序 states1: "+states);
                 event.reply(" "+userId+" states: "+states);
-                member.UpdatePhone(msg, userid).then(data => {
-                    if (data == -1){
-                        event.reply('找不到資料');
-                    }else if(data == -9){
-                        event.reply('執行錯誤');
-                    }else{
-                        event.reply('已修改完成');
-                    }
-                })
+                // member.UpdatePhone(msg, userid).then(data => {
+                //     if (data == -1){
+                //         event.reply('找不到資料');
+                //     }else if(data == -9){
+                //         event.reply('執行錯誤');
+                //     }else{
+                //         event.reply('已修改完成');
+                //     }
+                // })
             }
             
         }
