@@ -77,6 +77,7 @@ bot.on('message', function (event) {
 
             // event.reply(msg1);
             if(msg1=="會員"){
+                console.log("if1 states: "+states);
                 if(msg2=="資訊"){
                     // event.reply(states);
                     member.fetchMember(userId).then(data => {
@@ -113,6 +114,7 @@ bot.on('message', function (event) {
                     // event.reply(userId);
                     console.log("修改電話 states: "+states);
                     event.reply('請輸入您的電話\nex: 09xxxxxxxx');
+                    console.log("修改電話 states: "+states);
                     
                 }//else if(states="會員,進入修改電話"){
                 //     states="";
