@@ -69,7 +69,7 @@ var UpdatePhone = async function(phone, id){
     await query('UPDATE member SET phone = $1 where userid = $2', [phone, id])
         .then((data) => {
             if(data.rows.length > 0){
-                result = data.rows[0];  //學生資料(物件)
+                result = data.rows;  //學生資料(物件)
             }else{
                 result = -1;  //找不到資料
             }    
