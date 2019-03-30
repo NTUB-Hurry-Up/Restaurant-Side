@@ -61,6 +61,22 @@ var fetchMember = async function(id){
     return result;
 }
 //------------------------------------------
+var UpdateName = async function(name, id){
+    //存放結果
+    let result;  
+
+    //讀取資料庫UPDATE table_name SET field1=new-value1, field2=new-value2
+    await query('UPDATE member SET name = $1 where userid = $2', [name, id])
+        .then((data) => { 
+            result = data.rowCount;  //回傳資料數 
+        }, (error) => {
+            result = -9;  //執行錯誤
+        });
+
+    //回傳執行結果
+    return result;
+}
+//------------------------------------------
 var UpdatePhone = async function(phone, id){
     //存放結果
     let result;  
@@ -78,5 +94,5 @@ var UpdatePhone = async function(phone, id){
 }
 
 //匯出
-module.exports = {addMember, deleteMember, fetchMember, UpdatePhone};
+module.exports = {addMember, deleteMember, fetchMember, UpdateName, UpdatePhone};
 

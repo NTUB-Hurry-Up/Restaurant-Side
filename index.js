@@ -65,7 +65,6 @@ var states = "";
 bot.on('message', function (event) {
     event.source.profile().then(
         function (profile) {
-            //使用者傳來的學號
             const userName = profile.displayName;
             const userId = profile.userId;
             const phone = event.message.text;
@@ -75,11 +74,9 @@ bot.on('message', function (event) {
             var msg1 = NewArray[0];
             var msg2 = NewArray[1];
 
-            // event.reply(msg1);
             if(msg1=="會員"){
                 console.log("if1 states: "+states);
                 if(msg2=="資訊"){
-                    // event.reply(states);
                     member.fetchMember(userId).then(data => {
                         if (data == -1){
                             event.reply('找不到資料');
@@ -99,7 +96,6 @@ bot.on('message', function (event) {
                         }
                     })
                 }else if(msg2=="修改姓名"){
-                    // event.reply(userId);
                     member.UpdateName(userId).then(data => {
                         if (data == -1){
                             event.reply('找不到資料');
@@ -111,29 +107,10 @@ bot.on('message', function (event) {
                     })
                 }else if(msg2=="修改電話"){
                     states="進入修改電話程序";
-                    // event.reply(userId);
-                    console.log("修改電話 states: "+states);
-                    event.reply('請輸入您的電話\nex: 09xxxxxxxx');
-                    console.log("修改電話 states: "+states);
-                    
-                }//else if(states="會員,進入修改電話"){
-                //     states="";
-                //     // event.reply(userId);
-                //     member.UpdatePhone(msg).then(data => {
-                //         if (data == -1){
-                //             event.reply('找不到資料');
-                //         }else if(data == -9){
-                //             event.reply('執行錯誤');
-                //         }else{
-                //             event.reply('已修改完成');
-                //         }
-                //     })
-                // }
+                    event.reply('請輸入您的電話\nex: 09xxxxxxxx');                    
+                }
             }else if(states=="進入修改電話程序"){
-                console.log("進入修改電話程序 states1: "+states);
                 states="";
-                console.log("進入修改電話程序 states1: "+states+" "+msg);
-                // event.reply(msg+" "+userId+" states: "+states);
                 member.UpdatePhone(msg, userId).then(data => {
                     if (data == -1){
                         event.reply('找不到資料');
@@ -141,6 +118,17 @@ bot.on('message', function (event) {
                         event.reply('執行錯誤');
                     }else{
                         event.reply('電話已修改完成');
+                    }
+                })
+            }else if(states=="進入修改姓名程序"){
+                states="";
+                member.UpdateName(msg, userId).then(data => {
+                    if (data == -1){
+                        event.reply('找不到資料');
+                    }else if(data == -9){
+                        event.reply('執行錯誤');
+                    }else{
+                        event.reply('姓名已修改完成');
                     }
                 })
             }
