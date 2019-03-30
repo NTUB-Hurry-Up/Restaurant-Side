@@ -134,7 +134,7 @@ bot.on('message', function (event) {
                 states="";
                 console.log("進入修改電話程序 states1: "+states+" "+msg);
                 // event.reply(msg+" "+userId+" states: "+states);
-                member.UpdatePhone(msg, userid).then(data => {
+                member.UpdatePhone(msg, userId).then(data => {
                     if (data == -1){
                         event.reply('找不到資料');
                     }else if(data == -9){
