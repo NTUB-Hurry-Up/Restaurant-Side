@@ -132,17 +132,17 @@ bot.on('message', function (event) {
             }else if(states=="進入修改電話程序"){
                 console.log("進入修改電話程序 states1: "+states);
                 states="";
-                console.log("進入修改電話程序 states1: "+states);
-                event.reply(msg+" "+userId+" states: "+states);
-                // member.UpdatePhone(msg, userid).then(data => {
-                //     if (data == -1){
-                //         event.reply('找不到資料');
-                //     }else if(data == -9){
-                //         event.reply('執行錯誤');
-                //     }else{
-                //         event.reply('已修改完成');
-                //     }
-                // })
+                console.log("進入修改電話程序 states1: "+states+" "+msg);
+                // event.reply(msg+" "+userId+" states: "+states);
+                member.UpdatePhone(msg, userid).then(data => {
+                    if (data == -1){
+                        event.reply('找不到資料');
+                    }else if(data == -9){
+                        event.reply('執行錯誤');
+                    }else{
+                        event.reply('電話已修改完成');
+                    }
+                })
             }
             
         }
