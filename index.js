@@ -133,7 +133,7 @@ bot.on('message', function (event) {
                 console.log("進入修改電話程序 states1: "+states);
                 states="";
                 console.log("進入修改電話程序 states1: "+states);
-                event.reply(" "+userId+" states: "+states);
+                event.reply(msg+" "+userId+" states: "+states);
                 // member.UpdatePhone(msg, userid).then(data => {
                 //     if (data == -1){
                 //         event.reply('找不到資料');
