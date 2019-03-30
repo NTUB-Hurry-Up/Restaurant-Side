@@ -6,12 +6,12 @@ const query = require('./asyncDB');
 //------------------------------------------
 // 新增會員資料
 //------------------------------------------
-var addMember = async function(id, name){
+var addCustomer = async function(id, name){
     //存放結果
     let result;  
 
     //新增會員資料
-    await query('insert into member (userid, name) values ($1, $2)', [id, name])
+    await query('insert into customer (cusid, cusName) values ($1, $2)', [id, name])
         .then((data) => {
             result = data.rowCount;  //新增資料數 
         }, (error) => {
@@ -25,12 +25,12 @@ var addMember = async function(id, name){
 //------------------------------------------
 // 刪除會員資料
 //------------------------------------------
-var deleteMember = async function(id){
+var deleteCustomer = async function(id){
     //存放結果
     let result;  
 
     //刪除會員資料
-    await query('delete from member where userid = $1', [id])
+    await query('delete from customer where cusid = $1', [id])
         .then((data) => {
             result = data.rowCount;  //刪除資料數 
         }, (error) => {
@@ -41,12 +41,12 @@ var deleteMember = async function(id){
     return result;  
 }
 //------------------------------------------
-var fetchMember = async function(id){
+var fetchCustomer = async function(id){
     //存放結果
     let result;  
 
     //讀取資料庫
-    await query('select * from member where userid = $1', [id])
+    await query('select * from customer where cusid = $1', [id])
         .then((data) => {
             if(data.rows.length > 0){
                 result = data.rows[0];  //學生資料(物件)
@@ -66,7 +66,7 @@ var UpdateName = async function(name, id){
     let result;  
 
     //讀取資料庫UPDATE table_name SET field1=new-value1, field2=new-value2
-    await query('UPDATE member SET name = $1 where userid = $2', [name, id])
+    await query('UPDATE customer SET cusName = $1 where cusid = $2', [name, id])
         .then((data) => { 
             result = data.rowCount;  //回傳資料數 
         }, (error) => {
@@ -82,7 +82,7 @@ var UpdatePhone = async function(phone, id){
     let result;  
 
     //讀取資料庫UPDATE table_name SET field1=new-value1, field2=new-value2
-    await query('UPDATE member SET phone = $1 where userid = $2', [phone, id])
+    await query('UPDATE customer SET phone = $1 where cusid = $2', [phone, id])
         .then((data) => { 
             result = data.rowCount;  //回傳資料數 
         }, (error) => {
@@ -94,5 +94,5 @@ var UpdatePhone = async function(phone, id){
 }
 
 //匯出
-module.exports = {addMember, deleteMember, fetchMember, UpdateName, UpdatePhone};
+module.exports = {addCustomer, deleteCustomer, fetchCustomer, UpdateName, UpdatePhone};
 
