@@ -4,7 +4,7 @@
 var linebot = require('linebot');
 var express = require('express');
 
-const customer = require('./customer');
+const member = require('./member');
 const student = require('./student');
 // const student = require('./student');
 //----------------------------------------
@@ -25,7 +25,7 @@ bot.on('follow', function (event) {
             const userId = profile.userId;
             const userName = profile.displayName;
             //呼叫API, 將使用者資料寫入資料庫
-            customer.addCustomer(userId, userName).then(data => {
+            member.addMember(userId, userName).then(data => {
                 if (data == -9) {
                     event.reply('執行錯誤');
                 } else {
@@ -77,7 +77,7 @@ bot.on('message', function (event) {
             if(msg1=="會員"){
                 console.log("if1 states: "+states);
                 if(msg2=="資訊"){
-                    customer.fetchCustomer(userId).then(data => {
+                    member.fetchMember(userId).then(data => {
                         if (data == -1){
                             event.reply('找不到資料');
                         }else if(data == -9){                    
@@ -91,7 +91,7 @@ bot.on('message', function (event) {
                             temp1.template.actions[1].label="修改電話";
                             temp1.template.actions[1].text="會員,修改電話";
                             temp1.template.title="會員資訊"
-                            temp1.template.text="姓名 : "+data.cusName+"\n電話 : "+data.cusPhone
+                            temp1.template.text="姓名 : "+data.name+"\n電話 : "+data.phone
                             event.reply(temp1);
                         }
                     })
@@ -107,7 +107,7 @@ bot.on('message', function (event) {
             }else if(states != ""){
                 if(states=="進入修改電話程序"){
                     states="";
-                    customer.UpdatePhone(msg, userId).then(data => {
+                    member.UpdatePhone(msg, userId).then(data => {
                         if (data == -1){
                             event.reply('找不到資料');
                         }else if(data == -9){
@@ -118,7 +118,7 @@ bot.on('message', function (event) {
                     })
                 }else if(states=="進入修改姓名程序"){
                     states="";
-                    customer.UpdateName(msg, userId).then(data => {
+                    member.UpdateName(msg, userId).then(data => {
                         if (data == -1){
                             event.reply('找不到資料');
                         }else if(data == -9){
@@ -142,7 +142,7 @@ bot.on('unfollow', function (event) {
     const userId = event.source.userId;
 
     //呼叫API, 將使用者資料刪除
-    customer.deleteCustomer(userId).then(data => {
+    member.deleteMember(userId).then(data => {
         if (data == -9) {
             event.reply('執行錯誤');    //會員已封鎖群組, 本訊息無法送達
         } else {
