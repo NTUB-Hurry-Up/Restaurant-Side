@@ -96,15 +96,9 @@ bot.on('message', function (event) {
                         }
                     })
                 }else if(msg2=="修改姓名"){
-                    member.UpdateName(userId).then(data => {
-                        if (data == -1){
-                            event.reply('找不到資料');
-                        }else if(data == -9){
-                            event.reply('執行錯誤');
-                        }else{
-                            event.reply('請輸入您的姓名');
-                        }
-                    })
+                    states="進入修改姓名程序";
+                    event.reply('請輸入您的姓名');  
+                     
                 }else if(msg2=="修改電話"){
                     states="進入修改電話程序";
                     event.reply('請輸入您的電話\nex: 09xxxxxxxx');                    
