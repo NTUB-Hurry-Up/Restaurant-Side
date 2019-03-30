@@ -126,8 +126,7 @@ bot.on('message', function (event) {
                 //         }
                 //     })
                 // }
-            }
-            if(states=="進入修改電話程序"){
+            }else if(states=="進入修改電話程序"){
                 states="";
                 event.reply(" "+userId+" states: "+states);
                 member.UpdatePhone(msg, userid).then(data => {
