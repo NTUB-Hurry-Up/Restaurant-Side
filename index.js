@@ -60,6 +60,7 @@ var temp1=
         "text": "內文"
     }
 }
+var states = "";
 
 bot.on('message', function (event) {
     event.source.profile().then(
@@ -73,7 +74,6 @@ bot.on('message', function (event) {
             var NewArray = msg.split(",");
             var msg1 = NewArray[0];
             var msg2 = NewArray[1];
-            var states = "";
 
             // event.reply(msg1);
             if(msg1=="會員"){
