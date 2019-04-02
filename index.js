@@ -91,7 +91,10 @@ bot.on('message', function (event) {
                         }else if(data == -9){                    
                             event.reply('執行錯誤');
                         }else{
-                            event.reply(data.storeid);
+                            data.forEach(m => {
+                                event.reply(m.storeid);
+                            })
+                            
                         }
                     })
                 }
