@@ -86,6 +86,7 @@ bot.on('message', function (event) {
             }else if(msg1=="店家"){
                 if(msg2=="資訊"){
                     store.fetchStore().then(data => {
+                        var arr=[]
                         if (data == -1){
                             event.reply('找不到資料');
                         }else if(data == -9){                    
@@ -93,9 +94,11 @@ bot.on('message', function (event) {
                         }else{
                             data.forEach(m => {
                                 console.log(m.storeid);
-                                event.reply(m.storeid);
+                                arr.push(m.storeid)
+                                // event.reply(m.storeid);
                             })
                         }
+                        event.reply(arr);
                     })
                 }
             }else if(states != ""){
