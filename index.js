@@ -93,9 +93,12 @@ bot.on('message', function (event) {
                             event.reply('執行錯誤');
                         }else{
                             data.forEach(m => {
-                                console.log(m.storeid);
-                                arr.push(m.storeid)
-                                // event.reply(m.storeid);
+                                // console.log(m.storeid);
+                                arr.push(
+                                    temp.temp_store.contents.body.contents[0].text="m.storeName",
+                                    temp.temp_store.contents.body.contents[1].contents[0].contents[1].text="m.storeAdd",
+                                    temp.temp_store.contents.body.contents[1].contents[1].contents[1].text="m.storeTel"
+                                )
                             })
                         }
                         event.reply(arr);
