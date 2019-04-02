@@ -95,11 +95,11 @@ bot.on('message', function (event) {
                             data.forEach(m => {
                                 // console.log(m.storeid);
                                 arr.push(temp.temp_store);
-                                arr[m].temp.temp_store.contents.body.contents[0].text="m.storeName",
-                                arr[m].temp.temp_store.contents.body.contents[1].contents[0].contents[1].text="m.storeAdd",
-                                arr[m].temp.temp_store.contents.body.contents[1].contents[1].contents[1].text="m.storeTel"
-                                console.log(m);
-                                console.log(arr[m].temp.temp_store.contents.body.contents[0]);
+                                temp.temp_store.contents.body.contents[0].text="m.storeName",
+                                temp.temp_store.contents.body.contents[1].contents[0].contents[1].text="m.storeAdd",
+                                temp.temp_store.contents.body.contents[1].contents[1].contents[1].text="m.storeTel"
+                                console.log("wertyu"+m);
+                                console.log();
                             })
                         }
                         event.reply(arr);
