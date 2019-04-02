@@ -92,9 +92,9 @@ bot.on('message', function (event) {
                             event.reply('執行錯誤');
                         }else{
                             data.forEach(m => {
+                                console.log(m.storeid);
                                 event.reply(m.storeid);
                             })
-                            
                         }
                     })
                 }
