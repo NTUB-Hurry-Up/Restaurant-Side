@@ -262,7 +262,7 @@ bot.on('message', function (event) {
                 }
 
             }else if(msg1 == "店家"){
-                event.reply(temp_store);       
+                event.reply("hi");       
             }else if(states != ""){
                 if(states=="進入修改電話程序"){
                     states="";
