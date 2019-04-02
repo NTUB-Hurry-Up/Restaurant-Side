@@ -33,11 +33,6 @@ var temp_store=
         "size": "full",
         "aspectRatio": "20:13",
         "aspectMode": "cover",
-        "action": {
-            "type": "uri",
-            "label": "Line",
-            "uri": "https://linecorp.com/"
-        }
         },
         "body": {
         "type": "box",

@@ -5,6 +5,7 @@ var linebot = require('linebot');
 var express = require('express');
 
 const member = require('./member');
+const store = require('./store');
 const temp = require('./temp');
 //----------------------------------------
 // 填入自己在Line Developers的channel值
@@ -83,7 +84,17 @@ bot.on('message', function (event) {
                     event.reply('請輸入您的電話\nex: 09xxxxxxxx');                    
                 }
             }else if(msg1=="店家"){
-                event.reply(temp.temp_store);
+                if(msg2=="資訊"){
+                    store.fetchStore().then(data => {
+                        if (data == -1){
+                            event.reply('找不到資料');
+                        }else if(data == -9){                    
+                            event.reply('執行錯誤');
+                        }else{
+                            event.reply(data.storeid);
+                        }
+                    })
+                }
             }else if(states != ""){
                 if(states=="進入修改電話程序"){
                     states="";
