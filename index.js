@@ -98,6 +98,8 @@ bot.on('message', function (event) {
                                 arr[m].temp.temp_store.contents.body.contents[0].text="m.storeName",
                                 arr[m].temp.temp_store.contents.body.contents[1].contents[0].contents[1].text="m.storeAdd",
                                 arr[m].temp.temp_store.contents.body.contents[1].contents[1].contents[1].text="m.storeTel"
+                                console.log(m);
+                                console.log(arr[m].temp.temp_store.contents.body.contents[0]);
                             })
                         }
                         event.reply(arr);
