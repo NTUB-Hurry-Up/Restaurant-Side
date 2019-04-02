@@ -61,15 +61,16 @@ bot.on('message', function (event) {
                         }else if(data == -9){                    
                             event.reply('執行錯誤');
                         }else{
-                            temp.temp1.template.actions[0].type="message";
-                            temp.temp1.template.actions[0].label="修改姓名";
-                            temp.temp1.template.actions[0].text="會員,修改姓名";
+                            const template = temp.temp1.template;
+                            template.actions[0].type="message";
+                            template.actions[0].label="修改姓名";
+                            template.actions[0].text="會員,修改姓名";
 
-                            temp.temp1.template.actions[1].type="message";
-                            temp.temp1.template.actions[1].label="修改電話";
-                            temp.temp1.template.actions[1].text="會員,修改電話";
-                            temp.temp1.template.title="會員資訊"
-                            temp.temp1.template.text="姓名 : "+data.name+"\n電話 : "+data.phone
+                            template.actions[1].type="message";
+                            template.actions[1].label="修改電話";
+                            template.actions[1].text="會員,修改電話";
+                            template.title="會員資訊"
+                            template.text="姓名 : "+data.name+"\n電話 : "+data.phone
                             event.reply(temp.temp1);
                         }
                     })
