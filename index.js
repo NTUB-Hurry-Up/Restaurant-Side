@@ -5,8 +5,6 @@ var linebot = require('linebot');
 var express = require('express');
 
 const member = require('./member');
-const student = require('./student');
-// const student = require('./student');
 //----------------------------------------
 // 填入自己在Line Developers的channel值
 //----------------------------------------
