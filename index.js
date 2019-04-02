@@ -260,8 +260,7 @@ bot.on('message', function (event) {
                     states="進入修改電話程序";
                     event.reply('請輸入您的電話\nex: 09xxxxxxxx');                    
                 }
-
-            }else if(msg1 == "店家"){
+            }else if(msg=="店家"){
                 event.reply("hi");       
             }else if(states != ""){
                 if(states=="進入修改電話程序"){
