@@ -1,3 +1,4 @@
+'use strict';
 var temp1=
 {
     "type": "template",
@@ -176,3 +177,10 @@ var temp_store=
         }
     }
 }
+
+
+
+
+
+//匯出
+module.exports = {temp1, temp_store};
