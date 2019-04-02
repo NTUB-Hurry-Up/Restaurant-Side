@@ -95,9 +95,9 @@ bot.on('message', function (event) {
                             data.forEach(m => {
                                 // console.log(m.storeid);
                                 arr.push(temp.temp_store);
-                                temp.temp_store.contents.body.contents[0].text="m.storeName",
-                                temp.temp_store.contents.body.contents[1].contents[0].contents[1].text="m.storeAdd",
-                                temp.temp_store.contents.body.contents[1].contents[1].contents[1].text="m.storeTel"
+                                temp.temp_store.contents.body.contents[0].text=m.storeName,
+                                temp.temp_store.contents.body.contents[1].contents[0].contents[1].text=m.storeAdd,
+                                temp.temp_store.contents.body.contents[1].contents[1].contents[1].text=m.storeTel
                                 console.log("wertyu"+m);
                                 console.log();
                             })
