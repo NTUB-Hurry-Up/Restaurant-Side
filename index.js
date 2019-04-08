@@ -85,9 +85,7 @@ bot.on('message', function (event) {
                 }
             }else if(msg1=="店家"){
                 if(msg2=="資訊"){
-                    
-                    store.fetchStore().then(data => {
-                        var arr=[];
+                    var arr=[];
                     var o = 
                     {
                       "type": "bubble",
@@ -200,6 +198,8 @@ bot.on('message', function (event) {
                         ]
                       }
                     };
+                    store.fetchStore().then(data => {
+                        
                         if (data == -1){
                             event.reply('找不到資料');
                         }else if(data == -9){                    
