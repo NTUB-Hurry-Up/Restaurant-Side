@@ -107,7 +107,7 @@ bot.on('message', function (event) {
                                 // console.log("length : "+data.length+ " i : "+i+" arr: "+arr.length+" ,data: "+data[i].storeName+", "+data[i].storeAdd+", "+data[i].storeTel)
                             }
                             console.log("last-> length : "+data.length+ " i : "+i+" arr: "+arr.length)
-
+                            setTimeout('console.log("test123");',3000);
                             for(var i = 0; i<2; i++){
                                 console.log(arr[0].contents.contents[i].body.contents[0].text);
                             }
