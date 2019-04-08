@@ -216,7 +216,7 @@ bot.on('message', function (event) {
                                     // o.body.contents[1].contents[0].contents[1].text=data[i].storeAdd;
                                     // o.body.contents[1].contents[1].contents[1].text=data[i].storeTel;
                                     arr[0].contents.contents.push(o);
-                                }, 1000 * i);
+                                }, 1000 );
 
                             }
                             // data.forEach(m => {
