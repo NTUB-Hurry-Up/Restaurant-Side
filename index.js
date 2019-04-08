@@ -98,39 +98,44 @@ bot.on('message', function (event) {
                             console.log("first-> arr: "+arr.length)
                             
                             for(var i = 0; i<data.length; i++){
-                                o.body.contents[0].text=data[i].storeName;
-                                o.body.contents[1].contents[0].contents[1].text=data[i].storeAdd;
-                                o.body.contents[1].contents[1].contents[1].text=data[i].storeTel;
+                                (function(o){
+                                    o.body.contents[0].text=data[i].storeName;
+                                    o.body.contents[1].contents[0].contents[1].text=data[i].storeAdd;
+                                    o.body.contents[1].contents[1].contents[1].text=data[i].storeTel;
+                                    arr[0].contents.contents.push(o);
+                                })(Object.assign({}, o));
 
-                                arr[0].contents.contents.push({
-                                    body: {
-                                        contents: [
-                                            {
-                                                text: data[i].storeName
-                                            },
-                                            {
-                                                contents: [
-                                                    {
-                                                        contents:[
-                                                            null,
-                                                            {
-                                                                text: data[i].storeAdd
-                                                            }
-                                                        ]
-                                                    },
-                                                    {
-                                                        contents:[
-                                                            null,
-                                                            {
-                                                                text: data[i].storeTel
-                                                            }
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                });
+
+
+                                // arr[0].contents.contents.push({
+                                //     body: {
+                                //         contents: [
+                                //             {
+                                //                 text: data[i].storeName
+                                //             },
+                                //             {
+                                //                 contents: [
+                                //                     {
+                                //                         contents:[
+                                //                             null,
+                                //                             {
+                                //                                 text: data[i].storeAdd
+                                //                             }
+                                //                         ]
+                                //                     },
+                                //                     {
+                                //                         contents:[
+                                //                             null,
+                                //                             {
+                                //                                 text: data[i].storeTel
+                                //                             }
+                                //                         ]
+                                //                     }
+                                //                 ]
+                                //             }
+                                //         ]
+                                //     }
+                                // });
                                 
                                 
                                 console.log(arr[0].contents.contents[i].body.contents[0].text);
