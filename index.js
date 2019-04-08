@@ -99,10 +99,14 @@ bot.on('message', function (event) {
                             console.log("first-> arr: "+arr.length)
                             
                             for(var i = 0; i<data.length; i++){
-                                o.body.contents[0].text=data[i].storeName;
-                                o.body.contents[1].contents[0].contents[1].text=data[i].storeAdd;
-                                o.body.contents[1].contents[1].contents[1].text=data[i].storeTel;
+                                // o.body.contents[0].text=data[i].storeName;
+                                // o.body.contents[1].contents[0].contents[1].text=data[i].storeAdd;
+                                // o.body.contents[1].contents[1].contents[1].text=data[i].storeTel;
+                                // arr[0].contents.contents.push(o);
                                 arr[0].contents.contents.push(o);
+                                arr[0].contents.contents[i].body.contents[0].text=data[i].storeName;
+                                arr[0].contents.contents[i].body.contents[1].contents[0].contents[1].text=data[i].storeAdd;
+                                arr[0].contents.contents[i].body.contents[1].contents[1].contents[1].text=data[i].storeTel;
                                 console.log(arr[0].contents.contents[i].body.contents[0].text);
                                 // console.log("length : "+data.length+ " i : "+i+" arr: "+arr.length+" ,data: "+data[i].storeName+", "+data[i].storeAdd+", "+data[i].storeTel)
                             }
