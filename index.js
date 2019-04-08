@@ -52,6 +52,7 @@ bot.on('message', function (event) {
             var NewArray = msg.split(",");
             var msg1 = NewArray[0];
             var msg2 = NewArray[1];
+            var msg3 = NewArray[2];
 
             if(msg1=="會員"){
                 console.log("if1 status: "+status);
@@ -85,7 +86,6 @@ bot.on('message', function (event) {
                 }
             }else if(msg1=="店家"){
                 if(msg2=="資訊"){
-                    
                     store.fetchStore().then(data => {
                         if (data == -1){
                             event.reply('找不到資料');
@@ -104,8 +104,6 @@ bot.on('message', function (event) {
                                 //     o.body.contents[1].contents[1].contents[1].text=data[i].storeTel;
                                 //     arr[0].contents.contents.push(o);
                                 // })(Object.assign({}, o));
-
-
 
                                 arr[0].contents.contents.push({
                                     "type": "bubble",
@@ -144,14 +142,14 @@ bot.on('message', function (event) {
                                             "contents": [
                                                 {
                                                 "type": "text",
-                                                "text": data[i].storeAdd,
+                                                "text": "Place",
                                                 "flex": 1,
                                                 "size": "sm",
                                                 "color": "#AAAAAA"
                                                 },
                                                 {
                                                 "type": "text",
-                                                "text": "Miraina Tower, 4-1-6 Shinjuku, Tokyo",
+                                                "text": data[i].storeAdd,
                                                 "flex": 5,
                                                 "size": "sm",
                                                 "color": "#666666",
@@ -194,9 +192,9 @@ bot.on('message', function (event) {
                                         {
                                         "type": "button",
                                         "action": {
-                                            "type": "uri",
-                                            "label": "CALL",
-                                            "uri": "https://linecorp.com"
+                                            "type": "message",
+                                            "label": "查看菜單",
+                                            "text": "店家,查看菜單,"+data[i].storeid
                                         },
                                         "height": "sm",
                                         "style": "link"
@@ -204,9 +202,9 @@ bot.on('message', function (event) {
                                         {
                                         "type": "button",
                                         "action": {
-                                            "type": "uri",
-                                            "label": "WEBSITE",
-                                            "uri": "https://linecorp.com"
+                                            "type": "message",
+                                            "label": "聯絡店家",
+                                            "text": "店家,聯絡店家,"+data[i].storeid
                                         },
                                         "height": "sm",
                                         "style": "link"
@@ -236,6 +234,10 @@ bot.on('message', function (event) {
                             // console.log("arr: "+arr+" data: "+data);
                         }
                     })
+                }else if(msg2=="查看菜單"){
+
+                }else if(msg2=="聯絡店家"){
+
                 }
             }else if(status != ""){
                 if(status=="進入修改電話程序"){
