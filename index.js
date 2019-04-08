@@ -225,9 +225,9 @@ bot.on('message', function (event) {
                                 // o.body.contents[1].contents[1].contents[1].text=m.storeTel;
                                 // console.log("wertyu"+m);
                                 // console.log();
-                                o.body.contents[0].text=m.storeName;
-                                o.body.contents[1].contents[0].contents[1].text=m.storeAdd;
-                                o.body.contents[1].contents[1].contents[1].text=m.storeTel;
+                                // o.body.contents[0].text=m.storeName;
+                                // o.body.contents[1].contents[0].contents[1].text=m.storeAdd;
+                                // o.body.contents[1].contents[1].contents[1].text=m.storeTel;
                                 arr[0].contents.contents.push(o);
                             })
                             event.reply(arr);
