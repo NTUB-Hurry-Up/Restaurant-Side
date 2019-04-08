@@ -210,6 +210,7 @@ bot.on('message', function (event) {
                                 o.body.contents[1].contents[0].contents[1].text=data.storeAdd;
                                 o.body.contents[1].contents[1].contents[1].text=data.storeTel;
                                 arr[0].contents.contents.push(o);
+                                consloe.log(data.storeName, data.storeAdd, data.storeTel);
                             }
                             // data.forEach(m => {
                                 // console.log(m.storeid);
