@@ -39,7 +39,7 @@ bot.on('follow', function (event) {
 // 機器人接受訊息的處理
 // --------------------------------
 
-var states = "";
+var status = "";
 var arr=[];
 var o = 
 {
@@ -166,7 +166,7 @@ bot.on('message', function (event) {
             var msg2 = NewArray[1];
 
             if(msg1=="會員"){
-                console.log("if1 states: "+states);
+                console.log("if1 status: "+status);
                 if(msg2=="資訊"){
                     member.fetchMember(userId).then(data => {
                         if (data == -1){
@@ -188,11 +188,11 @@ bot.on('message', function (event) {
                         }
                     })
                 }else if(msg2=="修改姓名"){
-                    states="進入修改姓名程序";
+                    status="進入修改姓名程序";
                     event.reply('請輸入您的姓名');  
 
                 }else if(msg2=="修改電話"){
-                    states="進入修改電話程序";
+                    status="進入修改電話程序";
                     event.reply('請輸入您的電話\nex: 09xxxxxxxx');                    
                 }
             }else if(msg1=="店家"){
@@ -215,8 +215,10 @@ bot.on('message', function (event) {
                                     o.body.contents[1].contents[0].contents[1].text=data[i].storeAdd;
                                     o.body.contents[1].contents[1].contents[1].text=data[i].storeTel;
                                     arr[0].contents.contents.push(o);
+                                    console.log("length : "+data.length+ "i : "+i)
 
                             }
+                            console.log("last-> length : "+data.length+ "i : "+i)
                             // data.forEach(m => {
                                 // console.log(m.storeName, m.storeAdd, m.storeTel);
                                 // console.log(m.storeid);
@@ -235,9 +237,9 @@ bot.on('message', function (event) {
                         }
                     })
                 }
-            }else if(states != ""){
-                if(states=="進入修改電話程序"){
-                    states="";
+            }else if(status != ""){
+                if(status=="進入修改電話程序"){
+                    status="";
                     member.UpdatePhone(msg, userId).then(data => {
                         if (data == -1){
                             event.reply('找不到資料');
@@ -247,8 +249,8 @@ bot.on('message', function (event) {
                             event.reply('電話已修改完成');
                         }
                     })
-                }else if(states=="進入修改姓名程序"){
-                    states="";
+                }else if(status=="進入修改姓名程序"){
+                    status="";
                     member.UpdateName(msg, userId).then(data => {
                         if (data == -1){
                             event.reply('找不到資料');
