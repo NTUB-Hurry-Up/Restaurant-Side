@@ -206,11 +206,11 @@ bot.on('message', function (event) {
                         }else{
                             arr.push(temp.temp_store);
                             for(var i = 0; i<data.length; i++){
-                                o.body.contents[0].text=data.storeName;
-                                o.body.contents[1].contents[0].contents[1].text=data.storeAdd;
-                                o.body.contents[1].contents[1].contents[1].text=data.storeTel;
-                                arr[0].contents.contents.push(o);
                                 consloe.log(data.storeName, data.storeAdd, data.storeTel);
+                                // o.body.contents[0].text=data.storeName;
+                                // o.body.contents[1].contents[0].contents[1].text=data.storeAdd;
+                                // o.body.contents[1].contents[1].contents[1].text=data.storeTel;
+                                arr[0].contents.contents.push(o);
                             }
                             // data.forEach(m => {
                                 // console.log(m.storeid);
