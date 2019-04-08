@@ -108,9 +108,9 @@ bot.on('message', function (event) {
                             }
                             console.log("last-> length : "+data.length+ " i : "+i+" arr: "+arr.length)
                             // setTimeout(function(){console.log('test123');},3000);
-                            // for(var i = 0; i<2; i++){
-                            //     console.log(arr[0].contents.contents[i].body.contents[0].text);
-                            // }
+                            for(var i = 0; i<2; i++){
+                                console.log(arr[0].contents.contents[i].body.contents[0].text);
+                            }
                             event.reply(arr[0]);
                             arr[0].contents.contents.length=0;
                             arr.length = 0;
