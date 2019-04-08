@@ -236,6 +236,7 @@ bot.on('message', function (event) {
                                 // arr[0].contents.contents.push(o);
                             // })
                             event.reply(arr[0]);
+                            arr[0].contents.contents.length=0;
                             arr.length = 0;
                             data.length = 0;
                             console.log("arr: "+arr+" data: "+data);
