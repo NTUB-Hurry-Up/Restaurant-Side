@@ -235,7 +235,7 @@ bot.on('message', function (event) {
                                 // o.body.contents[1].contents[1].contents[1].text=m.storeTel;
                                 // arr[0].contents.contents.push(o);
                             // })
-                            event.reply(arr);
+                            event.reply(arr[0]);
                             arr.length = 0;
                             data.length = 0;
                             console.log("arr: "+arr+" data: "+data);
