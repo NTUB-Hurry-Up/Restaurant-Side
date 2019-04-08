@@ -233,7 +233,8 @@ bot.on('message', function (event) {
                                 // arr[0].contents.contents.push(o);
                             // })
                             event.reply(arr);
-                            arr=[];
+                            arr = null;
+                            console.log(arr);
                         }
                     })
                 }
