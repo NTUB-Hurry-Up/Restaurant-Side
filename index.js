@@ -214,9 +214,9 @@ bot.on('message', function (event) {
                             //     // console.log(i);
                                     // console.log(data[i].storeName, data[i].storeAdd, data[i].storeTel);
                                     arr[0].contents.contents.push(o);
-                                    arr[0].contents.contents[i].body[0].contents[0].text=data[i].storeName;
-                                    arr[0].contents.contents[i].body[0].contents[1].contents[0].contents[1].text=data[i].storeAdd;
-                                    arr[0].contents.contents[i].body[0].contents[1].contents[1].contents[1].text=data[i].storeTel;
+                                    arr[0].contents[0].contents[i].body[0].contents[0].text=data[i].storeName;
+                                    arr[0].contents[0].contents[i].body[0].contents[1].contents[0].contents[1].text=data[i].storeAdd;
+                                    arr[0].contents[0].contents[i].body[0].contents[1].contents[1].contents[1].text=data[i].storeTel;
 
                                     // o.body.contents[0].text=data[i].storeName;
                                     // o.body.contents[1].contents[0].contents[1].text=data[i].storeAdd;
