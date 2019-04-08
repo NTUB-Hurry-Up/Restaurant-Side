@@ -108,8 +108,8 @@ bot.on('message', function (event) {
                             }
                             console.log("last-> length : "+data.length+ " i : "+i+" arr: "+arr.length)
 
-                            for(var i = 0; i<data.length; i++){
-                                console.log(arr[0].contents.contents[i].body.contents[0].text);
+                            for(var i = 0; i<2; i++){
+                                console.log(arr);
                             }
                             event.reply(arr[0]);
                             arr[0].contents.contents.length=0;
