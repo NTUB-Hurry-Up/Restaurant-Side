@@ -103,12 +103,12 @@ bot.on('message', function (event) {
                                 o.body.contents[1].contents[0].contents[1].text=data[i].storeAdd;
                                 o.body.contents[1].contents[1].contents[1].text=data[i].storeTel;
                                 arr[0].contents.contents.push(o);
-                                console.log("length : "+data.length+ " i : "+i+" arr: "+arr.length+" ,data: "+data[i].storeName+", "+data[i].storeAdd+", "+data[i].storeTel)
+                                console.log(arr[0].contents.body.contents[0].text);
+                                // console.log("length : "+data.length+ " i : "+i+" arr: "+arr.length+" ,data: "+data[i].storeName+", "+data[i].storeAdd+", "+data[i].storeTel)
                             }
                             console.log("last-> length : "+data.length+ " i : "+i+" arr: "+arr.length)
-                            console.log(arr[0]);
 
-                            event.reply(arr[0].contents.body.contents[0].text);
+                            event.reply(arr[0]);
                             
                             arr[0].contents.contents.length=0;
                             arr.length = 0;
