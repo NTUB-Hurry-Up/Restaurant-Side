@@ -244,8 +244,8 @@ bot.on('message', function (event) {
                         }else if(data == -9){                    
                             event.reply('執行錯誤');
                         }else{
-                            arr.push(temp.temp_store)
-                            arr.temp.temp_store.contents.contents.push(o);
+                            arr.push(temp.temp_store);
+                            arr[0].temp.temp_store.contents.contents.push(o);
                             // data.forEach(m => {
                                 // console.log(m.storeid);
                                 // o.body.contents[0].text=m.storeName;
