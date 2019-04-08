@@ -206,10 +206,10 @@ bot.on('message', function (event) {
                             arr.push(temp.temp_store);
                             data.forEach(m => {
                                 // console.log(m.storeid);
-                                o.body.contents[0].text=m.storeName,
-                                o.body.contents[1].contents[0].contents[1].text=m.storeAdd,
-                                o.body.contents[1].contents[1].contents[1].text=m.storeTel
-                                arr.temp.temp_store.contents.push(o);
+                                o.body.contents[0].text=m.storeName;
+                                o.body.contents[1].contents[0].contents[1].text=m.storeAdd;
+                                o.body.contents[1].contents[1].contents[1].text=m.storeTel;
+                                arr.temp.temp_store.contents.contents.push(o,);
                                 // console.log("wertyu"+m);
                                 // console.log();
                             })
