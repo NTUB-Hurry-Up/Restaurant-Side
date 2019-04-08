@@ -210,11 +210,11 @@ bot.on('message', function (event) {
 
                             for(var i = 0; i<data.length; i++){
                             //     // console.log(i);
-                                console.log(data[i].storeName, data[i].storeAdd, data[i].storeTel);
-                            //     // o.body.contents[0].text=data.storeName;
-                            //     // o.body.contents[1].contents[0].contents[1].text=data.storeAdd;
-                            //     // o.body.contents[1].contents[1].contents[1].text=data.storeTel;
-                            //     arr[0].contents.contents.push(o);
+                                // console.log(data[i].storeName, data[i].storeAdd, data[i].storeTel);
+                                o.body.contents[0].text=data[i].storeName;
+                                o.body.contents[1].contents[0].contents[1].text=data[i].storeAdd;
+                                o.body.contents[1].contents[1].contents[1].text=data[i].storeTel;
+                                arr[0].contents.contents.push(o);
                             }
                             // data.forEach(m => {
                                 // console.log(m.storeName, m.storeAdd, m.storeTel);
