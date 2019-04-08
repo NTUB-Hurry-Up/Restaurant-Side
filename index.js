@@ -209,7 +209,7 @@ bot.on('message', function (event) {
                                 o.body.contents[0].text=m.storeName,
                                 o.body.contents[1].contents[0].contents[1].text=m.storeAdd,
                                 o.body.contents[1].contents[1].contents[1].text=m.storeTel
-                                arr.temp.temp_store.contents.contents.push(o);
+                                arr.temp.temp_store.contents.push(o);
                                 // console.log("wertyu"+m);
                                 // console.log();
                             })
