@@ -86,7 +86,7 @@ bot.on('message', function (event) {
             }else if(msg1=="店家"){
                 if(msg2=="資訊"){
                     
-                    store.fetchStore().then(data => {
+                    store.fetchStore()(data => {
                         
                         if (data == -1){
                             event.reply('找不到資料');
@@ -94,7 +94,7 @@ bot.on('message', function (event) {
                             event.reply('執行錯誤');
                         }else{
                             var arr=[];
-                            const o = temp.temp_store_contents
+                            var o = temp.temp_store_contents
                             arr.push(temp.temp_store);
                             console.log("first-> arr: "+arr.length)
                             
