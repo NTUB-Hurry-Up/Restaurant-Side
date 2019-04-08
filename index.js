@@ -98,44 +98,127 @@ bot.on('message', function (event) {
                             console.log("first-> arr: "+arr.length)
                             
                             for(var i = 0; i<data.length; i++){
-                                (function(o){
-                                    o.body.contents[0].text=data[i].storeName;
-                                    o.body.contents[1].contents[0].contents[1].text=data[i].storeAdd;
-                                    o.body.contents[1].contents[1].contents[1].text=data[i].storeTel;
-                                    arr[0].contents.contents.push(o);
-                                })(Object.assign({}, o));
+                                // (function(o){
+                                //     o.body.contents[0].text=data[i].storeName;
+                                //     o.body.contents[1].contents[0].contents[1].text=data[i].storeAdd;
+                                //     o.body.contents[1].contents[1].contents[1].text=data[i].storeTel;
+                                //     arr[0].contents.contents.push(o);
+                                // })(Object.assign({}, o));
 
 
 
-                                // arr[0].contents.contents.push({
-                                //     body: {
-                                //         contents: [
-                                //             {
-                                //                 text: data[i].storeName
-                                //             },
-                                //             {
-                                //                 contents: [
-                                //                     {
-                                //                         contents:[
-                                //                             null,
-                                //                             {
-                                //                                 text: data[i].storeAdd
-                                //                             }
-                                //                         ]
-                                //                     },
-                                //                     {
-                                //                         contents:[
-                                //                             null,
-                                //                             {
-                                //                                 text: data[i].storeTel
-                                //                             }
-                                //                         ]
-                                //                     }
-                                //                 ]
-                                //             }
-                                //         ]
-                                //     }
-                                // });
+                                arr[0].contents.contents.push({
+                                    "type": "bubble",
+                                    "hero": {
+                                    "type": "image",
+                                    "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",
+                                    "size": "full",
+                                    "aspectRatio": "20:13",
+                                    "aspectMode": "cover",
+                                    "action": {
+                                        "type": "uri",
+                                        "label": "Line",
+                                        "uri": "https://linecorp.com/"
+                                    }
+                                    },
+                                    "body": {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "contents": [
+                                        {
+                                        "type": "text",
+                                        "text": data[i].storeName,
+                                        "size": "xl",
+                                        "weight": "bold"
+                                        },
+                                        {
+                                        "type": "box",
+                                        "layout": "vertical",
+                                        "spacing": "sm",
+                                        "margin": "lg",
+                                        "contents": [
+                                            {
+                                            "type": "box",
+                                            "layout": "baseline",
+                                            "spacing": "sm",
+                                            "contents": [
+                                                {
+                                                "type": "text",
+                                                "text": data[i].storeAdd,
+                                                "flex": 1,
+                                                "size": "sm",
+                                                "color": "#AAAAAA"
+                                                },
+                                                {
+                                                "type": "text",
+                                                "text": "Miraina Tower, 4-1-6 Shinjuku, Tokyo",
+                                                "flex": 5,
+                                                "size": "sm",
+                                                "color": "#666666",
+                                                "wrap": true
+                                                }
+                                            ]
+                                            },
+                                            {
+                                            "type": "box",
+                                            "layout": "baseline",
+                                            "spacing": "sm",
+                                            "contents": [
+                                                {
+                                                "type": "text",
+                                                "text": "Tel",
+                                                "flex": 1,
+                                                "size": "sm",
+                                                "color": "#AAAAAA"
+                                                },
+                                                {
+                                                "type": "text",
+                                                "text": data[i].storeTel,
+                                                "flex": 5,
+                                                "size": "sm",
+                                                "color": "#666666",
+                                                "wrap": true
+                                                }
+                                            ]
+                                            }
+                                        ]
+                                        }
+                                    ]
+                                    },
+                                    "footer": {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "flex": 0,
+                                    "spacing": "sm",
+                                    "contents": [
+                                        {
+                                        "type": "button",
+                                        "action": {
+                                            "type": "uri",
+                                            "label": "CALL",
+                                            "uri": "https://linecorp.com"
+                                        },
+                                        "height": "sm",
+                                        "style": "link"
+                                        },
+                                        {
+                                        "type": "button",
+                                        "action": {
+                                            "type": "uri",
+                                            "label": "WEBSITE",
+                                            "uri": "https://linecorp.com"
+                                        },
+                                        "height": "sm",
+                                        "style": "link"
+                                        },
+                                        {
+                                        "type": "spacer",
+                                        "size": "sm"
+                                        }
+                                    ]
+                                    }
+                                  
+                                });
                                 
                                 
                                 console.log(arr[0].contents.contents[i].body.contents[0].text);
@@ -143,7 +226,7 @@ bot.on('message', function (event) {
                             }
                             console.log("last-> length : "+data.length+ " i : "+i+" arr: "+arr.length)
                             // setTimeout(function(){console.log('test123');},3000);
-                            for(var i = 0; i<2; i++){
+                            for(var i = 0; i<data.length; i++){
                                 console.log(arr[0].contents.contents[i].body.contents[0].text);
                             }
                             event.reply(arr[0]);
