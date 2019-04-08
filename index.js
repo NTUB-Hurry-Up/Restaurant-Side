@@ -198,7 +198,7 @@ bot.on('message', function (event) {
             }else if(msg1=="店家"){
                 if(msg2=="資訊"){
                     
-                     await store.fetchStore().then(data => {
+                    store.fetchStore().then(data => {
                         
                         if (data == -1){
                             event.reply('找不到資料');
