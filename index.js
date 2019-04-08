@@ -102,7 +102,35 @@ bot.on('message', function (event) {
                                 o.body.contents[1].contents[0].contents[1].text=data[i].storeAdd;
                                 o.body.contents[1].contents[1].contents[1].text=data[i].storeTel;
 
-                                arr[0].contents.contents.push(Object.assign({}, o));
+                                arr[0].contents.contents.push({
+                                    body: {
+                                        contents: [
+                                            {
+                                                text: data[i].storeName
+                                            },
+                                            {
+                                                contents: [
+                                                    {
+                                                        contents:[
+                                                            null,
+                                                            {
+                                                                text: data[i].storeAdd
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        contents:[
+                                                            null,
+                                                            {
+                                                                text: data[i].storeTel
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                });
                                 
                                 
                                 console.log(arr[0].contents.contents[i].body.contents[0].text);
