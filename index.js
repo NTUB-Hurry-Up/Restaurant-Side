@@ -216,10 +216,11 @@ bot.on('message', function (event) {
                                     o.body.contents[1].contents[0].contents[1].text=data[i].storeAdd;
                                     o.body.contents[1].contents[1].contents[1].text=data[i].storeTel;
                                     arr[0].contents.contents.push(o);
-                                    console.log("length : "+data.length+ "i : "+i)
+                                    console.log("length : "+data.length+ " i : "+i+" arr: "+arr)
+
 
                             }
-                            console.log("last-> length : "+data.length+ "i : "+i)
+                            console.log("last-> length : "+data.length+ " i : "+i+" arr: "+arr)
                             // data.forEach(m => {
                                 // console.log(m.storeName, m.storeAdd, m.storeTel);
                                 // console.log(m.storeid);
@@ -234,8 +235,9 @@ bot.on('message', function (event) {
                                 // arr[0].contents.contents.push(o);
                             // })
                             event.reply(arr);
-                            arr = null;
-                            console.log(arr);
+                            arr.length = 0;
+                            data.length = 0;
+                            console.log("arr: "+arr+" data: "+data);
                         }
                     })
                 }
