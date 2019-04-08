@@ -9,7 +9,7 @@ var fetchStore = async function(){
     let result;  
 
     //讀取資料庫
-    await query('select * from store')
+    await query('select * from store order by storeid desc')
         .then((data) => {
             if(data.rows.length > 0){
                 result = data.rows;  //店家資料(物件)
