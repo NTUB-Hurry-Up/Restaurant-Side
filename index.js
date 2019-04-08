@@ -246,6 +246,9 @@ bot.on('message', function (event) {
                         }else{
                             arr.push(temp.temp_store);
                             for(var i = 0; i<data.length; i++){
+                                o.body.contents[0].text=m.storeName;
+                                o.body.contents[1].contents[0].contents[1].text=m.storeAdd;
+                                o.body.contents[1].contents[1].contents[1].text=m.storeTel;
                                 arr[0].contents.contents.push(o);
                             }
                             // data.forEach(m => {
