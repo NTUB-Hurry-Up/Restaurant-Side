@@ -206,23 +206,25 @@ bot.on('message', function (event) {
                             event.reply('執行錯誤');
                         }else{
                             arr.push(temp.temp_store);
+                            // forea(var i = 0; i<data.length; i++){
 
-                            for(var i = 0; i<data.length; i++){
-                                // console.log(i);
-                                consloe.log(data[i].storeName, data[i].storeAdd, data[i].storeTel);
-                                // o.body.contents[0].text=data.storeName;
-                                // o.body.contents[1].contents[0].contents[1].text=data.storeAdd;
-                                // o.body.contents[1].contents[1].contents[1].text=data.storeTel;
-                                arr[0].contents.contents.push(o);
-                            }
-                            // data.forEach(m => {
+                            // for(var i = 0; i<data.length; i++){
+                            //     // console.log(i);
+                            //     console.log(data[i].storeName, data[i].storeAdd, data[i].storeTel);
+                            //     // o.body.contents[0].text=data.storeName;
+                            //     // o.body.contents[1].contents[0].contents[1].text=data.storeAdd;
+                            //     // o.body.contents[1].contents[1].contents[1].text=data.storeTel;
+                            //     arr[0].contents.contents.push(o);
+                            // }
+                            data.forEach(m => {
+                                console.log(m.storeName, m.storeAdd, m.storeTel);
                                 // console.log(m.storeid);
                                 // o.body.contents[0].text=m.storeName;
                                 // o.body.contents[1].contents[0].contents[1].text=m.storeAdd;
                                 // o.body.contents[1].contents[1].contents[1].text=m.storeTel;
                                 // console.log("wertyu"+m);
                                 // console.log();;
-                            // })
+                            })
                         }
                         event.reply(arr);
                     })
