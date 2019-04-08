@@ -208,25 +208,29 @@ bot.on('message', function (event) {
                             arr.push(temp.temp_store);
                             // forea(var i = 0; i<data.length; i++){
 
-                            for(var i = 0; i<data.length; i++){
+                            // for(var i = 0; i<data.length; i++){
                             //     // console.log(i);
-                                // console.log(data[i].storeName, data[i].storeAdd, data[i].storeTel);
+                                    // console.log(data[i].storeName, data[i].storeAdd, data[i].storeTel);
                                     // o.body.contents[0].text=data[i].storeName;
                                     // o.body.contents[1].contents[0].contents[1].text=data[i].storeAdd;
                                     // o.body.contents[1].contents[1].contents[1].text=data[i].storeTel;
-                                    arr[0].contents.contents.push(o);
+                                    // arr[0].contents.contents.push(o);
 
-                            }
-                            // data.forEach(m => {
+                            // }
+                            data.forEach(m => {
                                 // console.log(m.storeName, m.storeAdd, m.storeTel);
                                 // console.log(m.storeid);
                                 // o.body.contents[0].text=m.storeName;
                                 // o.body.contents[1].contents[0].contents[1].text=m.storeAdd;
                                 // o.body.contents[1].contents[1].contents[1].text=m.storeTel;
                                 // console.log("wertyu"+m);
-                                // console.log();;
-                            // })
-                        event.reply(arr);
+                                // console.log();
+                                o.body.contents[0].text=m.storeName;
+                                o.body.contents[1].contents[0].contents[1].text=m.storeAdd;
+                                o.body.contents[1].contents[1].contents[1].text=m.storeTel;
+                                arr[0].contents.contents.push(o);
+                            })
+                            event.reply(arr);
                         }
                     })
                 }
