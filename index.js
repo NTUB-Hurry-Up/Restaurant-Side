@@ -114,46 +114,6 @@ bot.on('message', function (event) {
                               },
                               {
                                 "type": "box",
-                                "layout": "baseline",
-                                "margin": "md",
-                                "contents": [
-                                  {
-                                    "type": "icon",
-                                    "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
-                                    "size": "sm"
-                                  },
-                                  {
-                                    "type": "icon",
-                                    "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
-                                    "size": "sm"
-                                  },
-                                  {
-                                    "type": "icon",
-                                    "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
-                                    "size": "sm"
-                                  },
-                                  {
-                                    "type": "icon",
-                                    "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
-                                    "size": "sm"
-                                  },
-                                  {
-                                    "type": "icon",
-                                    "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png",
-                                    "size": "sm"
-                                  },
-                                  {
-                                    "type": "text",
-                                    "text": "4.0",
-                                    "flex": 0,
-                                    "margin": "md",
-                                    "size": "sm",
-                                    "color": "#999999"
-                                  }
-                                ]
-                              },
-                              {
-                                "type": "box",
                                 "layout": "vertical",
                                 "spacing": "sm",
                                 "margin": "lg",
