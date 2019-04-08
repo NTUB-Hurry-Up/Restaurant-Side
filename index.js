@@ -84,7 +84,10 @@ bot.on('message', function (event) {
                     event.reply('請輸入您的電話\nex: 09xxxxxxxx');                    
                 }
             }else if(msg1=="店家"){
-                if(msg2=="資訊"){var arr=[];
+                if(msg2=="資訊"){
+                    
+                    store.fetchStore().then(data => {
+                        var arr=[];
                     var o = 
                     {
                       "type": "bubble",
@@ -197,14 +200,13 @@ bot.on('message', function (event) {
                         ]
                       }
                     };
-                    store.fetchStore().then(data => {
-                        
                         if (data == -1){
                             event.reply('找不到資料');
                         }else if(data == -9){                    
                             event.reply('執行錯誤');
                         }else{
                             arr.push(temp.temp_store);
+
                             for(var i = 0; i<data.length; i++){
                                 // consloe.log(data[i].storeName, data[i].storeAdd, data[i].storeTel);
                                 // o.body.contents[0].text=data.storeName;
