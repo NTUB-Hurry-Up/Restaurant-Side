@@ -207,6 +207,7 @@ bot.on('message', function (event) {
                         }else{
                             var arr=[];
                             arr.push(temp.temp_store);
+                            console.log("first-> arr: "+arr.length)
                             // forea(var i = 0; i<data.length; i++){
 
                             for(var i = 0; i<data.length; i++){
@@ -216,11 +217,11 @@ bot.on('message', function (event) {
                                     o.body.contents[1].contents[0].contents[1].text=data[i].storeAdd;
                                     o.body.contents[1].contents[1].contents[1].text=data[i].storeTel;
                                     arr[0].contents.contents.push(o);
-                                    console.log("length : "+data.length+ " i : "+i+" arr: "+arr)
+                                    console.log("length : "+data.length+ " i : "+i+" arr: "+arr.length)
 
 
                             }
-                            console.log("last-> length : "+data.length+ " i : "+i+" arr: "+arr)
+                            console.log("last-> length : "+data.length+ " i : "+i+" arr: "+arr.length)
                             // data.forEach(m => {
                                 // console.log(m.storeName, m.storeAdd, m.storeTel);
                                 // console.log(m.storeid);
