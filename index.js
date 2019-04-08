@@ -198,7 +198,7 @@ bot.on('message', function (event) {
             }else if(msg1=="店家"){
                 if(msg2=="資訊"){
                     
-                    store.fetchStore().then(data => {
+                    await  store.fetchStore().then(data => {
                         
                         if (data == -1){
                             event.reply('找不到資料');
@@ -208,15 +208,15 @@ bot.on('message', function (event) {
                             arr.push(temp.temp_store);
                             // forea(var i = 0; i<data.length; i++){
 
-                            // for(var i = 0; i<data.length; i++){
+                            for(var i = 0; i<data.length; i++){
                             //     // console.log(i);
                                     // console.log(data[i].storeName, data[i].storeAdd, data[i].storeTel);
-                                    // o.body.contents[0].text=data[i].storeName;
-                                    // o.body.contents[1].contents[0].contents[1].text=data[i].storeAdd;
-                                    // o.body.contents[1].contents[1].contents[1].text=data[i].storeTel;
-                                    // arr[0].contents.contents.push(o);
+                                    o.body.contents[0].text=data[i].storeName;
+                                    o.body.contents[1].contents[0].contents[1].text=data[i].storeAdd;
+                                    o.body.contents[1].contents[1].contents[1].text=data[i].storeTel;
+                                    arr[0].contents.contents.push(o);
 
-                            // }
+                            }
                             data.forEach(m => {
                                 // console.log(m.storeName, m.storeAdd, m.storeTel);
                                 // console.log(m.storeid);
@@ -228,7 +228,7 @@ bot.on('message', function (event) {
                                 // o.body.contents[0].text=m.storeName;
                                 // o.body.contents[1].contents[0].contents[1].text=m.storeAdd;
                                 // o.body.contents[1].contents[1].contents[1].text=m.storeTel;
-                                arr[0].contents.contents.push(o);
+                                // arr[0].contents.contents.push(o);
                             })
                             event.reply(arr);
                         }
