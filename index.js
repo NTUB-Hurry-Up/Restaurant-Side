@@ -215,6 +215,7 @@ bot.on('message', function (event) {
                                 arr[0].contents.contents[i].body.contents[0].text=data[i].storeName;
                                 arr[0].contents.contents[i].body.contents[1].contents[0].contents[1].text=data[i].storeAdd;
                                 arr[0].contents.contents[i].body.contents[1].contents[1].contents[1].text=data[i].storeTel;
+                                
                             }
                             // data.forEach(m => {
                                 // console.log(m.storeName, m.storeAdd, m.storeTel);
