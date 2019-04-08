@@ -198,7 +198,7 @@ bot.on('message', function (event) {
             }else if(msg1=="店家"){
                 if(msg2=="資訊"){
                     
-                    await  store.fetchStore().then(data => {
+                     await store.fetchStore().then(data => {
                         
                         if (data == -1){
                             event.reply('找不到資料');
@@ -217,7 +217,7 @@ bot.on('message', function (event) {
                                     arr[0].contents.contents.push(o);
 
                             }
-                            data.forEach(m => {
+                            // data.forEach(m => {
                                 // console.log(m.storeName, m.storeAdd, m.storeTel);
                                 // console.log(m.storeid);
                                 // o.body.contents[0].text=m.storeName;
@@ -229,7 +229,7 @@ bot.on('message', function (event) {
                                 // o.body.contents[1].contents[0].contents[1].text=m.storeAdd;
                                 // o.body.contents[1].contents[1].contents[1].text=m.storeTel;
                                 // arr[0].contents.contents.push(o);
-                            })
+                            // })
                             event.reply(arr);
                         }
                     })
