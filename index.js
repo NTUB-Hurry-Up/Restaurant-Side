@@ -205,6 +205,7 @@ bot.on('message', function (event) {
                         }else if(data == -9){                    
                             event.reply('執行錯誤');
                         }else{
+                            var arr=[];
                             arr.push(temp.temp_store);
                             // forea(var i = 0; i<data.length; i++){
 
