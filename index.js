@@ -106,6 +106,7 @@ bot.on('message', function (event) {
                                 console.log("length : "+data.length+ " i : "+i+" arr: "+arr.length+" ,data: "+data[i].storeName+", "+data[i].storeAdd+", "+data[i].storeTel)
                             }
                             console.log("last-> length : "+data.length+ " i : "+i+" arr: "+arr.length)
+                            console.log(arr[0]);
 
                             event.reply(arr[0]);
                             
