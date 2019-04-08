@@ -102,9 +102,8 @@ bot.on('message', function (event) {
                                 o.body.contents[1].contents[0].contents[1].text=data[i].storeAdd;
                                 o.body.contents[1].contents[1].contents[1].text=data[i].storeTel;
 
-                                (function(o){
-                                    arr[0].contents.contents.push(o)
-                                })(o);
+                                arr[0].contents.contents.push(Object.assign({}, o));
+                                
                                 
                                 console.log(arr[0].contents.contents[i].body.contents[0].text);
                                 // console.log("length : "+data.length+ " i : "+i+" arr: "+arr.length+" ,data: "+data[i].storeName+", "+data[i].storeAdd+", "+data[i].storeTel)
