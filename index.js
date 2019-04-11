@@ -282,7 +282,7 @@ bot.on('message', function (event) {
                                                         },
                                                         {
                                                             "type": "text",
-                                                            "text": data[i].foodPrice,
+                                                            "text": data[i].foodName,
                                                             "flex": 0,
                                                             "margin": "sm",
                                                             "weight": "bold"
