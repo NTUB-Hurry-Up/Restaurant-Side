@@ -32,7 +32,7 @@ var fetchStorefood = async function(storeid){
     await query('SELECT * from food where storeid=$1', [storeid])
         .then((data) => {
             if(data.rows.length > 0){
-                result = data.rows;  //店家資料(物件)
+                result = data.rows[0];  //店家資料(物件)
             }else{
                 result = -1;  //找不到資料
             }    
