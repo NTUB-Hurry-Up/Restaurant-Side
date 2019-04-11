@@ -93,7 +93,7 @@ bot.on('message', function (event) {
                             event.reply('執行錯誤');
                         }else{
                             var arr=[];
-                            var o = temp.temp_store_contents
+                            // var o = temp.temp_store_contents
                             arr.push(temp.temp_store);
                             console.log("first-> arr: "+arr.length)
                             
@@ -232,15 +232,105 @@ bot.on('message', function (event) {
                         }else if(data == -9){                    
                             event.reply('執行錯誤');
                         }else{
-                            event.reply([
-                                {'type':'text', 'text':data.storeid},
-                                {'type':'text', 'text':data.foodid},
-                                {'type':'text', 'text':data.foodName},
-                                {'type':'text', 'text':data.foodPrice}]
-                            );  
+                            // event.reply([
+                            //     {'type':'text', 'text':data.storeid},
+                            //     {'type':'text', 'text':data.foodid},
+                            //     {'type':'text', 'text':data.foodName},
+                            //     {'type':'text', 'text':data.foodPrice}]
+                            // );  
                             var arr=[];
                             // var o = temp.temp_store_contents
-                            // arr.push(temp.temp_store);
+                            arr.push(temp.temp_store);
+                            for(var i = 0; i<data.length; i++){
+                                // (function(o){
+                                //     o.body.contents[0].text=data[i].storeName;
+                                //     o.body.contents[1].contents[0].contents[1].text=data[i].storeAdd;
+                                //     o.body.contents[1].contents[1].contents[1].text=data[i].storeTel;
+                                //     arr[0].contents.contents.push(o);
+                                // })(Object.assign({}, o));
+
+                                arr[0].contents.contents.push({
+                                    "type": "bubble",
+                                    "hero": {
+                                    "type": "image",
+                                    "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",
+                                    "size": "full",
+                                    "aspectRatio": "20:13",
+                                    "aspectMode": "cover",
+                                    "action": {
+                                        "type": "uri",
+                                        "label": "Line",
+                                        "uri": "https://linecorp.com/"
+                                    }
+                                    },
+                                    "body": {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "contents": [
+                                        {
+                                        "type": "text",
+                                        "text": data[i].foodName,
+                                        "size": "xl",
+                                        "weight": "bold"
+                                        },
+                                        {
+                                        "type": "box",
+                                        "layout": "vertical",
+                                        "spacing": "sm",
+                                        "margin": "lg",
+                                        "contents": [
+                                            {
+                                            "type": "box",
+                                            "layout": "baseline",
+                                            "spacing": "sm",
+                                            "contents": [
+                                                {
+                                                "type": "text",
+                                                "text": "Place",
+                                                "flex": 1,
+                                                "size": "sm",
+                                                "color": "#AAAAAA"
+                                                },
+                                                {
+                                                "type": "text",
+                                                "text": data[i].foodPrice,
+                                                "flex": 5,
+                                                "size": "sm",
+                                                "color": "#666666",
+                                                "wrap": true
+                                                }
+                                            ]
+                                            }
+                                        ]
+                                        }
+                                    ]
+                                    },
+                                    "footer": {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "flex": 0,
+                                    "spacing": "sm",
+                                    "contents": [
+                                        {
+                                        "type": "button",
+                                        "action": {
+                                            "type": "message",
+                                            "label": "加入購物車",
+                                            "text": "店家,加入購物車,"+data[i].foodid
+                                        },
+                                        "height": "sm",
+                                        "style": "link"
+                                        }
+                                    ]
+                                    }
+                                  
+                                });
+                                
+                            }
+                            event.reply(arr[0]);
+                            arr[0].contents.contents.length=0;
+                            arr.length = 0;
+                            data.length = 0;
                         }
                     })
                 }else if(msg2=="聯絡店家"){
