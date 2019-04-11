@@ -306,7 +306,7 @@ bot.on('message', function (event) {
                                                         },
                                                         {
                                                             "type": "text",
-                                                            "text": "$15.5",
+                                                            "text": data[i].foodPrice,
                                                             "flex": 0,
                                                             "margin": "sm",
                                                             "weight": "bold"
