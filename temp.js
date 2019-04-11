@@ -154,4 +154,4 @@ var temp_store_contents={
 };
 
 //匯出
-module.exports = {temp1, temp_store, temp_store_contents};
+module.exports = {temp1, temp_store, temp_store_contents, temp_storefood};
