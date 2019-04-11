@@ -331,7 +331,7 @@ bot.on('message', function (event) {
                         }
                     })
                 } else if (msg2 == "聯絡店家") {
-                    store.fetchStore().then(data => {
+                    store.fetchStoreTel(msg3).then(data => {
                         if (data == -1) {
                             event.reply('找不到資料');
                         } else if (data == -9) {
