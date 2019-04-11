@@ -235,7 +235,7 @@ bot.on('message', function (event) {
                             var arr2 = [];
                             arr2.push(temp.temp_menu);
                             for (var i = 0; i < data.length; i++) {
-                                console.log(data[i].foodid)
+                                console.log(data[i].foodid+" "+data[i].foodPrice+" "+data[i].foodName)
                             arr2[0].contents.contents.push({
 
                                 "type": "bubble",
