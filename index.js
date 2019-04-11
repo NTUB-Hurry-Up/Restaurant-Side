@@ -285,9 +285,9 @@ bot.on('message', function (event) {
                                                             },
                                                             {
                                                                 "type": "text",
-                                                                "text": "NTD"+data[i].foodPrice,
+                                                                "text": "NT$"+data[i].foodPrice,
                                                                 "flex": 0,
-                                                                "margin": "sm",
+                                                                "margin": "xl",
                                                                 "size": "lg",
                                                                 "align": "end",
                                                                 "weight": "regular"
@@ -299,7 +299,7 @@ bot.on('message', function (event) {
                                             {
                                                 "type": "text",
                                                 "text": "Sauce, Onions, Pickles, Lettuce & Cheese",
-                                                "size": "sm",
+                                                "size": "xs",
                                                 "color": "#AAAAAA",
                                                 "wrap": true
                                             }
@@ -314,7 +314,7 @@ bot.on('message', function (event) {
                                                 "action": {
                                                     "type": "message",
                                                     "label": "Add to Cart",
-                                                    "text": "123"
+                                                    "text": data[i].foodid
                                                 },
                                                 "color": "#905C44",
                                                 "style": "primary"
