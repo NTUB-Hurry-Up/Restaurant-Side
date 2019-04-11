@@ -265,7 +265,7 @@ bot.on('message', function (event) {
                                     "contents": [
                                       {
                                         "type": "text",
-                                        "text": data[i].foodName,
+                                        "text": "1212",
                                         "size": "xxl",
                                         "weight": "bold"
                                       },
@@ -280,7 +280,7 @@ bot.on('message', function (event) {
                                             "contents": [
                                               {
                                                 "type": "text",
-                                                "text": data[i].foodPrice,
+                                                "text": "1212",
                                                 "flex": 0,
                                                 "margin": "sm",
                                                 "size": "xl",
