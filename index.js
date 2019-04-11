@@ -264,7 +264,7 @@ bot.on('message', function (event) {
                                             {
                                                 "type": "text",
                                                 "text": data[i].foodName,
-                                                "size": "xxl",
+                                                "size": "xl",
                                                 "weight": "bold"
                                             },
                                             {
@@ -278,10 +278,17 @@ bot.on('message', function (event) {
                                                         "contents": [
                                                             {
                                                                 "type": "text",
-                                                                "text": data[i].foodPrice,
+                                                                "text": "Price",
+                                                                "flex": 1,
+                                                                "size": "lg",
+                                                                "color": "#AAAAAA"
+                                                            },
+                                                            {
+                                                                "type": "text",
+                                                                "text": "NTD"+data[i].foodPrice,
                                                                 "flex": 0,
                                                                 "margin": "sm",
-                                                                "size": "xl",
+                                                                "size": "lg",
                                                                 "align": "end",
                                                                 "weight": "regular"
                                                             }
