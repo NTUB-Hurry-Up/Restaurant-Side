@@ -280,7 +280,7 @@ bot.on('message', function (event) {
                                                 "contents": [
                                                   {
                                                     "type": "text",
-                                                    "text": "NTD"+data[i].foodPrice,
+                                                    "text": "NTD"+"data[i].foodPrice",
                                                     "flex": 0,
                                                     "margin": "sm",
                                                     "size": "xl",
