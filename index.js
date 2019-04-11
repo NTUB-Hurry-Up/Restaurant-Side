@@ -218,24 +218,31 @@ bot.on('message', function (event) {
                                   
                                 });
                                 
-                                
-                                console.log(arr[0].contents.contents[i].body.contents[0].text);
-                                // console.log("length : "+data.length+ " i : "+i+" arr: "+arr.length+" ,data: "+data[i].storeName+", "+data[i].storeAdd+", "+data[i].storeTel)
-                            }
-                            console.log("last-> length : "+data.length+ " i : "+i+" arr: "+arr.length)
-                            // setTimeout(function(){console.log('test123');},3000);
-                            for(var i = 0; i<data.length; i++){
-                                console.log(arr[0].contents.contents[i].body.contents[0].text);
                             }
                             event.reply(arr[0]);
                             arr[0].contents.contents.length=0;
                             arr.length = 0;
                             data.length = 0;
-                            // console.log("arr: "+arr+" data: "+data);
                         }
                     })
                 }else if(msg2=="查看菜單"){
-
+                    store.fetchStorefood(msg3).then(data => {
+                        if (data == -1){
+                            event.reply('找不到資料');
+                        }else if(data == -9){                    
+                            event.reply('執行錯誤');
+                        }else{
+                            event.reply([
+                                {'type':'text', 'text':data.storeid},
+                                {'type':'text', 'text':data.foodid},
+                                {'type':'text', 'text':data.foodName},
+                                {'type':'text', 'text':data.foodPrice}]
+                            );  
+                            var arr=[];
+                            // var o = temp.temp_store_contents
+                            // arr.push(temp.temp_store);
+                        }
+                    })
                 }else if(msg2=="聯絡店家"){
 
                 }
