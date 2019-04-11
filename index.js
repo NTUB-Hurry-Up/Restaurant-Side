@@ -280,7 +280,7 @@ bot.on('message', function (event) {
                                             "contents": [
                                               {
                                                 "type": "text",
-                                                "text": "NTD"+data[i].foodPrice,
+                                                "text": data[i].foodPrice,
                                                 "flex": 0,
                                                 "margin": "sm",
                                                 "size": "xl",
@@ -309,7 +309,7 @@ bot.on('message', function (event) {
                                         "action": {
                                           "type": "message",
                                           "label": "Add to Cart",
-                                          "text": data[i].foodid
+                                          "text": "123"
                                         },
                                         "color": "#905C44",
                                         "style": "primary"
