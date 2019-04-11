@@ -238,7 +238,7 @@ bot.on('message', function (event) {
                             //     {'type':'text', 'text':data.foodName},
                             //     {'type':'text', 'text':data.foodPrice}]
                             // );  
-                            var arr=[];
+                            var arr2=[];
                             // var o = temp.temp_store_contents
                             arr.push(temp.temp_store);
                             for(var i = 0; i<data.length; i++){
@@ -249,7 +249,7 @@ bot.on('message', function (event) {
                                 //     arr[0].contents.contents.push(o);
                                 // })(Object.assign({}, o));
 
-                                arr[0].contents.contents.push({
+                                arr2[0].contents.contents.push({
                                     "type": "bubble",
                                     "hero": {
                                     "type": "image",
@@ -327,9 +327,9 @@ bot.on('message', function (event) {
                                 });
                                 
                             }
-                            event.reply(arr[0]);
-                            arr[0].contents.contents.length=0;
-                            arr.length = 0;
+                            event.reply(arr2[0]);
+                            arr2[0].contents.contents.length=0;
+                            arr2.length = 0;
                             data.length = 0;
                         }
                     })
