@@ -153,4 +153,4 @@ var temp_menu={
     }
   }
 //匯出
-module.exports = {temp1, temp_store, temp_store_contents, temp_menu};
+module.exports = {temp1, temp_store, temp_menu};
