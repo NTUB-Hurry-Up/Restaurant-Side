@@ -282,7 +282,7 @@ bot.on('message', function (event) {
                                                         },
                                                         {
                                                             "type": "text",
-                                                            "text": data[i].foodPrice,
+                                                            "text": "$10.5",
                                                             "flex": 0,
                                                             "margin": "sm",
                                                             "weight": "bold"
@@ -306,7 +306,7 @@ bot.on('message', function (event) {
                                                         },
                                                         {
                                                             "type": "text",
-                                                            "text": data[i].foodName,
+                                                            "text": "$15.5",
                                                             "flex": 0,
                                                             "margin": "sm",
                                                             "weight": "bold"
