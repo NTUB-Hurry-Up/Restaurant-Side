@@ -235,89 +235,87 @@ bot.on('message', function (event) {
                             var arr2 = [];
                             arr2.push(temp.temp_menu);
                             for (var i = 0; i < data.length; i++) {
-                                console.log(data[i].foodid+" "+data[i].foodPrice+" "+data[i].foodName)
-                            arr2[0].contents.contents.push({
-                                "type": "flex",
-                                "altText": "Flex Message",
-                                "contents": {
-                                  "type": "bubble",
-                                  "hero": {
-                                    "type": "image",
-                                    "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_2_restaurant.png",
-                                    "size": "full",
-                                    "aspectRatio": "20:13",
-                                    "aspectMode": "cover",
-                                    "action": {
-                                      "type": "uri",
-                                      "label": "Action",
-                                      "uri": "https://linecorp.com"
-                                    }
-                                  },
-                                  "body": {
-                                    "type": "box",
-                                    "layout": "vertical",
-                                    "spacing": "md",
-                                    "action": {
-                                      "type": "uri",
-                                      "label": "Action",
-                                      "uri": "https://linecorp.com"
+                                console.log(data[i].foodid + " " + data[i].foodPrice + " " + data[i].foodName)
+                                arr2[0].contents.contents.push({
+
+                                    "type": "bubble",
+                                    "hero": {
+                                        "type": "image",
+                                        "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_2_restaurant.png",
+                                        "size": "full",
+                                        "aspectRatio": "20:13",
+                                        "aspectMode": "cover",
+                                        "action": {
+                                            "type": "uri",
+                                            "label": "Action",
+                                            "uri": "https://linecorp.com"
+                                        }
                                     },
-                                    "contents": [
-                                      {
-                                        "type": "text",
-                                        "text": "1212",
-                                        "size": "xxl",
-                                        "weight": "bold"
-                                      },
-                                      {
+                                    "body": {
                                         "type": "box",
                                         "layout": "vertical",
-                                        "spacing": "sm",
-                                        "contents": [
-                                          {
-                                            "type": "box",
-                                            "layout": "baseline",
-                                            "contents": [
-                                              {
-                                                "type": "text",
-                                                "text": "1212",
-                                                "flex": 0,
-                                                "margin": "sm",
-                                                "size": "xl",
-                                                "align": "end",
-                                                "weight": "regular"
-                                              }
-                                            ]
-                                          }
-                                        ]
-                                      },
-                                      {
-                                        "type": "text",
-                                        "text": "Sauce, Onions, Pickles, Lettuce & Cheese",
-                                        "size": "sm",
-                                        "color": "#AAAAAA",
-                                        "wrap": true
-                                      }
-                                    ]
-                                  },
-                                  "footer": {
-                                    "type": "box",
-                                    "layout": "vertical",
-                                    "contents": [
-                                      {
-                                        "type": "button",
+                                        "spacing": "md",
                                         "action": {
-                                          "type": "message",
-                                          "label": "Add to Cart",
-                                          "text": "123"
+                                            "type": "uri",
+                                            "label": "Action",
+                                            "uri": "https://linecorp.com"
                                         },
-                                        "color": "#905C44",
-                                        "style": "primary"
-                                      }
-                                    ]
-                                  }
-                                }
-                              })
+                                        "contents": [
+                                            {
+                                                "type": "text",
+                                                "text": data[i].foodName,
+                                                "size": "xxl",
+                                                "weight": "bold"
+                                            },
+                                            {
+                                                "type": "box",
+                                                "layout": "vertical",
+                                                "spacing": "sm",
+                                                "contents": [
+                                                    {
+                                                        "type": "box",
+                                                        "layout": "baseline",
+                                                        "contents": [
+                                                            {
+                                                                "type": "text",
+                                                                "text": data[i].foodPrice,
+                                                                "flex": 0,
+                                                                "margin": "sm",
+                                                                "size": "xl",
+                                                                "align": "end",
+                                                                "weight": "regular"
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "text",
+                                                "text": "Sauce, Onions, Pickles, Lettuce & Cheese",
+                                                "size": "sm",
+                                                "color": "#AAAAAA",
+                                                "wrap": true
+                                            }
+                                        ]
+                                    },
+                                    "footer": {
+                                        "type": "box",
+                                        "layout": "vertical",
+                                        "contents": [
+                                            {
+                                                "type": "button",
+                                                "action": {
+                                                    "type": "message",
+                                                    "label": "Add to Cart",
+                                                    "text": "123"
+                                                },
+                                                "color": "#905C44",
+                                                "style": "primary"
+                                            }
+                                        ]
+                                    }
+
+                                })
                             }
                             event.reply(arr2[0]);
                             arr2[0].contents.contents.length = 0;
