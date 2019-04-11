@@ -314,7 +314,7 @@ bot.on('message', function (event) {
                                                 "action": {
                                                     "type": "message",
                                                     "label": "Add to Cart",
-                                                    "text": "加入購物車"+data[i].foodid
+                                                    "text": "加入購物車,"+data[i].foodid
                                                 },
                                                 "color": "#905C44",
                                                 "style": "primary"
