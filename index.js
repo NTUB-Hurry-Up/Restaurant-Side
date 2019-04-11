@@ -240,7 +240,7 @@ bot.on('message', function (event) {
                             // );  
                             var arr2=[];
                             // var o = temp.temp_store_contents
-                            arr.push(temp.temp_store);
+                            arr2.push(temp.temp_store);
                             for(var i = 0; i<data.length; i++){
                                 // (function(o){
                                 //     o.body.contents[0].text=data[i].storeName;
