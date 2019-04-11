@@ -287,7 +287,7 @@ bot.on('message', function (event) {
                                                                 "type": "text",
                                                                 "text": "NT$"+data[i].foodPrice,
                                                                 "flex": 0,
-                                                                "margin": "xl",
+                                                                "margin": "lg",
                                                                 "size": "lg",
                                                                 "align": "end",
                                                                 "weight": "regular"
@@ -314,7 +314,7 @@ bot.on('message', function (event) {
                                                 "action": {
                                                     "type": "message",
                                                     "label": "Add to Cart",
-                                                    "text": data[i].foodid
+                                                    "text": "加入購物車"+data[i].foodid
                                                 },
                                                 "color": "#905C44",
                                                 "style": "primary"
