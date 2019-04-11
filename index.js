@@ -331,7 +331,19 @@ bot.on('message', function (event) {
                         }
                     })
                 } else if (msg2 == "聯絡店家") {
-
+                    store.fetchStore().then(data => {
+                        if (data == -1) {
+                            event.reply('找不到資料');
+                        } else if (data == -9) {
+                            event.reply('執行錯誤');
+                        } else {
+                            event.reply([
+                                {'type':'text', 'text':'連絡電話 :'},
+                                {'type':'text', 'text':data.storeTel}]
+                            );  
+                        }
+                    })
+                    event.reply();
                 }
             } else if (status != "") {
                 if (status == "進入修改電話程序") {
