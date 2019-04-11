@@ -31,6 +31,16 @@ var temp_store=
     ]
   }
 }
+var temp_storefood=
+{
+  "type": "flex",
+  "altText": "Flex Message",
+  "contents": {
+    "type": "carousel",
+    "contents": [
+    ]
+  }
+}
 var temp_store_contents={
   "type": "bubble",
   "hero": {

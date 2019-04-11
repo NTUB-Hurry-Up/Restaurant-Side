@@ -232,22 +232,9 @@ bot.on('message', function (event) {
                         }else if(data == -9){                    
                             event.reply('執行錯誤');
                         }else{
-                            // event.reply([
-                            //     {'type':'text', 'text':data.storeid},
-                            //     {'type':'text', 'text':data.foodid},
-                            //     {'type':'text', 'text':data.foodName},
-                            //     {'type':'text', 'text':data.foodPrice}]
-                            // );  
                             var arr2=[];
-                            // var o = temp.temp_store_contents
-                            arr2.push(temp.temp_store);
+                            arr2.push(temp.temp_storefood);
                             for(var i = 0; i<data.length; i++){
-                                // (function(o){
-                                //     o.body.contents[0].text=data[i].storeName;
-                                //     o.body.contents[1].contents[0].contents[1].text=data[i].storeAdd;
-                                //     o.body.contents[1].contents[1].contents[1].text=data[i].storeTel;
-                                //     arr[0].contents.contents.push(o);
-                                // })(Object.assign({}, o));
 
                                 arr2[0].contents.contents.push({
                                     "type": "bubble",
@@ -300,6 +287,28 @@ bot.on('message', function (event) {
                                                 "wrap": true
                                                 }
                                             ]
+                                            },
+                                            {
+                                            "type": "box",
+                                            "layout": "baseline",
+                                            "spacing": "sm",
+                                            "contents": [
+                                                {
+                                                "type": "text",
+                                                "text": "Tel",
+                                                "flex": 1,
+                                                "size": "sm",
+                                                "color": "#AAAAAA"
+                                                },
+                                                {
+                                                "type": "text",
+                                                "text": "hi",
+                                                "flex": 5,
+                                                "size": "sm",
+                                                "color": "#666666",
+                                                "wrap": true
+                                                }
+                                            ]
                                             }
                                         ]
                                         }
@@ -315,11 +324,25 @@ bot.on('message', function (event) {
                                         "type": "button",
                                         "action": {
                                             "type": "message",
-                                            "label": "加入購物車",
-                                            "text": "店家,加入購物車,"+data[i].foodid
+                                            "label": "查看菜單",
+                                            "text": "店家,查看菜單,"+data[i].foodid
                                         },
                                         "height": "sm",
                                         "style": "link"
+                                        },
+                                        {
+                                        "type": "button",
+                                        "action": {
+                                            "type": "message",
+                                            "label": "聯絡店家",
+                                            "text": "店家,聯絡店家,"
+                                        },
+                                        "height": "sm",
+                                        "style": "link"
+                                        },
+                                        {
+                                        "type": "spacer",
+                                        "size": "sm"
                                         }
                                     ]
                                     }
