@@ -5,8 +5,7 @@ var linebot = require('linebot');
 var express = require('express');
 
 const member = require('./member');
-const store = require('./store');
-const temp = require('./temp');
+const order = require('./order');
 //----------------------------------------
 // 填入自己在Line Developers的channel值
 //----------------------------------------
@@ -38,341 +37,42 @@ bot.on('follow', function (event) {
 // --------------------------------
 // 機器人接受訊息的處理
 // --------------------------------
-
-var status = "";
-
 bot.on('message', function (event) {
     event.source.profile().then(
         function (profile) {
-            const userName = profile.displayName;
-            const userId = profile.userId;
-            const phone = event.message.text;
-            const msg = event.message.text;
+            // const userName = profile.displayName;
+            const storeId = profile.userId;
+            const orderId = event.message.text;
+            // const msg = event.message.text;
             var NewArray = new Array();
             var NewArray = msg.split(",");
             var msg1 = NewArray[0];
             var msg2 = NewArray[1];
             var msg3 = NewArray[2];
 
-            if (msg1 == "會員") {
-                console.log("if1 status: " + status);
-                if (msg2 == "資訊") {
-                    member.fetchMember(userId).then(data => {
-                        if (data == -1) {
-                            event.reply('找不到資料');
-                        } else if (data == -9) {
-                            event.reply('執行錯誤');
-                        } else {
-                            const template = temp.temp1.template;
-                            template.actions[0].type = "message";
-                            template.actions[0].label = "修改姓名";
-                            template.actions[0].text = "會員,修改姓名";
-
-                            template.actions[1].type = "message";
-                            template.actions[1].label = "修改電話";
-                            template.actions[1].text = "會員,修改電話";
-                            template.title = "會員資訊"
-                            template.text = "姓名 : " + data.name + "\n電話 : " + data.phone
-                            event.reply(temp.temp1);
-                        }
-                    })
-                } else if (msg2 == "修改姓名") {
-                    status = "進入修改姓名程序";
-                    event.reply('請輸入您的姓名');
-
-                } else if (msg2 == "修改電話") {
-                    status = "進入修改電話程序";
-                    event.reply('請輸入您的電話\nex: 09xxxxxxxx');
-                }
-            } else if (msg1 == "店家") {
-                if (msg2 == "資訊") {
-                    store.fetchStore().then(data => {
-                        if (data == -1) {
-                            event.reply('找不到資料');
-                        } else if (data == -9) {
-                            event.reply('執行錯誤');
-                        } else {
-                            var arr = [];
-                            // var o = temp.temp_store_contents
-                            arr.push(temp.temp_store);
-                            console.log("first-> arr: " + arr.length)
-
-                            for (var i = 0; i < data.length; i++) {
-                                // (function(o){
-                                //     o.body.contents[0].text=data[i].storeName;
-                                //     o.body.contents[1].contents[0].contents[1].text=data[i].storeAdd;
-                                //     o.body.contents[1].contents[1].contents[1].text=data[i].storeTel;
-                                //     arr[0].contents.contents.push(o);
-                                // })(Object.assign({}, o));
-
-                                arr[0].contents.contents.push({
-                                    "type": "bubble",
-                                    "hero": {
-                                        "type": "image",
-                                        "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",
-                                        "size": "full",
-                                        "aspectRatio": "20:13",
-                                        "aspectMode": "cover",
-                                        "action": {
-                                            "type": "uri",
-                                            "label": "Line",
-                                            "uri": "https://linecorp.com/"
-                                        }
-                                    },
-                                    "body": {
-                                        "type": "box",
-                                        "layout": "vertical",
-                                        "contents": [
-                                            {
-                                                "type": "text",
-                                                "text": data[i].storeName,
-                                                "size": "xl",
-                                                "weight": "bold"
-                                            },
-                                            {
-                                                "type": "box",
-                                                "layout": "vertical",
-                                                "spacing": "sm",
-                                                "margin": "lg",
-                                                "contents": [
-                                                    {
-                                                        "type": "box",
-                                                        "layout": "baseline",
-                                                        "spacing": "sm",
-                                                        "contents": [
-                                                            {
-                                                                "type": "text",
-                                                                "text": "Place",
-                                                                "flex": 1,
-                                                                "size": "sm",
-                                                                "color": "#AAAAAA"
-                                                            },
-                                                            {
-                                                                "type": "text",
-                                                                "text": data[i].storeAdd,
-                                                                "flex": 5,
-                                                                "size": "sm",
-                                                                "color": "#666666",
-                                                                "wrap": true
-                                                            }
-                                                        ]
-                                                    },
-                                                    {
-                                                        "type": "box",
-                                                        "layout": "baseline",
-                                                        "spacing": "sm",
-                                                        "contents": [
-                                                            {
-                                                                "type": "text",
-                                                                "text": "Tel",
-                                                                "flex": 1,
-                                                                "size": "sm",
-                                                                "color": "#AAAAAA"
-                                                            },
-                                                            {
-                                                                "type": "text",
-                                                                "text": data[i].storeTel,
-                                                                "flex": 5,
-                                                                "size": "sm",
-                                                                "color": "#666666",
-                                                                "wrap": true
-                                                            }
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ]
-                                    },
-                                    "footer": {
-                                        "type": "box",
-                                        "layout": "vertical",
-                                        "flex": 0,
-                                        "spacing": "sm",
-                                        "contents": [
-                                            {
-                                                "type": "button",
-                                                "action": {
-                                                    "type": "message",
-                                                    "label": "查看菜單",
-                                                    "text": "店家,查看菜單," + data[i].storeid
-                                                },
-                                                "height": "sm",
-                                                "style": "link"
-                                            },
-                                            {
-                                                "type": "button",
-                                                "action": {
-                                                    "type": "message",
-                                                    "label": "聯絡店家",
-                                                    "text": "店家,聯絡店家," + data[i].storeid
-                                                },
-                                                "height": "sm",
-                                                "style": "link"
-                                            },
-                                            {
-                                                "type": "spacer",
-                                                "size": "sm"
-                                            }
-                                        ]
-                                    }
-
-                                });
-
+            if(msg1=="訂單"){
+                if(msg2=="訂單查詢"){
+                    if(msg3=="未接受"){
+                        order.fetchReject(storeId, msg3).then(data => {
+                            if (data == -1) {
+                                event.reply('找不到資料');
+                            } else if (data == -9) {
+                                event.reply('執行錯誤');
                             }
-                            event.reply(arr[0]);
-                            arr[0].contents.contents.length = 0;
-                            arr.length = 0;
-                            data.length = 0;
-                        }
-                    })
-                } else if (msg2 == "查看菜單") {
-                    store.fetchStorefood(msg3).then(data => {
-                        if (data == -1) {
-                            event.reply('找不到資料');
-                        } else if (data == -9) {
-                            event.reply('執行錯誤');
-                        } else {
-                            var arr2 = [];
-                            arr2.push(temp.temp_menu);
-                            for (var i = 0; i < data.length; i++) {
-                                console.log(data[i].foodid + " " + data[i].foodPrice + " " + data[i].foodName)
-                                arr2[0].contents.contents.push({
-
-                                    "type": "bubble",
-                                    "hero": {
-                                        "type": "image",
-                                        "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_2_restaurant.png",
-                                        "size": "full",
-                                        "aspectRatio": "20:13",
-                                        "aspectMode": "cover",
-                                        "action": {
-                                            "type": "uri",
-                                            "label": "Action",
-                                            "uri": "https://linecorp.com"
-                                        }
-                                    },
-                                    "body": {
-                                        "type": "box",
-                                        "layout": "vertical",
-                                        "spacing": "md",
-                                        "action": {
-                                            "type": "uri",
-                                            "label": "Action",
-                                            "uri": "https://linecorp.com"
-                                        },
-                                        "contents": [
-                                            {
-                                                "type": "text",
-                                                "text": data[i].foodName,
-                                                "size": "xl",
-                                                "weight": "bold"
-                                            },
-                                            {
-                                                "type": "box",
-                                                "layout": "vertical",
-                                                "spacing": "sm",
-                                                "contents": [
-                                                    {
-                                                        "type": "box",
-                                                        "layout": "baseline",
-                                                        "contents": [
-                                                            {
-                                                                "type": "text",
-                                                                "text": "Price",
-                                                                "flex": 1,
-                                                                "size": "lg",
-                                                                "color": "#AAAAAA"
-                                                            },
-                                                            {
-                                                                "type": "text",
-                                                                "text": "NT$"+data[i].foodPrice,
-                                                                "flex": 0,
-                                                                "margin": "lg",
-                                                                "size": "lg",
-                                                                "align": "end",
-                                                                "weight": "regular"
-                                                            }
-                                                        ]
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "type": "text",
-                                                "text": "Sauce, Onions, Pickles, Lettuce & Cheese",
-                                                "size": "xs",
-                                                "color": "#AAAAAA",
-                                                "wrap": true
-                                            }
-                                        ]
-                                    },
-                                    "footer": {
-                                        "type": "box",
-                                        "layout": "vertical",
-                                        "contents": [
-                                            {
-                                                "type": "button",
-                                                "action": {
-                                                    "type": "message",
-                                                    "label": "Add to Cart",
-                                                    "text": "加入購物車,"+data[i].foodid
-                                                },
-                                                "color": "#905C44",
-                                                "style": "primary"
-                                            }
-                                        ]
-                                    }
-
-                                })
+                            else{
+                                for(var i = 0; i<data.length; i++){
+                                    console.log(data[i].orderid)
+                                }
                             }
-                            event.reply(arr2[0]);
-                            arr2[0].contents.contents.length = 0;
-                            arr2.length = 0;
-                            data.length = 0;
-                        }
-                    })
-                } else if (msg2 == "聯絡店家") {
-                    store.fetchStoreTel(msg3).then(data => {
-                        if (data == -1) {
-                            event.reply('找不到資料');
-                        } else if (data == -9) {
-                            event.reply('執行錯誤');
-                        } else {
-                            event.reply([
-                                {'type':'text', 'text':'連絡電話 :'},
-                                {'type':'text', 'text':data.storeTel}]
-                            );  
-                        }
-                    })
-                    event.reply();
-                }
-            } else if (status != "") {
-                if (status == "進入修改電話程序") {
-                    status = "";
-                    member.UpdatePhone(msg, userId).then(data => {
-                        if (data == -1) {
-                            event.reply('找不到資料');
-                        } else if (data == -9) {
-                            event.reply('執行錯誤');
-                        } else {
-                            event.reply('電話已修改完成');
-                        }
-                    })
-                } else if (status == "進入修改姓名程序") {
-                    status = "";
-                    member.UpdateName(msg, userId).then(data => {
-                        if (data == -1) {
-                            event.reply('找不到資料');
-                        } else if (data == -9) {
-                            event.reply('執行錯誤');
-                        } else {
-                            event.reply('姓名已修改完成');
-                        }
-                    })
+                        })
+
+                    }
                 }
             }
         }
-    );
+    )
 });
+
 //--------------------------------
 // 使用者封鎖群組
 //--------------------------------
