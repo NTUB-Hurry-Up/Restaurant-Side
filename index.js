@@ -50,25 +50,25 @@ bot.on('message', function (event) {
             var msg2 = NewArray[1];
             var msg3 = NewArray[2];
             console.log(msg1+", "+msg2+", "+msg3)
-            // if(msg1=="訂單"){
-            //     if(msg2=="訂單查詢"){
-            //         if(msg3=="未接受"){
-            //             order.fetchReject(storeId, msg3).then(data => {
-            //                 if (data == -1) {
-            //                     event.reply('找不到資料');
-            //                 } else if (data == -9) {
-            //                     event.reply('執行錯誤');
-            //                 }
-            //                 else{
-            //                     for(var i = 0; i<data.length; i++){
-            //                         console.log(data[i].orderid)
-            //                     }
-            //                 }
-            //             })
+            if(msg1=="訂單"){
+                if(msg2=="訂單查詢"){
+                    if(msg3=="未接受"){
+                        order.fetchReject(storeId, msg3).then(data => {
+                            if (data == -1) {
+                                event.reply('找不到資料');
+                            } else if (data == -9) {
+                                event.reply('執行錯誤');
+                            }
+                            else{
+                                for(var i = 0; i<data.length; i++){
+                                    console.log(data[i].orderid)
+                                }
+                            }
+                        })
 
-            //         }
-            //     }
-            // }
+                    }
+                }
+            }
         }
     )
 });
