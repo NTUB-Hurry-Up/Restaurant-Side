@@ -43,7 +43,7 @@ bot.on('message', function (event) {
             // const userName = profile.displayName;
             const storeId = profile.userId;
             const orderId = event.message.text;
-            // const msg = event.message.text;
+            const msg = event.message.text;
             var NewArray = new Array();
             var NewArray = msg.split(",");
             var msg1 = NewArray[0];
