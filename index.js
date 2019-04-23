@@ -11,9 +11,9 @@ const temp = require('./temp');
 // 填入自己在Line Developers的channel值
 //----------------------------------------
 var bot = linebot({
-    channelId: '1553827455',
-    channelSecret: '633baa5dafd610ad5bb69a495df003a0',
-    channelAccessToken: 'gU+RO41W5nTJOrZrepX2AsvPOO9Qp+oC7eX3pYrcBaSIeD4+kYh30iN375Rh+6hJB5Bk5hotterHhDSF2GNzHC4poNA0i55YXayxMMnsmePMhKqsujJsgOnc+XR5HoAihNYaGwK54qRxD28M2ULx3gdB04t89/1O/w1cDnyilFU='
+    channelId: '1558114146',
+    channelSecret: '6a07366d229e7d52f7a6a1a4df0226d8',
+    channelAccessToken: '8whZWyp4LQnorg+9GvDs1zVnVFDq+USCtprVzJweXyjXa4uvKYzHuY4DbrQKvIu2JXYIHEuBL73kjyl3P4Vdv41Y4eQGJfljEZbDbfA6BN2vtfCx8RM3OvPAGCgK+rlmiLu3NLoznk3mRbIDyG9MxAdB04t89/1O/w1cDnyilFU='
 });
 //--------------------------------
 // 使用者加入群組或解除封鎖

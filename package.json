@@ -1,11 +1,11 @@
 {
-  "name": "line108508",
+  "name": "108508",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "start": "node ."
   },
-  "author": "Joe",
+  "author": "Sherry's Benson",
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.3",
