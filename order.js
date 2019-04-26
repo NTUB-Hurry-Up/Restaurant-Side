@@ -45,7 +45,7 @@ var AccpetOrder = async function(storeId, msg3){
     return result;  
 }
 
-var CompletedOrder = async function(storeId, msg3){
+var CollectedOrder = async function(storeId, msg3){
     //存放結果
     let result;  
 
@@ -64,4 +64,4 @@ var CompletedOrder = async function(storeId, msg3){
     return result;  
 }
 //匯出
-module.exports = {fetchOrder, AccpetOrder,CompletedOrder};
+module.exports = {fetchOrder, AccpetOrder,CollectedOrder};
