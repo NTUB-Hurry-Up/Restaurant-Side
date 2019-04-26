@@ -95,8 +95,8 @@ bot.on('message', function (event) {
                     })
                 }
 
-                if(msg2=="完成訂單"){
-                    order.CollectedOrder(storeId,msg3).then(data => {
+                if(msg2=="所有訂單"){
+                    order.AllOrders(storeId,msg3).then(data => {
                         if (data == -1) {
                             event.reply('找不到資料');
                         } else if (data == -9) {
