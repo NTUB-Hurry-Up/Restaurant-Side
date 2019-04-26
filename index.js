@@ -66,7 +66,7 @@ bot.on('message', function (event) {
                     })
                 }
                 if(msg2=="接受訂單"){
-                    order.AccpetOrder(orderid, "已接受未製作").then(data => {
+                    order.AccpetOrder(storeId, "已接受未製作").then(data => {
                         if (data == -1) {
                             event.reply('找不到資料');
                         } else if (data == -9) {
@@ -81,7 +81,7 @@ bot.on('message', function (event) {
                 }
 
                 if(msg2=="完成訂單"){
-                    order.CompletedOrder(orderid,msg3).then(data => {
+                    order.CompletedOrder(storeId,msg3).then(data => {
                         if (data == -1) {
                             event.reply('找不到資料');
                         } else if (data == -9) {
