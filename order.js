@@ -80,6 +80,6 @@ var CollectedOrder = async function(storeId, msg3){
 //         });
 //     //回傳執行結果
 //     return result;  
-}
+// }
 //匯出
 module.exports = {fetchOrder, AccpetOrder,CollectedOrder};
