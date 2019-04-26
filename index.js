@@ -64,23 +64,18 @@ bot.on('message', function (event) {
                             }
                         }
                     })
-                }
-                if(msg2=="接受訂單"){
-                    order.AccpetOrder(storeId, "已接受未製作").then(data => {
+                }else if(msg2=="接受訂單"){
+                    order.AccpetOrder(msg3).then(data => {
                         if (data == -1) {
                             event.reply('找不到資料');
                         } else if (data == -9) {
                             event.reply('執行錯誤');
                         }
                         else{
-                            for(var i = 0; i<data.length; i++){
-                                console.log(data[i].orderid)
-                            }
+                            event.reply('已接單');
                         }
                     })
-                }
-
-                if(msg2=="完成訂單"){
+                }else if(msg2=="完成訂單"){
                     order.CollectedOrder(storeId,msg3).then(data => {
                         if (data == -1) {
                             event.reply('找不到資料');
@@ -95,20 +90,8 @@ bot.on('message', function (event) {
                     })
                 }
 
-                if(msg2=="所有訂單"){
-                    order.AllOrders().then(data => {
-                        if (data == -1) {
-                            event.reply('找不到資料');
-                        } else if (data == -9) {
-                            event.reply('執行錯誤');
-                        }
-                        else{
-                            for(var i = 0; i<data.length; i++){
-                                console.log(data[i].orderid)
-                            }
-                        }
-                    })
-                }
+              
+
             }
         }
     )
