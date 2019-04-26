@@ -49,7 +49,7 @@ bot.on('message', function (event) {
             var msg1 = NewArray[0];
             var msg2 = NewArray[1];
             var msg3 = NewArray[2];
-            console.log(msg1+", "+msg2+", "+msg3)
+            console.log(msg1+", "+msg2+", "+msg3);
             if(msg1=="訂單"){
                 if(msg2=="訂單查詢"){
                     order.fetchOrder(storeId, msg3).then(data => {
@@ -60,11 +60,11 @@ bot.on('message', function (event) {
                         }
                         else{
                             for(var i = 0; i<data.length; i++){
-                                console.log(data[i].orderid)
+                                console.log(data[i].orderid);
                             }
                         }
                     })
-                }if(msg2=="接受訂單"){
+                }else if(msg2=="接受訂單"){
                     order.AccpetOrder(msg3).then(data => {
                         if (data == -1) {
                             event.reply('找不到資料');
@@ -75,26 +75,26 @@ bot.on('message', function (event) {
                             event.reply('已接單');
                         }
                     })
-                }else if(msg2=="完成訂單"){
-                    order.CollectedOrder(storeId,msg3).then(data => {
-                        if (data == -1) {
-                            event.reply('找不到資料');
-                        } else if (data == -9) {
-                            event.reply('執行錯誤');
-                        }
-                        else{
-                            for(var i = 0; i<data.length; i++){
-                                console.log(data[i].orderid)
-                            }
-                        }
-                    })
                 }
-
-              
-
+                // }else if(msg2=="完成訂單"){
+                //     order.CollectedOrder(storeId,msg3).then(data => {
+                //         if (data == -1) {
+                //             event.reply('找不到資料');
+                //         } else if (data == -9) {
+                //             event.reply('執行錯誤');
+                //         }
+                //         else{
+                //             for(var i = 0; i<data.length; i++){
+                //                 console.log(data[i].orderid)
+                //             }
+                //         }
+                //     })
+                // }
+            
             }
+
         }
-    )
+    );
 });
 
 //--------------------------------
