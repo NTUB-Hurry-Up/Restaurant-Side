@@ -24,7 +24,7 @@ var fetchOrder = async function(storeId, msg3){
     return result;  
 }
 //
-var AccpetOrder = async function(storeId){
+var AccpetOrder = async function(msg3){
     //存放結果
     let result;  
 
