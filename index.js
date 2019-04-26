@@ -65,7 +65,7 @@ bot.on('message', function (event) {
                         }
                     })
                 }else if(msg2=="接受訂單"){
-                    order.AccpetOrder(msg3).then(data => {
+                    order.AccpetOrder(storeId).then(data => {
                         if (data == -1) {
                             event.reply('找不到資料');
                         } else if (data == -9) {
