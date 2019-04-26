@@ -65,20 +65,35 @@ bot.on('message', function (event) {
                         }
                     })
                 }
-                // if(msg2=="接受訂單"){
-                //     order.AccpetOrder(orderid, "已接受未製作").then(data => {
-                //         if (data == -1) {
-                //             event.reply('找不到資料');
-                //         } else if (data == -9) {
-                //             event.reply('執行錯誤');
-                //         }
-                //         else{
-                //             for(var i = 0; i<data.length; i++){
-                //                 console.log(data[i].orderid)
-                //             }
-                //         }
-                //     })
-                // }
+                if(msg2=="接受訂單"){
+                    order.AccpetOrder(orderid, "已接受未製作").then(data => {
+                        if (data == -1) {
+                            event.reply('找不到資料');
+                        } else if (data == -9) {
+                            event.reply('執行錯誤');
+                        }
+                        else{
+                            for(var i = 0; i<data.length; i++){
+                                console.log(data[i].orderid)
+                            }
+                        }
+                    })
+                }
+
+                if(msg2=="完成訂單"){
+                    order.CompletedOrder(orderid,msg3).then(data => {
+                        if (data == -1) {
+                            event.reply('找不到資料');
+                        } else if (data == -9) {
+                            event.reply('執行錯誤');
+                        }
+                        else{
+                            for(var i = 0; i<data.length; i++){
+                                console.log(data[i].orderid)
+                            }
+                        }
+                    })
+                }
             }
         }
     )
