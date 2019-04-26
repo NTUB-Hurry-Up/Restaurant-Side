@@ -64,4 +64,4 @@ var CompletedOrder = async function(storeId, msg3){
     return result;  
 }
 //匯出
-module.exports = {fetchOrder, AccpetOrder};
+module.exports = {fetchOrder, AccpetOrder,CompletedOrder};
