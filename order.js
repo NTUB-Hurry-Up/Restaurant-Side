@@ -74,4 +74,4 @@ var AllOrder = async function(storeId){
     return result;  
 }
 //匯出
-module.exports = {fetchOrder,CollectedOrder,AllOrder};
+module.exports = {fetchOrder,AccpetOrder,CollectedOrder,AllOrder};
