@@ -64,8 +64,8 @@ bot.on('message', function (event) {
                             }
                         }
                     })
-                }/*else if(msg2=="接受訂單"){
-                    order.AccpetOrder(msg3).then(data => {
+                }else if(msg2=="接受訂單"){
+                    order.AccpetOrder(orderId).then(data => {
                         if (data == -1) {
                             event.reply('找不到資料');
                         } else if (data == -9) {
@@ -75,7 +75,7 @@ bot.on('message', function (event) {
                             event.reply('已接單');
                         }
                     })
-                }*/else if(msg2=="完成訂單"){
+                }else if(msg2=="完成訂單"){
                     order.CollectedOrder(storeId,msg3).then(data => {
                         if (data == -1) {
                             event.reply('找不到資料');

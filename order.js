@@ -24,18 +24,18 @@ var fetchOrder = async function(storeId, msg3){
     return result;  
 }
 //未接受訂單改為接受
-/*var AccpetOrder = async function(msg3){
+var AccpetOrder = async function(orderId){
     //存放結果
     let result;  
     //讀取資料庫
-    await query('UPDATE	 "order"	SET	"status"="已接受未製作"	WHERE	"status"="未接受" AND	"orderid"=$1;', [msg3])
+    await query('UPDATE	 "order"	SET	"status"="已接受未製作"	WHERE	"status"="未接受" AND	"orderid"=$1;', [orderId])
     .then((data) => { 
         result = data.rowCount;  //回傳資料數 
     }, (error) => {
         result = -9;  //執行錯誤
     });
     return result;  
-}*/
+}
 
 var CollectedOrder = async function(storeId, msg3){
     //存放結果
