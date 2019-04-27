@@ -28,7 +28,7 @@ var AccpetOrder = async function(msg3){
     //存放結果
     let result;  
     //讀取資料庫
-    await query('UPDATE	 "order"	SET	"status"="已接受未製作"	WHERE	"status"="未接受" AND	"orderid"=$1;', [msg3])
+    await query('UPDATE	 "order"	SET	"status"="已接受未製作"	WHERE	"status"="未接單" AND	"orderid"=$1;', [msg3])
     .then((data) => { 
         result = data.rowCount;  //回傳資料數 
     }, (error) => {
