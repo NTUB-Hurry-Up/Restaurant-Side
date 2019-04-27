@@ -55,7 +55,7 @@ var CollectedOrder = async function(storeId, msg3){
     //回傳執行結果
     return result;  
 }
-var AllOrder = async function(){
+var AllOrder = async function(storeId){
     //存放結果
     let result;  
 

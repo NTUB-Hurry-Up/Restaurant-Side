@@ -89,7 +89,7 @@ bot.on('message', function (event) {
                         }
                     })
                 }else if(msg2=="所有訂單"){
-                    order.AllOrder().then(data => {
+                    order.AllOrder(storeId).then(data => {
                         if (data == -1) {
                             event.reply('找不到資料');
                         } else if (data == -9) {
