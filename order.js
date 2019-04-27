@@ -55,23 +55,23 @@ var CollectedOrder = async function(storeId, msg3){
     //回傳執行結果
     return result;  
 }
-// var AllOrder = async function(){
-//     //存放結果
-//     let result;  
+var AllOrder = async function(){
+    //存放結果
+    let result;  
 
-//     //讀取資料庫
-//     await query('SELECT	"orderid","status" FROM "order";')
-//         .then((data) => {
-//             if(data.rows.length > 0){
-//                 result = data.rows; 
-//             }else{
-//                 result = -1;  //找不到資料
-//             }    
-//         }, (error) => {
-//             result = -9;  //執行錯誤
-//         });
-//     //回傳執行結果
-//     return result;  
-// }
+    //讀取資料庫
+    await query('SELECT	"orderid","status" FROM "order"	WHERE  storeid=$1;',[storeId])
+        .then((data) => {
+            if(data.rows.length > 0){
+                result = data.rows; 
+            }else{
+                result = -1;  //找不到資料
+            }    
+        }, (error) => {
+            result = -9;  //執行錯誤
+        });
+    //回傳執行結果
+    return result;  
+}
 //匯出
-module.exports = {fetchOrder,CollectedOrder};
+module.exports = {fetchOrder,CollectedOrder,AllOrder};
