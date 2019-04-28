@@ -75,7 +75,7 @@ var allOrder = async function(storeid){
     return result;  
 }
 //查看今日訂單
-var todayOrder = async function(storeid){
+var todayOrder = async function(storeid,takeDate){
     //存放結果
     let result;  
 
