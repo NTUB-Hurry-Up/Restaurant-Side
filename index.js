@@ -138,16 +138,16 @@ bot.on('message', function (event) {
                         }
                     })
                 }
-                //更改店家資訊
+                //更改店家店名
                 if(msg2=="更改資訊"){
-                    store.modifyStoreinfo(storeid,msg3,msg4).then(data => {
-                        if (data == -9) {
-                            event.reply('執行錯誤');
-                        }
-                        else{
-                            event.reply('修改完成');
-                        }
-                    })
+                    if(msg3=="更改店名"){
+                        store.updateStorename(storeid,msg4).then(data => {
+                            if (data == -9) {
+                                event.reply('執行錯誤');
+                            }
+                            else  event.reply('修改完成');
+                            })
+                    }   
                 }
 
             }
