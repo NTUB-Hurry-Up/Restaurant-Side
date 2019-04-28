@@ -4,12 +4,12 @@
 const query = require('./asyncDB');
 
 //查詢未完成訂單訂單
-var fetchOrder = async function(storeId, msg3){
+var fetchOrder = async function(storeid, msg3){
     //存放結果
     let result;  
 
     //讀取資料庫
-    await query('SELECT	"orderid","storeid","takeDate","takeTime" FROM "order" WHERE "status"=$1 AND "storeid"=$2;', [msg3,storeId])
+    await query('SELECT	"orderid","storeid","takeDate","takeTime" FROM "order" WHERE "status"=$1 AND "storeid"=$2;', [msg3,storeid])
         .then((data) => {
             if(data.rows.length > 0){
                 result = data.rows; 
@@ -23,8 +23,9 @@ var fetchOrder = async function(storeId, msg3){
     //回傳執行結果
     return result;  
 }
+
 //未接受訂單改為接受
-var AccpetOrder = async function(orderid){
+/*var AccpetOrder = async function(orderid){
     //存放結果
     let result;  
     //讀取資料庫
@@ -35,14 +36,13 @@ var AccpetOrder = async function(orderid){
         result = -9;  //執行錯誤
     });
     return result;  
-}
-
-var CollectedOrder = async function(storeId, msg3){
+}*/
+//查看是否取貨
+var collectedOrder = async function(storeid, msg3){
     //存放結果
     let result;  
-
     //讀取資料庫
-    await query('SELECT	"orderid","storeid","takeDate","takeTime" FROM "order" WHERE "status"=$1 AND "storeid"=$2;', [msg3,storeId])
+    await query('SELECT	"orderid","storeid","takeDate","takeTime" FROM "order" WHERE "status"=$1 AND "storeid"=$2;', [msg3,storeid])
         .then((data) => {
             if(data.rows.length > 0){
                 result = data.rows; 
@@ -55,12 +55,32 @@ var CollectedOrder = async function(storeId, msg3){
     //回傳執行結果
     return result;  
 }
-var AllOrder = async function(storeId){
+//查看所有訂單
+var allOrder = async function(storeid){
     //存放結果
     let result;  
 
     //讀取資料庫
-    await query('SELECT	"orderid","status" FROM "order"	WHERE  storeid=$1;',[storeId])
+    await query('SELECT	"orderid","status" FROM "order"	WHERE  storeid=$1;',[storeid])
+        .then((data) => {
+            if(data.rows.length > 0){
+                result = data.rows; 
+            }else{
+                result = -1;  //找不到資料
+            }    
+        }, (error) => {
+            result = -9;  //執行錯誤
+        });
+    //回傳執行結果
+    return result;  
+}
+//查看今日訂單
+var todayOrder = async function(storeid){
+    //存放結果
+    let result;  
+
+    //讀取資料庫
+    await query('SELECT	* FROM	"order"	WHERE storeid=$1 AND "takeDate"=$2;',[storeid,takeDate])
         .then((data) => {
             if(data.rows.length > 0){
                 result = data.rows; 
@@ -74,4 +94,4 @@ var AllOrder = async function(storeId){
     return result;  
 }
 //匯出
-module.exports = {fetchOrder,AccpetOrder,CollectedOrder,AllOrder};
+module.exports = {fetchOrder,collectedOrder,allOrder,todayOrder};

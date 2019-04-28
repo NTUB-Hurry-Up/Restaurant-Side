@@ -41,7 +41,7 @@ bot.on('message', function (event) {
     event.source.profile().then(
         function (profile) {
             // const userName = profile.displayName;
-            const storeId = profile.userId;
+            const storeid = profile.userId;
             const msg = event.message.text;
             var NewArray = new Array();
             var NewArray = msg.split(",");
@@ -51,7 +51,7 @@ bot.on('message', function (event) {
             console.log(msg1+", "+msg2+", "+msg3);
             if(msg1=="訂單"){
                 if(msg2=="訂單查詢"){
-                    order.fetchOrder(storeId, msg3).then(data => {
+                    order.fetchOrder(storeid, msg3).then(data => {
                         if (data == -1) {
                             event.reply('找不到資料');
                         } else if (data == -9) {
@@ -63,9 +63,10 @@ bot.on('message', function (event) {
                             }
                         }
                     })
-                }else if(msg2=="接受訂單"){
+                }/*else if(msg2=="接受訂單"){
                     console.log("接受訂單, msg2="+msg2+", msg3="+msg3)
                     order.AccpetOrder(msg3).then(data => {
+
                         if (data == -9) {
                             event.reply('執行錯誤');
                         }
@@ -73,8 +74,8 @@ bot.on('message', function (event) {
                             event.reply('已接單');
                         }
                     })
-                }else if(msg2=="完成訂單"){
-                    order.CollectedOrder(storeId,msg3).then(data => {
+                }*/else if(msg2=="完成訂單"){
+                    order.collectedOrder(storeid,msg3).then(data => {
                         if (data == -1) {
                             event.reply('找不到資料');
                         } else if (data == -9) {
@@ -87,7 +88,7 @@ bot.on('message', function (event) {
                         }
                     })
                 }else if(msg2=="所有訂單"){
-                    order.AllOrder(storeId).then(data => {
+                    order.allOrder(storeid).then(data => {
                         if (data == -1) {
                             event.reply('找不到資料');
                         } else if (data == -9) {
@@ -96,6 +97,21 @@ bot.on('message', function (event) {
                         else{
                             for(var i = 0; i<data.length; i++){
                                 console.log(data[i].orderid+"，"+data[i].status);
+                            }
+                        }
+                    })
+                }else if(msg2=="今日訂單"){
+                    var Today=new Date();
+                    var takeDate=Today.getFullYear+"-"+(Today.getMonth()+1)+"-"+Today.getDate();
+                    order.todayOrder(storeid,takeDate).then(data => {
+                        if (data == -1) {
+                            event.reply('找不到資料');
+                        } else if (data == -9) {
+                            event.reply('執行錯誤');
+                        }
+                        else{
+                            for(var i = 0; i<data.length; i++){
+                                console.log(data[i].orderid);
                             }
                         }
                     })
