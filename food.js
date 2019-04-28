@@ -22,7 +22,7 @@ var fetchStorefood = async function(storeid){
     return result;
 }
 //------------------------------------------
-var updateFoodName = async function(storeid,msg4){
+var updateFoodName = async function(storeid,msg4,msg5){
     //存放結果
     let result;  
     
