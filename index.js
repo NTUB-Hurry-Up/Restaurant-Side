@@ -180,6 +180,7 @@ bot.on('message', function (event) {
                 if(msg2="更改菜單"){
                         if(msg3=="更改菜名"){
                             food.updateFoodName(storeid,msg4,msg5).then(data => {
+                                console.log(storeid+","+msg3+","+msg4+","+msg5)
                                 if (data == -9) event.reply('執行錯誤');
                                 else            event.reply('修改完成'); 
                             })
