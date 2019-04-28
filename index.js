@@ -151,10 +151,7 @@ bot.on('message', function (event) {
                             }   
                         })
                     }   
-                }
-
-                if(msg2=="更改資訊"){
-                    if(msg3=="更改地址"){
+                } else if(msg3=="更改地址"){
                         store.updateStoreAdd(storeid,msg4).then(data => {
                             if (data == -9) {
                                 event.reply('執行錯誤');
