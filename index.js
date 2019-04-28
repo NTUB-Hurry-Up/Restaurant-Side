@@ -49,6 +49,7 @@ bot.on('message', function (event) {
             var msg1 = NewArray[0];
             var msg2 = NewArray[1];
             var msg3 = NewArray[2];
+            var msg4 = NewArray[2];
             console.log(msg1+", "+msg2+", "+msg3);
             if(msg1=="訂單"){
                 if(msg2=="訂單查詢"){
@@ -120,8 +121,9 @@ bot.on('message', function (event) {
                 
             
             }
-
+            
             if(msg1=="店家資訊"){
+                //查看店家資訊
                 if(msg2=="查看資訊"){
                     store.fetchStoreinfo(storeid).then(data => {
                         if (data == -1) {
@@ -131,11 +133,23 @@ bot.on('message', function (event) {
                         }
                         else{
                             for(var i = 0; i<data.length; i++){
-                                console.log(data[i].storeName+"，"+data[i].storeAdd+"-"+data[i].storeTel);
+                                console.log(data[i].storeName+"，"+data[i].storeAdd+"，"+data[i].storeTel);
                             }
                         }
                     })
                 }
+                //更改店家資訊
+                if(msg2=="更改資訊"){
+                    store.modifyStoreinfo(storeid,msg3,msg4).then(data => {
+                        if (data == -9) {
+                            event.reply('執行錯誤');
+                        }
+                        else{
+                            event.reply('修改完成');
+                        }
+                    })
+                }
+
             }
 
         }

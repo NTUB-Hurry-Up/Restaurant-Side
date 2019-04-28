@@ -23,6 +23,22 @@ var fetchStoreinfo = async function(storeid){
     //回傳執行結果
     return result;
 }
+
+var modifyStoreinfo = async function(storeid,msg3,msg4){
+    //存放結果
+    let result;  
+
+    //讀取資料庫
+    await query('UPDATE store SET $1=$2 WHERE storeid=$3',[msg3,msg4,storeid])
+    .then((data) => { 
+        result = data.rowCount;  //回傳資料數 
+    }, (error) => {
+        result = -9;  //執行錯誤
+    });
+
+    //回傳執行結果
+    return result;
+}
 //------------------------------------------
 var fetchStorefood = async function(storeid){
     //存放結果
@@ -64,5 +80,5 @@ var fetchStorefood = async function(storeid){
     return result;
 }*/
 //匯出
-module.exports = {fetchStoreinfo, fetchStorefood};
+module.exports = {fetchStoreinfo,modifyStoreinfo, fetchStorefood};
 
