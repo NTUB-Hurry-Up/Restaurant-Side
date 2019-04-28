@@ -102,7 +102,7 @@ bot.on('message', function (event) {
                     })
                 }else if(msg2=="今日訂單"){
                     var Today=new Date();
-                    var takeDate=Today.getFullYear+"-"+(Today.getMonth()+1)+"-"+Today.getDate();
+                    var takeDate=Today.getFullYear()+"-"+(Today.getMonth()+1)+"-"+Today.getDate();
                     order.todayOrder(storeid,takeDate).then(data => {
                         if (data == -1) {
                             event.reply('找不到資料');
