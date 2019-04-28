@@ -39,7 +39,7 @@ var updateFoodPrice = async function(storeid,msg4,msg5){
     //存放結果
     let result;  
     
-    await query('UPDATE	food SET "foodPrice"=$3	WHERE	storeid=$2	AND	"foodPrice"=$1;',[msg4,storeid,msg5])
+    await query('UPDATE	food SET "foodPrice"=$3	WHERE	storeid=$2	AND	"foodName"=$1;',[msg4,storeid,msg5])
     .then((data) => { 
         result = data.rowCount;  //回傳資料數 
     }, (error) => {
