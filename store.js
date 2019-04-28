@@ -71,7 +71,7 @@ var fetchStorefood = async function(storeid){
     let result;  
 
     //讀取資料庫
-    await query('SELECT * from food where storeid=$1 order by foodid', [storeid])
+    await query('SELECT foodName,foodPrice from food where storeid=$1 order by foodName', [storeid])
         .then((data) => {
             if(data.rows.length > 0){
                 result = data.rows;  //店家資料(物件)

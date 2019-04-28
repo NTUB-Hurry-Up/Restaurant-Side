@@ -138,7 +138,7 @@ bot.on('message', function (event) {
                         }
                     })
                 }
-                //更改店家店名
+                //更改店家資訊
                 if(msg2=="更改資訊"){
                     if(msg3=="更改店名"){
                         store.updateStorename(storeid,msg4).then(data => {
@@ -158,10 +158,25 @@ bot.on('message', function (event) {
                     }   
                           
                 }
-
-                
-
+  
             }
+            if(msg1=="店家菜單"){
+                if(msg2==查詢菜單){
+                    store.fetchStorefood(storeid).then(data => {
+                        if (data == -1) {
+                            event.reply('找不到資料');
+                        } else if (data == -9) {
+                            event.reply('執行錯誤');
+                        }
+                        else{
+                            for(var i = 0; i<data.length; i++){
+                                console.log(data[i].foodName+"，"+data[i].foodPrice);
+                            }
+                        }
+                    })
+                }
+            }
+
 
         }
     );
