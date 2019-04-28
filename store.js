@@ -27,7 +27,7 @@ var fetchStoreinfo = async function(storeid){
 var updateStorename = async function(storeid,msg4){
     //存放結果
     let result;  
-    await query('UPDATE	store	SET	"storeName"=$1	WHERE	storeid=storeid;',[msg4,storeid])
+    await query('UPDATE	store	SET	"storeName"=$1	WHERE	storeid=$2;',[msg4,storeid])
     .then((data) => { 
         result = data.rowCount;  //回傳資料數 
     }, (error) => {
@@ -36,6 +36,17 @@ var updateStorename = async function(storeid,msg4){
     return result;
 }
 
+var updateStoreAdd = async function(storeid,msg4){
+    //存放結果
+    let result;  
+    await query('UPDATE	store	SET	"storeAdd"=$1	WHERE	storeid=$2 ";',[msg4,storeid])
+    .then((data) => { 
+        result = data.rowCount;  //回傳資料數 
+    }, (error) => {
+        result = -9;  //執行錯誤
+    });
+    return result;
+}
 
 //------------------------------------------
 var fetchStorefood = async function(storeid){
@@ -78,5 +89,5 @@ var fetchStorefood = async function(storeid){
     return result;
 }*/
 //匯出
-module.exports = {fetchStoreinfo,updateStorename,fetchStorefood};
+module.exports = {fetchStoreinfo,updateStorename,updateStoreAdd,fetchStorefood};
 

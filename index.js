@@ -147,12 +147,23 @@ bot.on('message', function (event) {
                             }
                             
                             else {
-                                event.reply('修改完成');
-                                for(var i = 0; i<data.length; i++){
-                                    console.log(data[i].storeName);
-                                }
+                                event.reply('修改完成');  
                             }   
-                    })
+                        })
+                    }   
+                }
+
+                if(msg2=="更改資訊"){
+                    if(msg3=="更改地址"){
+                        store.updateStoreAdd(storeid,msg4).then(data => {
+                            if (data == -9) {
+                                event.reply('執行錯誤');
+                            }
+                            
+                            else {
+                                event.reply('修改完成');  
+                            }   
+                        })
                     }   
                 }
 
