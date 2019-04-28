@@ -4,7 +4,7 @@
 const query = require('./asyncDB');
 
 //------------------------------------------
-var fetchStoreinfo = async function(){
+var fetchStoreinfo = async function(storeid){
     //存放結果
     let result;  
 
