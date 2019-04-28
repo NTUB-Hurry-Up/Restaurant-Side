@@ -74,7 +74,7 @@ bot.on('message', function (event) {
                             event.reply('已接單');
                         }
                     })
-                }*/else if(msg2=="完成訂單"){
+                }else if(msg2=="完成訂單"){
                     order.collectedOrder(storeid,msg3).then(data => {
                         if (data == -1) {
                             event.reply('找不到資料');
@@ -87,7 +87,7 @@ bot.on('message', function (event) {
                             }
                         }
                     })
-                }else if(msg2=="所有訂單"){
+                }*/else if(msg2=="所有訂單"){
                     order.allOrder(storeid).then(data => {
                         if (data == -1) {
                             event.reply('找不到資料');
@@ -100,7 +100,7 @@ bot.on('message', function (event) {
                             }
                         }
                     })
-                }else if(msg2=="今日訂單"){
+                }else(msg2=="今日訂單"){
                     var Today=new Date();
                     var takeDate=Today.getFullYear()+"-"+(Today.getMonth()+1)+"-"+Today.getDate();
                     order.todayOrder(storeid,takeDate).then(data => {
