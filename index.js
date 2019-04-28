@@ -7,6 +7,7 @@ var express = require('express');
 const member = require('./member');
 const order  = require('./order');
 const store  = require('./store');
+const food   = require('./food');
 //----------------------------------------
 // 填入自己在Line Developers的channel值
 //----------------------------------------
@@ -50,6 +51,7 @@ bot.on('message', function (event) {
             var msg2 = NewArray[1];
             var msg3 = NewArray[2];
             var msg4 = NewArray[3];
+            var msg5 = NewArray[4];
             console.log(msg1+", "+msg2+", "+msg3);
             if(msg1=="訂單"){
                 if(msg2=="訂單查詢"){
@@ -162,7 +164,7 @@ bot.on('message', function (event) {
             }
             if(msg1=="店家菜單"){
                 if(msg2=="查詢菜單"){
-                    store.fetchStorefood(storeid).then(data => {
+                    food.fetchStorefood(storeid).then(data => {
                         if (data == -1) {
                             event.reply('找不到資料');
                         } else if (data == -9) {
@@ -174,6 +176,14 @@ bot.on('message', function (event) {
                             }
                         }
                     })
+                }
+                if(msg2="更改菜單"){
+                        if(msg3=="更改菜名"){
+                            food.updateFoodName(storeid,msg4,msg5).then(data => {
+                                if (data == -9) event.reply('執行錯誤');
+                                else            event.reply('修改完成'); 
+                            })
+                        }
                 }
             }
 

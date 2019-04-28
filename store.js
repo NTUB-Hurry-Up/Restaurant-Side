@@ -66,25 +66,7 @@ var updateStoreTel = async function(storeid,msg4){
     return result;
 }
 //------------------------------------------
-var fetchStorefood = async function(storeid){
-    //存放結果
-    let result;  
 
-    //讀取資料庫
-    await query('SELECT "foodName","foodPrice"	FROM	food	WHERE	storeid=$1 order by "foodName";', [storeid])
-        .then((data) => {
-            if(data.rows.length > 0){
-                result = data.rows;  //店家資料(物件)
-            }else{
-                result = -1;  //找不到資料
-            }    
-        }, (error) => {
-            result = -9;  //執行錯誤
-        });
-
-    //回傳執行結果
-    return result;
-}
 //------------------------------------------
 /*var fetchStoreTel = async function(storeid){
     //存放結果
@@ -106,5 +88,5 @@ var fetchStorefood = async function(storeid){
     return result;
 }*/
 //匯出
-module.exports = {fetchStoreinfo,updateStorename,updateStoreAdd,updateStoreTel,fetchStorefood};
+module.exports = {fetchStoreinfo,updateStorename,updateStoreAdd,updateStoreTel};
 
