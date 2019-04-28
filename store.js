@@ -4,6 +4,7 @@
 const query = require('./asyncDB');
 
 //------------------------------------------
+//查看店家資訊
 var fetchStoreinfo = async function(storeid){
     //存放結果
     let result;  
@@ -23,7 +24,8 @@ var fetchStoreinfo = async function(storeid){
     //回傳執行結果
     return result;
 }
-
+//------------------------------------------
+//更新店名
 var updateStorename = async function(storeid,msg4){
     //存放結果
     let result;  
@@ -35,7 +37,8 @@ var updateStorename = async function(storeid,msg4){
     });
     return result;
 }
-
+//------------------------------------------
+//更新地址
 var updateStoreAdd = async function(storeid,msg4){
     //存放結果
     let result;  
@@ -48,7 +51,20 @@ var updateStoreAdd = async function(storeid,msg4){
     });
     return result;
 }
-
+//------------------------------------------
+//更新電話
+var updateStoreTel = async function(storeid,msg4){
+    //存放結果
+    let result;  
+    
+    await query('UPDATE	store	SET	"storeTel"=$1	WHERE	storeid=$2;',[msg4,storeid])
+    .then((data) => { 
+        result = data.rowCount;  //回傳資料數 
+    }, (error) => {
+        result = -9;  //執行錯誤
+    });
+    return result;
+}
 //------------------------------------------
 var fetchStorefood = async function(storeid){
     //存放結果
@@ -90,5 +106,5 @@ var fetchStorefood = async function(storeid){
     return result;
 }*/
 //匯出
-module.exports = {fetchStoreinfo,updateStorename,updateStoreAdd,fetchStorefood};
+module.exports = {fetchStoreinfo,updateStorename,updateStoreAdd,updateStoreTel,fetchStorefood};
 
