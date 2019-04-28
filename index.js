@@ -123,7 +123,7 @@ bot.on('message', function (event) {
 
             if(msg1=="店家資訊"){
                 if(msg2=="查看資訊"){
-                    order.fetchStoreinfo(storeid).then(data => {
+                    store.fetchStoreinfo(storeid).then(data => {
                         if (data == -1) {
                             event.reply('找不到資料');
                         } else if (data == -9) {
