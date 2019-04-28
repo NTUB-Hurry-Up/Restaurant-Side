@@ -35,6 +35,8 @@ var updateStorename = async function(storeid,msg4){
     });
     return result;
 }
+
+
 //------------------------------------------
 var fetchStorefood = async function(storeid){
     //存放結果

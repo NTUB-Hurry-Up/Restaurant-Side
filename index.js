@@ -145,8 +145,14 @@ bot.on('message', function (event) {
                             if (data == -9) {
                                 event.reply('執行錯誤');
                             }
-                            else  event.reply('修改完成');
-                            })
+                            
+                            else {
+                                event.reply('修改完成');
+                                for(var i = 0; i<data.length; i++){
+                                    console.log(data[i].storeName);
+                                }
+                            }   
+                    })
                     }   
                 }
 
