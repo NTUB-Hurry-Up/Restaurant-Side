@@ -161,7 +161,7 @@ bot.on('message', function (event) {
   
             }
             if(msg1=="店家菜單"){
-                if(msg2==查詢菜單){
+                if(msg2=="查詢菜單"){
                     store.fetchStorefood(storeid).then(data => {
                         if (data == -1) {
                             event.reply('找不到資料');
