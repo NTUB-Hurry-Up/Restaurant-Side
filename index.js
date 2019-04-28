@@ -164,7 +164,7 @@ bot.on('message', function (event) {
             }
             if(msg1=="店家菜單"){
                 if(msg2=="查詢菜單"){
-                    food.fetchStorefood(storeid).then(data => {
+                    food.fetchStoreFood(storeid).then(data => {
                         if (data == -1) {
                             event.reply('找不到資料');
                         } else if (data == -9) {
@@ -180,6 +180,12 @@ bot.on('message', function (event) {
                 if(msg2="更改菜單"){
                         if(msg3=="更改菜名"){
                             food.updateFoodName(storeid,msg4,msg5).then(data => {
+                                console.log(storeid+","+msg3+","+msg4+","+msg5)
+                                if (data == -9) event.reply('執行錯誤');
+                                else            event.reply('修改完成'); 
+                            })
+                        } else if(msg3=="更改價錢"){
+                            food.updateFoodPrice(storeid,msg4,msg5).then(data => {
                                 console.log(storeid+","+msg3+","+msg4+","+msg5)
                                 if (data == -9) event.reply('執行錯誤');
                                 else            event.reply('修改完成'); 
