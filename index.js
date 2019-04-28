@@ -100,7 +100,7 @@ bot.on('message', function (event) {
                             }
                         }
                     })
-                }else(msg2=="今日訂單"){
+                }else if(msg2=="今日訂單"){
                     var Today=new Date();
                     var takeDate=Today.getFullYear()+"-"+(Today.getMonth()+1)+"-"+Today.getDate();
                     order.todayOrder(storeid,takeDate).then(data => {
