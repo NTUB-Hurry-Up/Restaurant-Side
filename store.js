@@ -40,7 +40,7 @@ var updateStoreAdd = async function(storeid,msg4){
     //存放結果
     let result;  
     
-    await query('UPDATE	store	SET	"storeName"=$1	WHERE	storeid=$2;',[msg4,storeid])
+    await query('UPDATE	store	SET	"storeAdd"=$1	WHERE	storeid=$2;',[msg4,storeid])
     .then((data) => { 
         result = data.rowCount;  //回傳資料數 
     }, (error) => {

@@ -150,19 +150,16 @@ bot.on('message', function (event) {
                                 event.reply('修改完成');  
                             }   
                         })
-                    }   
-                } else if(msg3=="更改地址"){
+                    }
+                    if(msg3=="更改地址"){
                         store.updateStoreAdd(storeid,msg4).then(data => {
-                            if (data == -9) {
-                                event.reply('執行錯誤');
-                            }
-                            
-                            else {
-                                event.reply('修改完成');  
-                            }   
-                        })
-                    }   
+                            if (data == -9) event.reply('執行錯誤');
+                            else            event.reply('修改完成');
+                       })
+                    }    
                 }
+
+                
 
             }
 
