@@ -68,8 +68,8 @@ bot.on('message', function (event) {
                         }
                     })
                 }else if(msg2=="接受訂單"){
-                    console.log("接受訂單, msg2="+msg2+", msg3="+msg3)
-                    order.acceptOrder(msg3).then(data => {
+                    // console.log("接受訂單, msg2="+msg2+", msg3="+msg3)
+                    order.acceptOrder().then(data => {
 
                         if (data == -9) {
                             event.reply('執行錯誤');
