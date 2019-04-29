@@ -73,6 +73,8 @@ bot.on('message', function (event) {
 
                         if (data == -9) {
                             event.reply('執行錯誤');
+                            var error=new   Error("error message");
+                            console.log(error)
                         }
                         else{
                             event.reply('已接單');
