@@ -35,7 +35,7 @@ var acceptOrder = async function(msg3){
     }, (error) => {
         result = -9;  //執行錯誤
     });
-    return result;  
+    return result; 
 }
 //查看所有訂單
 var allOrder = async function(storeid){
