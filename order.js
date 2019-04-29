@@ -25,18 +25,18 @@ var fetchOrder = async function(storeid, msg3){
 }
 
 //未接受訂單改為接受
-/*var acceptOrder = async function(orderid){
+var acceptOrder = async function(msg3){
     //存放結果
     let result;  
     //讀取資料庫
-    await query('UPDATE "order" SET "status"="已接受未製作" WHERE "status"="未接單" AND "orderid"=$1', [orderid])
+    await query('UPDATE	"order"	SET	status="已接受未製作"	WHERE	orderid=$1	AND	status="未接單"', [msg3])
     .then((data) => { 
         result = data.rowCount;  //回傳資料數 
     }, (error) => {
         result = -9;  //執行錯誤
     });
     return result;  
-}*/
+}
 //查看所有訂單
 var allOrder = async function(storeid){
     //存放結果
@@ -75,4 +75,4 @@ var todayOrder = async function(storeid,takeDate){
     return result;  
 }
 //匯出
-module.exports = {fetchOrder,allOrder,todayOrder};
+module.exports = {fetchOrder,acceptOrder,allOrder,todayOrder};

@@ -67,7 +67,7 @@ bot.on('message', function (event) {
                             }
                         }
                     })
-                }/*else if(msg2=="接受訂單"){
+                }else if(msg2=="接受訂單"){
                     console.log("接受訂單, msg2="+msg2+", msg3="+msg3)
                     order.AccpetOrder(msg3).then(data => {
 
@@ -78,7 +78,7 @@ bot.on('message', function (event) {
                             event.reply('已接單');
                         }
                     })
-                }else if(msg2=="完成訂單"){
+                }/*else if(msg2=="完成訂單"){
                     order.collectedOrder(storeid,msg3).then(data => {
                         if (data == -1) {
                             event.reply('找不到資料');
@@ -191,6 +191,7 @@ bot.on('message', function (event) {
                                 else            event.reply('修改完成'); 
                             })
                         }
+                        
                 }
             }
 
