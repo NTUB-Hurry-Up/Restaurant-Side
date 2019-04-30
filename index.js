@@ -3,7 +3,7 @@
 //----------------------------------------
 var linebot = require('linebot');
 var express = require('express');
-
+//----------------------------------------
 const member = require('./member');
 const order  = require('./order');
 const store  = require('./store');
@@ -30,7 +30,7 @@ bot.on('follow', function (event) {
                 if (data == -9) {
                     event.reply('執行錯誤');
                 } else {
-                    event.reply('已加入會員, 廢物 !');
+                    event.reply('已加入會員');
                 }
             })
         }
@@ -52,16 +52,12 @@ bot.on('message', function (event) {
             var msg3 = NewArray[2];
             var msg4 = NewArray[3];
             var msg5 = NewArray[4];
-            var msg6 = NewArray[5];
-            console.log(msg1+", "+msg2+", "+msg3);
+ //----------------------------------------           
             if(msg1=="訂單"){
                 if(msg2=="訂單查詢"){
                     order.fetchOrder(storeid, msg3).then(data => {
-                        if (data == -1) {
-                            event.reply('找不到資料');
-                        } else if (data == -9) {
-                            event.reply('執行錯誤');
-                        }
+                        if (data == -1)       event.reply('找不到資料');                            
+                        else if (data == -9)  event.reply('執行錯誤');
                         else{
                             for(var i = 0; i<data.length; i++){
                                 console.log(data[i].orderid);
@@ -69,36 +65,14 @@ bot.on('message', function (event) {
                         }
                     })
                 }else if(msg2=="接受訂單"){
-                    // console.log("接受訂單, msg2="+msg2+", msg3="+msg3)
                     order.acceptOrder(storeid,msg3).then(data => {
-                        if (data == -9) {
-                            event.reply('執行錯誤');
-                            var error=new   Error("error message");
-                            console.log(error)
-                        }else{
-                            event.reply('已接單');
-                        }
+                        if (data == -9) event.reply('執行錯誤'); 
+                        else            event.reply('已接單');
                     })
-                }/*else if(msg2=="完成訂單"){
-                    order.collectedOrder(storeid,msg3).then(data => {
-                        if (data == -1) {
-                            event.reply('找不到資料');
-                        } else if (data == -9) {
-                            event.reply('執行錯誤');
-                        }
-                        else{
-                            for(var i = 0; i<data.length; i++){
-                                console.log(data[i].orderid)
-                            }
-                        }
-                    })
-                }*/else if(msg2=="所有訂單"){
+                }else if(msg2=="所有訂單"){
                     order.allOrder(storeid).then(data => {
-                        if (data == -1) {
-                            event.reply('找不到資料');
-                        } else if (data == -9) {
-                            event.reply('執行錯誤');
-                        }
+                        if (data == -1)       event.reply('找不到資料');                            
+                        else if (data == -9)  event.reply('執行錯誤');
                         else{
                             for(var i = 0; i<data.length; i++){
                                 console.log(data[i].orderid+"，"+data[i].status);
@@ -109,31 +83,22 @@ bot.on('message', function (event) {
                     var Today=new Date();
                     var takeDate=Today.getFullYear()+"-"+(Today.getMonth()+1)+"-"+Today.getDate();
                     order.todayOrder(storeid,takeDate).then(data => {
-                        if (data == -1) {
-                            event.reply('找不到資料');
-                        } else if (data == -9) {
-                            event.reply('執行錯誤');
-                        }
+                        if (data == -1)       event.reply('找不到資料');                            
+                        else if (data == -9)  event.reply('執行錯誤');
                         else{
                             for(var i = 0; i<data.length; i++){
                                 console.log(data[i].orderid);
                             }
                         }
                     })
-                }
-                
-            
+                } 
             }
-            
+ //----------------------------------------     
             if(msg1=="店家資訊"){
-                //查看店家資訊
                 if(msg2=="查看資訊"){
                     store.fetchStoreinfo(storeid).then(data => {
-                        if (data == -1) {
-                            event.reply('找不到資料');
-                        } else if (data == -9) {
-                            event.reply('執行錯誤');
-                        }
+                        if (data == -1)       event.reply('找不到資料');                            
+                        else if (data == -9)  event.reply('執行錯誤');
                         else{
                             for(var i = 0; i<data.length; i++){
                                 console.log("店名:"+data[i].storeName+"\n地址:"+data[i].storeAdd+"\n電話:"+data[i].storeTel);
@@ -141,8 +106,7 @@ bot.on('message', function (event) {
                         }
                     })
                 }
-                //更改店家資訊
-                if(msg2=="更改資訊"){
+                else if(msg2=="更改資訊"){
                     if(msg3=="更改店名"){
                         store.updateStorename(storeid,msg4).then(data => {
                             if (data == -9) event.reply('執行錯誤');
@@ -161,16 +125,13 @@ bot.on('message', function (event) {
                     }   
                           
                 }
-  
             }
+//----------------------------------------   
             if(msg1=="店家菜單"){
                 if(msg2=="查詢菜單"){
                     food.fetchStoreFood(storeid).then(data => {
-                        if (data == -1) {
-                            event.reply('找不到資料');
-                        } else if (data == -9) {
-                            event.reply('執行錯誤');
-                        }
+                        if (data == -1)       event.reply('找不到資料');                            
+                        else if (data == -9)  event.reply('執行錯誤');
                         else{
                             for(var i = 0; i<data.length; i++){
                                 console.log(data[i].foodName+"，"+data[i].foodPrice+"元");
@@ -178,16 +139,14 @@ bot.on('message', function (event) {
                         }
                     })
                 }
-                if(msg2="更改菜單"){
+                else if(msg2="更改菜單"){
                         if(msg3=="更改菜名"){
                             food.updateFoodName(storeid,msg4,msg5).then(data => {
-                                console.log(storeid+","+msg3+","+msg4+","+msg5)
                                 if (data == -9) event.reply('執行錯誤');
                                 else            event.reply('修改完成'); 
                             })
                         } else if(msg3=="更改價錢"){
                             food.updateFoodPrice(storeid,msg4,msg5).then(data => {
-                                console.log(storeid+","+msg3+","+msg4+","+msg5)
                                 if (data == -9) event.reply('執行錯誤');
                                 else            event.reply('修改完成'); 
                             })
@@ -210,7 +169,6 @@ bot.on('message', function (event) {
         }
     );
 });
-
 //--------------------------------
 // 使用者封鎖群組
 //--------------------------------
@@ -227,8 +185,6 @@ bot.on('unfollow', function (event) {
         }
     });
 });
-
-
 //----------------------------------------
 // 建立一個網站應用程式app
 // 如果連接根目錄, 交給機器人處理
@@ -236,14 +192,10 @@ bot.on('unfollow', function (event) {
 const app = express();
 const linebotParser = bot.parser();
 app.post('/', linebotParser);
-
-
 //----------------------------------------
 // 可直接取用檔案的資料夾
 //----------------------------------------
 app.use(express.static('public'));
-
-
 //----------------------------------------
 // 監聽3000埠號, 
 // 或是監聽Heroku設定的埠號
