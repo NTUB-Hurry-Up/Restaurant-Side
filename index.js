@@ -52,6 +52,7 @@ bot.on('message', function (event) {
             var msg3 = NewArray[2];
             var msg4 = NewArray[3];
             var msg5 = NewArray[4];
+            var msg6 = NewArray[5];
             console.log(msg1+", "+msg2+", "+msg3);
             if(msg1=="訂單"){
                 if(msg2=="訂單查詢"){
@@ -191,7 +192,7 @@ bot.on('message', function (event) {
                                 else            event.reply('修改完成'); 
                             })
                         }else if(msg3=="上架餐點"){
-                            food.launchedFood(storeid,msg4).then(data => {
+                            food.launchedFood(storeid,msg4,msg5,msg6).then(data => {
                                 // console.log(storeid+","+msg3+","+msg4+","+msg5)
                                 if (data == -9) event.reply('執行錯誤');
                                 else            event.reply('修改完成'); 
