@@ -29,7 +29,7 @@ var acceptOrder = async function(storeid){
     //存放結果
     let result;  
     //讀取資料庫
-    await query('UPDATE	order SET status=$3 WHERE status=$2 AND storeid=$1',[storeid,'未接單','已接受未製作'])
+    await query('UPDATE	order SET status=$3 WHERE status=$2 AND storeid=$1',[storeid,'未接單','已接單未製作'])
     .then((data) => { 
         result = data.rowCount;  //回傳資料數 
     }, (error) => {
