@@ -52,6 +52,7 @@ bot.on('message', function (event) {
             var msg3 = NewArray[2];
             var msg4 = NewArray[3];
             var msg5 = NewArray[4];
+            console.log(msg1+";"+msg2+";"+msg3+";"+msg4+";"+msg5)
  //----------------------------------------           
             if(msg1=="訂單"){
                 if(msg2=="訂單查詢"){
