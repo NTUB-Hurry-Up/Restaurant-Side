@@ -173,7 +173,7 @@ bot.on('message', function (event) {
                         }
                         else{
                             for(var i = 0; i<data.length; i++){
-                                console.log(data[i].foodName+"，"+data[i].foodPrice);
+                                console.log(data[i].foodName+"，"+data[i].foodPrice+"元");
                             }
                         }
                     })
