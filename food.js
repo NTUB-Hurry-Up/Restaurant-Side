@@ -60,8 +60,21 @@ var launchedFood = async function(storeid,msg4){
     });
     return result;
 }
+//下架餐點
+var retractFood = async function(storeid,msg4){
+    //存放結果
+    let result;  
+    
+    await query('UPDATE	food	SET	"isSale"=$4	WHERE	"storeid"=$1	AND	"foodName"=$2	AND	"isSale"=$3;',[storeid,msg4,'Y','N'])
+    .then((data) => { 
+        result = data.rowCount;  //回傳資料數 
+    }, (error) => {
+        result = -9;  //執行錯誤
+    });
+    return result;
+}
 
 
 
 
-module.exports = {fetchStoreFood,updateFoodName,updateFoodPrice,launchedFood};
+module.exports = {fetchStoreFood,updateFoodName,updateFoodPrice,launchedFood,retractFood};

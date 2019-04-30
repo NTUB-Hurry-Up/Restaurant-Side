@@ -196,7 +196,13 @@ bot.on('message', function (event) {
                                 if (data == -9) event.reply('執行錯誤');
                                 else            event.reply('修改完成'); 
                             })
-                        }         
+                        }else if(msg3=="下架餐點"){
+                            food.retractFood(storeid,msg4).then(data => {
+                                if (data == -9) event.reply('執行錯誤');
+                                else            event.reply('修改完成'); 
+                            })
+                        }
+
                 }
             }
 
