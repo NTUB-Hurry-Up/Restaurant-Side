@@ -82,22 +82,9 @@ bot.on('message', function (event) {
                     })
                 }else if(msg2=="今日訂單"){
                     var Today=new Date();
-                    var month = new Array(12);
-                    month[0] = 01;
-                    month[1] = 02;
-                    month[2] = 03;
-                    month[3] = 04;
-                    month[4] = 05;
-                    month[5] = 06;
-                    month[6] = 07;
-                    month[7] = 08;
-                    month[8] = 09;
-                    month[9] = 10;
-                    month[10] = 11;
-                    month[11] = 12;
-                    var takeDate=Today.getFullYear()+"-"+month[Today.getMonth()]+"-"+Today.getDate();
+                    var takeDate=Today.getFullYear()+"-"+(Today.getMonth()+1)+"-"+Today.getDate();
                     console.log(Today)
-                    console.log(Today.getFullYear()+"-"+month[Today.getMonth()]+"-"+Today.getDate())
+                    console.log(takeDate)
                     order.todayOrder(storeid,takeDate).then(data => {
                         if (data == -1)       event.reply('找不到資料');                            
                         else if (data == -9)  event.reply('執行錯誤');
