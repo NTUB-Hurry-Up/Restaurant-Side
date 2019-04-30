@@ -48,11 +48,11 @@ var updateFoodPrice = async function(storeid,msg4,msg5){
     return result;
 }
 //上架餐點
-var launchedFood = async function(storeid,msg4,msg5,msg6){
+var launchedFood = async function(storeid,msg4){
     //存放結果
     let result;  
     
-    await query('UPDATE	food	SET	"isSale"=$4	WHERE	"storeid"=$1	AND	"foodName"=$2	AND	"isSale"=$3;',[storeid,msg4,msg5,msg6])
+    await query('UPDATE	food	SET	"isSale"=$4	WHERE	"storeid"=$1	AND	"foodName"=$2	AND	"isSale"=$3;',[storeid,msg4,'N','Y'])
     .then((data) => { 
         result = data.rowCount;  //回傳資料數 
     }, (error) => {

@@ -192,8 +192,7 @@ bot.on('message', function (event) {
                                 else            event.reply('修改完成'); 
                             })
                         }else if(msg3=="上架餐點"){
-                            food.launchedFood(storeid,msg4,msg5,msg6).then(data => {
-                                // console.log(storeid+","+msg3+","+msg4+","+msg5)
+                            food.launchedFood(storeid,msg4).then(data => {
                                 if (data == -9) event.reply('執行錯誤');
                                 else            event.reply('修改完成'); 
                             })
