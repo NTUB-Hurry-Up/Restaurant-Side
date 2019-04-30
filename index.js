@@ -190,8 +190,13 @@ bot.on('message', function (event) {
                                 if (data == -9) event.reply('執行錯誤');
                                 else            event.reply('修改完成'); 
                             })
-                        }
-                        
+                        }else if(msg3=="上架餐點"){
+                            food.launchedFood(storeid,msg4).then(data => {
+                                // console.log(storeid+","+msg3+","+msg4+","+msg5)
+                                if (data == -9) event.reply('執行錯誤');
+                                else            event.reply('修改完成'); 
+                            })
+                        }         
                 }
             }
 

@@ -47,8 +47,21 @@ var updateFoodPrice = async function(storeid,msg4,msg5){
     });
     return result;
 }
+//上架餐點
+var launchedFood = async function(storeid,msg4){
+    //存放結果
+    let result;  
+    
+    await query('UPDATE	food	SET	"isSale"="Y"	WHERE	"storeid"=$1	AND	"foodName"=$2	AND	"isSale"="N";',[storeid,msg4])
+    .then((data) => { 
+        result = data.rowCount;  //回傳資料數 
+    }, (error) => {
+        result = -9;  //執行錯誤
+    });
+    return result;
+}
 
 
 
 
-module.exports = {fetchStoreFood,updateFoodName,updateFoodPrice};
+module.exports = {fetchStoreFood,updateFoodName,updateFoodPrice,launchedFood};
