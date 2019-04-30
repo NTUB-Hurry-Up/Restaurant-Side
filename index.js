@@ -136,7 +136,7 @@ bot.on('message', function (event) {
                         }
                         else{
                             for(var i = 0; i<data.length; i++){
-                                console.log("店名:"+data[i].storeName+";地址:"+data[i].storeAdd+";電話"+data[i].storeTel);
+                                console.log("店名:"+data[i].storeName+"\n地址:"+data[i].storeAdd+"電話\n"+data[i].storeTel);
                             }
                         }
                     })
