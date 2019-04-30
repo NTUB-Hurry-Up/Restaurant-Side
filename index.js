@@ -96,6 +96,7 @@ bot.on('message', function (event) {
                     month[10] = 11;
                     month[11] = 12;
                     var takeDate=Today.getFullYear()+"-"+month[Today.getMonth()]+"-"+Today.getDate();
+                    console.log(Today)
                     console.log(Today.getFullYear()+"-"+month[Today.getMonth()]+"-"+Today.getDate())
                     order.todayOrder(storeid,takeDate).then(data => {
                         if (data == -1)       event.reply('找不到資料');                            
