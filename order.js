@@ -25,11 +25,11 @@ var fetchOrder = async function(storeid, msg3){
 }
 
 //未接受訂單改為接受
-var acceptOrder = async function(storeid){
+var acceptOrder = async function(storeid,msg3){
     //存放結果
     let result;  
     //讀取資料庫
-    await query('UPDATE	order SET status=$3 WHERE status=$2 AND storeid=$1',[storeid,'未接單','已接單未製作'])
+    await query('UPDATE	order SET status=$4 WHERE status=$3 AND storeid=$1  AND orderid=$2',[storeid,msg3,'未接單','已接單未製作'])
     .then((data) => { 
         result = data.rowCount;  //回傳資料數 
     }, (error) => {

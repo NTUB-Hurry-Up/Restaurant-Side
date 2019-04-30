@@ -70,7 +70,7 @@ bot.on('message', function (event) {
                     })
                 }else if(msg2=="接受訂單"){
                     // console.log("接受訂單, msg2="+msg2+", msg3="+msg3)
-                    order.acceptOrder(storeid).then(data => {
+                    order.acceptOrder(storeid,msg3).then(data => {
                         if (data == -9) {
                             event.reply('執行錯誤');
                             var error=new   Error("error message");
@@ -136,7 +136,7 @@ bot.on('message', function (event) {
                         }
                         else{
                             for(var i = 0; i<data.length; i++){
-                                console.log("店名:"+data[i].storeName+"\n地址:"+data[i].storeAdd+"\n電話"+data[i].storeTel);
+                                console.log("店名:"+data[i].storeName+"\n地址:"+data[i].storeAdd+"\n電話:"+data[i].storeTel);
                             }
                         }
                     })
