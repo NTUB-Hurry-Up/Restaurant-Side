@@ -82,11 +82,10 @@ bot.on('message', function (event) {
                     })
                 }else if(msg2=="今日訂單"){
                     var Today=new Date();
-                    Today.getHours()+8;
+                    var fetchDateTime=Today.getFullYear()+"-"+(Today.getMonth()+1)+"-"+Today.getDate()+" "+(Today.getHours()+8)+":"+Today.getMinutes()+":"+Today.getSeconds()  
                     var fetchDate=Today.getFullYear()+"-"+(Today.getMonth()+1)+"-"+Today.getDate()
-                    var fetchTime=(Today.getHours()+8)+":"+Today.getMinutes()+":"+Today.getSeconds()                  
+                    var fetchTime=(fetchDateTime.getHours()+8)+":"+fetchDateTime.getMinutes()+":"+fetchDateTime.getSeconds()                  
                     console.log(fetchDate+" "+fetchTime)
-                    console.log(Today.getHours())
                     order.todayOrder(storeid,fetchDate,fetchTime).then(data => {
                         if (data == -1)       event.reply('找不到資料');                            
                         else if (data == -9)  event.reply('執行錯誤');
