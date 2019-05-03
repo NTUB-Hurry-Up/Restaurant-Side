@@ -82,10 +82,11 @@ bot.on('message', function (event) {
                     })
                 }else if(msg2=="今日訂單"){
                     var Today=new Date();
-                    var takeDate=Today.getFullYear()+"-"+(Today.getMonth()+1)+"-"+Today.getDate();
-                    console.log(Today)
-                    console.log(takeDate)
-                    order.todayOrder(storeid,takeDate).then(data => {
+                    Today.getHours()+8;
+                    var fetchDate=Today.getFullYear()+"-"+(Today.getMonth()+1)+"-"+Today.getDate()
+                    var fetchTime=(Today.getHours()+8)+":"+Today.getMinutes()+":"+Today.getSeconds()                  
+                    console.log(fetchDate+" "+fetchTime)
+                    order.todayOrder(storeid,fetchDate,fetchTime).then(data => {
                         if (data == -1)       event.reply('找不到資料');                            
                         else if (data == -9)  event.reply('執行錯誤');
                         else{

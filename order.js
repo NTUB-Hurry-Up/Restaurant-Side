@@ -56,12 +56,13 @@ var allOrder = async function(storeid){
     return result;  
 }
 //查看今日訂單
-var todayOrder = async function(storeid,takeDate){
+var todayOrder = async function(storeid,fetchDate,fetchTime){
     //存放結果
     let result;  
 
     //讀取資料庫
-    await query('SELECT	* FROM	"order"	WHERE storeid=$1 AND "takeDate"=$2;',[storeid,takeDate])
+    await query('SELECT	* FROM	"order"	WHERE storeid=$1 AND "takeDate"=$2 AND "takeTime" BETWEEN $3 AND $4;'
+    ,[storeid,fetchDate,'00:00:00',fetchTime])
         .then((data) => {
             if(data.rows.length > 0){
                 result = data.rows; 
