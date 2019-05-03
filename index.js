@@ -86,6 +86,7 @@ bot.on('message', function (event) {
                     var fetchDate=Today.getFullYear()+"-"+(Today.getMonth()+1)+"-"+Today.getDate()
                     var fetchTime=(Today.getHours()+8)+":"+Today.getMinutes()+":"+Today.getSeconds()                  
                     console.log(fetchDate+" "+fetchTime)
+                    console.log(Today.getHours())
                     order.todayOrder(storeid,fetchDate,fetchTime).then(data => {
                         if (data == -1)       event.reply('找不到資料');                            
                         else if (data == -9)  event.reply('執行錯誤');
