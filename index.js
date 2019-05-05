@@ -81,43 +81,24 @@ bot.on('message', function (event) {
                         }
                     })
                 }else if(msg2=="今日訂單"){
-                    Date.prototype.Format = function (fmt) { 
-                        var o = {
-                            "M+": this.getMonth() + 1, //月份 
-                            "d+": this.getDate(), //日 
-                            "h+": this.getHours(), //小时 
-                            "m+": this.getMinutes(), //分 
-                            "s+": this.getSeconds(), //秒 
-                            "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
-                            "S": this.getMilliseconds() //毫秒 
-                        };
-                        if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
-                        for (var k in o)
-                        if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
-                        return fmt;
+                    var today=new Date();
+                    Date.prototype.addDays = function(days) {
+                    this.setDate(this.getDate() + days);
+                    return this;
                     }
-                    
-                    function fetchDate(){
-                        var d = new Date();
-                        utc = d.getTime() + d.getTimezoneOffset()*60*1000;
-                        var offset = 8;
-                        nd = new Date(utc+(3600000*offset));	
-                        var currentTime = nd.Format("yyyy-MM-dd");	
-                        return currentTime;
+                    var cHours = '';
+                    if(today.getHours()+8 >= 24){
+                        cHours = (today.getHours()+8-24 < 10 ? '0' : '')+(today.getHours()+8-24);
+                        today.addDays(1);
+                    }else{
+                        cHours = (today.getHours()+8 < 10 ? '0' : '')+(today.getHours()+8);
                     }
-                    function fetchTime(){
-                        var d = new Date();
-                        utc = d.getTime() + d.getTimezoneOffset()*60*1000;
-                        var offset = 8;
-                        nd = new Date(utc+(3600000*offset));	
-                        var currentTime = nd.Format("hh-mm-ss");	
-                        return currentTime;
-                    }
-
-                    // var Today=new Date();
-                    // Today.getHours()+8;
-                    // var fetchDate=Today.getFullYear()+"-"+(Today.getMonth()+1)+"-"+Today.getDate()
-                    // var fetchTime=(Today.getHours()+8)+":"+Today.getMinutes()+":"+Today.getSeconds()                  
+                    var cMonth=(today.getMonth()+1<10 ? '0' : '')+(today.getMonth()+1)
+                    var cDay=(today.getDate()<10 ? '0' : '')+today.getDate();
+                    var cMinutes = (today.getMinutes()<10 ? '0' : '')+today.getMinutes();     
+                    var cSecond=(today.getSeconds()<10 ? '0' : '')+today.getMinutes(); 
+                    fetchDate=today.getFullYear()+"-"+cMonth+"-"+cDay
+                    fetchTime=cHours+":"+cMinutes+":"+cSecond      
                     console.log(fetchDate+" "+fetchTime)
                     order.todayOrder(storeid,fetchDate,fetchTime).then(data => {
                         if (data == -1)       event.reply('找不到資料');                            
