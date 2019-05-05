@@ -81,10 +81,43 @@ bot.on('message', function (event) {
                         }
                     })
                 }else if(msg2=="今日訂單"){
-                    var Today=new Date();
-                    Today.getHours()+8;
-                    var fetchDate=Today.getFullYear()+"-"+(Today.getMonth()+1)+"-"+Today.getDate()
-                    var fetchTime=(Today.getHours()+8)+":"+Today.getMinutes()+":"+Today.getSeconds()                  
+                    Date.prototype.Format = function (fmt) { 
+                        var o = {
+                            "M+": this.getMonth() + 1, //月份 
+                            "d+": this.getDate(), //日 
+                            "h+": this.getHours(), //小时 
+                            "m+": this.getMinutes(), //分 
+                            "s+": this.getSeconds(), //秒 
+                            "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
+                            "S": this.getMilliseconds() //毫秒 
+                        };
+                        if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+                        for (var k in o)
+                        if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+                        return fmt;
+                    }
+                    
+                    function fetchDate(){
+                        var d = new Date();
+                        utc = d.getTime() + d.getTimezoneOffset()*60*1000;
+                        var offset = 8;
+                        nd = new Date(utc+(3600000*offset));	
+                        var currentTime = nd.Format("yyyy-MM-dd");	
+                        return currentTime;
+                    }
+                    function fetchTime(){
+                        var d = new Date();
+                        utc = d.getTime() + d.getTimezoneOffset()*60*1000;
+                        var offset = 8;
+                        nd = new Date(utc+(3600000*offset));	
+                        var currentTime = nd.Format("hh-mm-ss");	
+                        return currentTime;
+                    }
+
+                    // var Today=new Date();
+                    // Today.getHours()+8;
+                    // var fetchDate=Today.getFullYear()+"-"+(Today.getMonth()+1)+"-"+Today.getDate()
+                    // var fetchTime=(Today.getHours()+8)+":"+Today.getMinutes()+":"+Today.getSeconds()                  
                     console.log(fetchDate+" "+fetchTime)
                     order.todayOrder(storeid,fetchDate,fetchTime).then(data => {
                         if (data == -1)       event.reply('找不到資料');                            
