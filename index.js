@@ -183,6 +183,7 @@ bot.on('message', function (event) {
                             msg7=foodImg;
                             msg8=isSale;
                             food.addFood(foodid,foodName,foodPrice,foodImg,isSale,storeid).then(data => {  
+                                console.log(foodid+";"+foodName+";"+foodPrice+";"+isSale+";"+storeid)
                                 if(data == -9){                    
                                     console.log('執行錯誤');
                                 }else{
