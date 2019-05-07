@@ -80,6 +80,11 @@ bot.on('message', function (event) {
                         if (data == -9) event.reply('執行錯誤'); 
                         else            event.reply('執行完成');
                     })
+                }else if(msg2=="已取餐"){
+                    order.collectedOrder(storeid,msg3).then(data => {
+                        if (data == -9) event.reply('執行錯誤'); 
+                        else            event.reply('完成了一筆訂單');
+                    })
                 }else if(msg2=="所有訂單"){
                     order.allOrder(storeid).then(data => {
                         if (data == -1)       event.reply('找不到資料');                            
