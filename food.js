@@ -22,14 +22,18 @@ var fetchStoreFood = async function(storeid){
     return result;
 }
 //------------------------------------------
-var addFood = async function(msg4,msg5,storeid,msg6,msg7,msg8){
+var addFood = async function(foodid, foodName, foodPrice, foodImg, isSale, storeid){
     //存放結果
     let result;  
 
-    //讀取資料庫
-    await query('insert into food (foodid, foodName, storeid,foodPrice,foodImg,isSale) values ($1, $2, $3,$4,$5,$6)', [msg4, msg5, storeid,msg6,msg7,msg8])
+    //新增會員資料
+    await query('INSERT INTO "food"("foodid", "foodName", "storeid", "foodPrice", "foodImg", "isSale") VALUES ($1, $2, $3, $4, $5, $6) RETURNING foodid;', [foodid, foodName,storeid, foodPrice, foodImg, isSale])
         .then((data) => {
-            result = data.rowCount;  //新增資料數 
+            if(data.rows.length > 0){
+                result = data.rows[0];  //學生資料(物件)
+            }else{
+                result = -1;  //找不到資料
+            }    
         }, (error) => {
             result = -9;  //執行錯誤
         });
