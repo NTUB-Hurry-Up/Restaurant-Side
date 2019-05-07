@@ -52,7 +52,11 @@ bot.on('message', function (event) {
             var msg3 = NewArray[2];
             var msg4 = NewArray[3];
             var msg5 = NewArray[4];
+            var msg6 = NewArray[5];
+            var msg7 = NewArray[6];
+            var msg8 = NewArray[7];
             console.log(msg1+";"+msg2+";"+msg3+";"+msg4+";"+msg5)
+//----------------------------------------     
             var today=new Date();
                     Date.prototype.addDays = function(days) {
                     this.setDate(this.getDate() + days);
@@ -65,7 +69,7 @@ bot.on('message', function (event) {
                     }else{
                         cHours = (today.getHours()+8 < 10 ? '0' : '')+(today.getHours()+8);
                     }
-                    var cMonth=(today.getMonth()+1<10 ? '0' : '')+(today.getMonth()+1)
+                    var cMonth=(today.getMonth()+1<10 ? '0' : '')+(today.getMonth()+1);
                     var cDay=(today.getDate()<10 ? '0' : '')+today.getDate();
                     var cMinutes = (today.getMinutes()<10 ? '0' : '')+today.getMinutes();     
                     var cSecond=(today.getSeconds()<10 ? '0' : '')+today.getMinutes(); 
@@ -155,8 +159,7 @@ bot.on('message', function (event) {
                             if (data == -9) event.reply('執行錯誤');
                             else            event.reply('修改完成');
                        })
-                    }   
-                          
+                    }        
                 }
             }
 //----------------------------------------   
@@ -173,12 +176,21 @@ bot.on('message', function (event) {
                     })
                 }
                 else if(msg2="更改菜單"){
+                        if(msg3=='新增餐點'){
+                            food.addStudent(msg4,msg5,msg6,msg7,msg8,storeid).then(data => {  
+                                if(data == -9){                    
+                                    console.log('執行錯誤');
+                                }else{
+                                    console.log('已增加' + data + '筆記錄');
+                                }  
+                            })
+                        }
                         if(msg3=="更改菜名"){
                             food.updateFoodName(storeid,msg4,msg5).then(data => {
                                 if (data == -9) event.reply('執行錯誤');
                                 else            event.reply('修改完成'); 
                             })
-                        } else if(msg3=="更改價錢"){
+                        }else if(msg3=="更改價錢"){
                             food.updateFoodPrice(storeid,msg4,msg5).then(data => {
                                 if (data == -9) event.reply('執行錯誤');
                                 else            event.reply('修改完成'); 
@@ -194,11 +206,8 @@ bot.on('message', function (event) {
                                 else            event.reply('修改完成'); 
                             })
                         }
-
                 }
             }
-
-
         }
     );
 });

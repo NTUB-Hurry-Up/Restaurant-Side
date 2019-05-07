@@ -22,6 +22,21 @@ var fetchStoreFood = async function(storeid){
     return result;
 }
 //------------------------------------------
+var addFood = async function(msg4,msg5,storeid,msg6,msg7,msg8){
+    //存放結果
+    let result;  
+
+    //讀取資料庫
+    await query('insert into food (foodid, foodName, storeid,foodPrice,foodImg,isSale) values ($1, $2, $3,$4,$5,$6)', [msg4, msg5, storeid,msg6,msg7,msg8])
+        .then((data) => {
+            result = data.rowCount;  //新增資料數 
+        }, (error) => {
+            result = -9;  //執行錯誤
+        });
+
+    //回傳執行結果
+    return result;  
+}
 var updateFoodName = async function(storeid,msg4,msg5){
     //存放結果
     let result;  
@@ -77,4 +92,4 @@ var retractFood = async function(storeid,msg4){
 
 
 
-module.exports = {fetchStoreFood,updateFoodName,updateFoodPrice,launchedFood,retractFood};
+module.exports = {fetchStoreFood,addFood,updateFoodName,updateFoodPrice,launchedFood,retractFood};
