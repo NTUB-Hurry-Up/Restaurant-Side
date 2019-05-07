@@ -53,6 +53,22 @@ bot.on('message', function (event) {
             var msg4 = NewArray[3];
             var msg5 = NewArray[4];
             console.log(msg1+";"+msg2+";"+msg3+";"+msg4+";"+msg5)
+            var today=new Date();
+                    Date.prototype.addDays = function(days) {
+                    this.setDate(this.getDate() + days);
+                    return this;
+                    }
+                    var cHours = '';
+                    if(today.getHours()+8 >= 24){
+                        cHours = (today.getHours()+8-24 < 10 ? '0' : '')+(today.getHours()+8-24);
+                        today.addDays(1);
+                    }else{
+                        cHours = (today.getHours()+8 < 10 ? '0' : '')+(today.getHours()+8);
+                    }
+                    var cMonth=(today.getMonth()+1<10 ? '0' : '')+(today.getMonth()+1)
+                    var cDay=(today.getDate()<10 ? '0' : '')+today.getDate();
+                    var cMinutes = (today.getMinutes()<10 ? '0' : '')+today.getMinutes();     
+                    var cSecond=(today.getSeconds()<10 ? '0' : '')+today.getMinutes(); 
  //----------------------------------------           
             if(msg1=="訂單"){
                 if(msg2=="訂單查詢"){
@@ -96,22 +112,6 @@ bot.on('message', function (event) {
                         }
                     })
                 }else if(msg2=="今日訂單"){
-                    var today=new Date();
-                    Date.prototype.addDays = function(days) {
-                    this.setDate(this.getDate() + days);
-                    return this;
-                    }
-                    var cHours = '';
-                    if(today.getHours()+8 >= 24){
-                        cHours = (today.getHours()+8-24 < 10 ? '0' : '')+(today.getHours()+8-24);
-                        today.addDays(1);
-                    }else{
-                        cHours = (today.getHours()+8 < 10 ? '0' : '')+(today.getHours()+8);
-                    }
-                    var cMonth=(today.getMonth()+1<10 ? '0' : '')+(today.getMonth()+1)
-                    var cDay=(today.getDate()<10 ? '0' : '')+today.getDate();
-                    var cMinutes = (today.getMinutes()<10 ? '0' : '')+today.getMinutes();     
-                    var cSecond=(today.getSeconds()<10 ? '0' : '')+today.getMinutes(); 
                     fetchDate=today.getFullYear()+"-"+cMonth+"-"+cDay
                     fetchTime=cHours+":"+cMinutes+":"+cSecond      
                     console.log(fetchDate+" "+fetchTime)
