@@ -177,7 +177,7 @@ bot.on('message', function (event) {
                 }
                 else if(msg2="更改菜單"){
                         if(msg3=='新增餐點'){
-                            var foodid,foodName,foodPrice,isSale;
+                            var foodid,foodName,foodPrice,foodImg,isSale;
                             msg4=foodid;
                             msg5=foodName;
                             msg6=foodPrice;
