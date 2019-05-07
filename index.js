@@ -177,7 +177,7 @@ bot.on('message', function (event) {
                 }
                 else if(msg2="更改菜單"){
                         if(msg3=='新增餐點'){
-                            food.addStudent(msg4,msg5,msg6,msg7,msg8,storeid).then(data => {  
+                            food.addFood(msg4,msg5,msg6,msg7,msg8,storeid).then(data => {  
                                 if(data == -9){                    
                                     console.log('執行錯誤');
                                 }else{
