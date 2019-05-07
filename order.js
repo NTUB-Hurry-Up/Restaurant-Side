@@ -37,6 +37,18 @@ var acceptOrder = async function(storeid,msg3){
     });
     return result; 
 }
+var rejectOrder = async function(storeid,msg3){
+    //存放結果
+    let result;  
+    //讀取資料庫
+    await query('UPDATE	"order"	SET	status=$4	WHERE	storeid=$1	AND	orderid=$2	AND	status=$3;',[storeid,msg3,'未接單','已拒絕'])
+    .then((data) => { 
+        result = data.rowCount;  //回傳資料數 
+    }, (error) => {
+        result = -9;  //執行錯誤
+    });
+    return result; 
+}
 //查看所有訂單
 var allOrder = async function(storeid){
     //存放結果
@@ -76,4 +88,4 @@ var todayOrder = async function(storeid,fetchDate,fetchTime){
     return result;  
 }
 //匯出
-module.exports = {fetchOrder,acceptOrder,allOrder,todayOrder};
+module.exports = {fetchOrder,acceptOrder,rejectOrder,allOrder,todayOrder};
