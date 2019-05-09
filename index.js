@@ -178,11 +178,11 @@ bot.on('message', function (event) {
                 else if(msg2="更改菜單"){
                         if(msg3=='新增餐點'){
                             var foodid,foodName,foodPrice,foodImg,isSale;
-                            msg4=foodid;
-                            msg5=foodName;
-                            msg6=foodPrice;
-                            msg7=foodImg;
-                            msg8=isSale;
+                            foodid= msg4;
+                            foodName=msg5;
+                            foodPrice=msg6;
+                            foodImg=msg7;
+                            isSale=msg8;
                             food.addFood(foodid,foodName,foodPrice,foodImg,isSale,storeid).then(data => {  
                                 console.log(foodid+";"+foodName+";"+foodPrice+";"+isSale+";"+storeid)
                                 if(data == -9){                    
