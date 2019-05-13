@@ -8,6 +8,7 @@ const member = require('./member');
 const order  = require('./order');
 const store  = require('./store');
 const food   = require('./food');
+const temp   = require('./temp');
 //----------------------------------------
 // 填入自己在Line Developers的channel值
 //----------------------------------------
