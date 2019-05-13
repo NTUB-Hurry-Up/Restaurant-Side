@@ -3,6 +3,7 @@
 //----------------------------------------
 var linebot = require('linebot');
 var express = require('express');
+var lodash = require('lodash');
 //----------------------------------------
 const member = require('./member');
 const order  = require('./order');
@@ -76,7 +77,10 @@ bot.on('message', function (event) {
                     var cSecond=(today.getSeconds()<10 ? '0' : '')+today.getMinutes(); 
  //----------------------------------------           
             if(msg1 == "A"){
-                event.reply(temp.test)
+                var arr = [];
+                arr = lodash.cloneDeep(temp.temp_order)
+                arr[0].contents.contents[0] = lodash.cloneDeep(temp.temp_order_repeat)
+                event.reply()
             }
             else if(msg1=="訂單"){
                 if(msg2=="訂單查詢"){
