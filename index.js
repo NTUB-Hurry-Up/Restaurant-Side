@@ -79,8 +79,14 @@ bot.on('message', function (event) {
             if(msg1 == "A"){
                 var arr = [];
                 arr.push(lodash.cloneDeep(temp.temp_order))
-                arr[0].contents.contents[0] = lodash.cloneDeep(temp.temp_order_repeat)
-                arr[0].contents.contents[0].body.contents[7].contents[2] = lodash.cloneDeep(temp.temp_orderDeatail_repeat)
+                for(var i = 0; i<= 2; i++){
+                    arr[0].contents.contents[i] = lodash.cloneDeep(temp.temp_order_repeat)
+                    arr[0].contents.contents[i].body.contents[0].text = i;
+                    for(var j = 0; j < 5 ; j++){
+                        arr[0].contents.contents[i].body.contents[7].contents[j+2] = lodash.cloneDeep(temp.temp_orderDeatail_repeat)
+                        arr[0].contents.contents[i].body.contents[7].contents[j+2].contents[1].contents[0].text = j
+                    }
+                }
                 event.reply(arr)
             }
             else if(msg1=="訂單"){
