@@ -74,7 +74,10 @@ bot.on('message', function (event) {
                     var cMinutes = (today.getMinutes()<10 ? '0' : '')+today.getMinutes();     
                     var cSecond=(today.getSeconds()<10 ? '0' : '')+today.getMinutes(); 
  //----------------------------------------           
-            if(msg1=="訂單"){
+            if(msg1 == "A"){
+                event.reply(temp.test)
+            }
+            else if(msg1=="訂單"){
                 if(msg2=="訂單查詢"){
                     order.fetchOrder(storeid, msg3).then(data => {
                         if (data == -1)       event.reply('找不到資料');                            
