@@ -80,7 +80,7 @@ bot.on('message', function (event) {
                 var arr = [];
                 arr.push(lodash.cloneDeep(temp.temp_order))
                 arr[0].contents.contents[0] = lodash.cloneDeep(temp.temp_order_repeat)
-                
+                arr[0].contents.contents[0].body.contents[7].contents[2] = lodash.cloneDeep(temp.temp_orderDeatail_repeat)
                 event.reply(arr)
             }
             else if(msg1=="訂單"){
