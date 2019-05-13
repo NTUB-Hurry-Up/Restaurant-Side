@@ -78,9 +78,10 @@ bot.on('message', function (event) {
  //----------------------------------------           
             if(msg1 == "A"){
                 var arr = [];
-                arr = lodash.cloneDeep(temp.temp_order)
+                arr.push(lodash.cloneDeep(temp.temp_order))
                 arr[0].contents.contents[0] = lodash.cloneDeep(temp.temp_order_repeat)
-                event.reply()
+                
+                event.reply(arr)
             }
             else if(msg1=="訂單"){
                 if(msg2=="訂單查詢"){
