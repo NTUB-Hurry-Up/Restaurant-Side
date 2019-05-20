@@ -76,21 +76,21 @@ bot.on('message', function (event) {
             var cMinutes = (today.getMinutes() < 10 ? '0' : '') + today.getMinutes();
             var cSecond = (today.getSeconds() < 10 ? '0' : '') + today.getMinutes();
             //----------------------------------------           
-            if (msg1 == "A") {
-                var arr = [];
-                arr.push(lodash.cloneDeep(temp.temp_order))
-                for (var i = 0; i <= 2; i++) {
-                    arr[0].contents.contents[i] = lodash.cloneDeep(temp.temp_order_repeat)
-                    arr[0].contents.contents[i].body.contents[0].text = i + "";
-                    for (var j = 0; j < 5; j++) {
-                        arr[0].contents.contents[i].body.contents[7].contents[j + 2] = lodash.cloneDeep(temp.temp_orderDeatail_repeat)
-                        arr[0].contents.contents[i].body.contents[7].contents[j + 2].contents[1].contents[0].text = j + ""
-                    }
-                }
-                event.reply(arr)
-            }
+            // if (msg1 == "A") {
+            //     var arr = [];
+            //     arr.push(lodash.cloneDeep(temp.temp_order))
+            //     for (var i = 0; i <= 2; i++) {
+            //         arr[0].contents.contents[i] = lodash.cloneDeep(temp.temp_order_repeat)
+            //         arr[0].contents.contents[i].body.contents[0].text = i + "";
+            //         for (var j = 0; j < 5; j++) {
+            //             arr[0].contents.contents[i].body.contents[7].contents[j + 2] = lodash.cloneDeep(temp.temp_orderDeatail_repeat)
+            //             arr[0].contents.contents[i].body.contents[7].contents[j + 2].contents[1].contents[0].text = j + ""
+            //         }
+            //     }
+            //     event.reply(arr)
+            // }
             //----------------------------------------        
-            else if (msg1 == "訂單") {
+            if (msg1 == "訂單") {
                 if (msg2 == "訂單查詢") {
                     order.fetchOrder(storeid, msg3).then(data => {
                         if (data == -1) event.reply('找不到資料');
@@ -98,19 +98,19 @@ bot.on('message', function (event) {
                         else {
                             var arr = [];
                             arr.push(lodash.cloneDeep(temp.temp_acceptOrder))
-                            for (var i = 0; i <= 2; i++) {
+                            for (var i = 0; i < data.length; i++) {
                                 console.log(data[i].orderid);
                                 arr[0].contents.contents[i] = lodash.cloneDeep(temp.temp_acceptOrder_repeat)
-                                arr[0].contents.contents[i].body.contents[0].contents[0].contents[1].text = data[i].orderid;
-                                for (var j = 0; j < 5; j++) {
-                                    arr[0].contents.contents[i].body.contents[7].contents[j + 2] = lodash.cloneDeep(temp.temp_orderDeatail_repeat)
-                                    arr[0].contents.contents[i].body.contents[7].contents[j + 2].contents[1].contents[0].text =j+"";
-                                }
+                                // arr[0].contents.contents[i].body.contents[0].contents[1].contents[1].text = data[i].orderid;
+                                // for (var j = 0; j < 5; j++) {
+                                //     arr[0].contents.contents[i].body.contents[7].contents[j + 2] = lodash.cloneDeep(temp.temp_orderDeatail_repeat)
+                                //     arr[0].contents.contents[i].body.contents[7].contents[j + 2].contents[1].contents[0].text =j+"";
+                                // }
                             }
+                            event.reply(arr)
                         }
 
                     })
-                    event.reply(arr)
                 } else if (msg2 == "接受訂單") {
                     order.acceptOrder(storeid, msg3).then(data => {
                         if (data == -9) event.reply('執行錯誤');
