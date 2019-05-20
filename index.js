@@ -6,10 +6,10 @@ var express = require('express');
 var lodash = require('lodash');
 //----------------------------------------
 const member = require('./member');
-const order  = require('./order');
-const store  = require('./store');
-const food   = require('./food');
-const temp   = require('./temp');
+const order = require('./order');
+const store = require('./store');
+const food = require('./food');
+const temp = require('./temp');
 //----------------------------------------
 // 填入自己在Line Developers的channel值
 //----------------------------------------
@@ -57,177 +57,187 @@ bot.on('message', function (event) {
             var msg6 = NewArray[5];
             var msg7 = NewArray[6];
             var msg8 = NewArray[7];
-            console.log(msg1+";"+msg2+";"+msg3+";"+msg4+";"+msg5)
-//----------------------------------------     
-            var today=new Date();
-                    Date.prototype.addDays = function(days) {
-                    this.setDate(this.getDate() + days);
-                    return this;
-                    }
-                    var cHours = '';
-                    if(today.getHours()+8 >= 24){
-                        cHours = (today.getHours()+8-24 < 10 ? '0' : '')+(today.getHours()+8-24);
-                        today.addDays(1);
-                    }else{
-                        cHours = (today.getHours()+8 < 10 ? '0' : '')+(today.getHours()+8);
-                    }
-                    var cMonth=(today.getMonth()+1<10 ? '0' : '')+(today.getMonth()+1);
-                    var cDay=(today.getDate()<10 ? '0' : '')+today.getDate();
-                    var cMinutes = (today.getMinutes()<10 ? '0' : '')+today.getMinutes();     
-                    var cSecond=(today.getSeconds()<10 ? '0' : '')+today.getMinutes(); 
- //----------------------------------------           
-            if(msg1 == "A"){
+            console.log(msg1 + ";" + msg2 + ";" + msg3 + ";" + msg4 + ";" + msg5)
+            //----------------------------------------     
+            var today = new Date();
+            Date.prototype.addDays = function (days) {
+                this.setDate(this.getDate() + days);
+                return this;
+            }
+            var cHours = '';
+            if (today.getHours() + 8 >= 24) {
+                cHours = (today.getHours() + 8 - 24 < 10 ? '0' : '') + (today.getHours() + 8 - 24);
+                today.addDays(1);
+            } else {
+                cHours = (today.getHours() + 8 < 10 ? '0' : '') + (today.getHours() + 8);
+            }
+            var cMonth = (today.getMonth() + 1 < 10 ? '0' : '') + (today.getMonth() + 1);
+            var cDay = (today.getDate() < 10 ? '0' : '') + today.getDate();
+            var cMinutes = (today.getMinutes() < 10 ? '0' : '') + today.getMinutes();
+            var cSecond = (today.getSeconds() < 10 ? '0' : '') + today.getMinutes();
+            //----------------------------------------           
+            if (msg1 == "A") {
                 var arr = [];
                 arr.push(lodash.cloneDeep(temp.temp_order))
-                for(var i = 0; i<= 2; i++){
+                for (var i = 0; i <= 2; i++) {
                     arr[0].contents.contents[i] = lodash.cloneDeep(temp.temp_order_repeat)
-                    arr[0].contents.contents[i].body.contents[0].text = i+"";
-                    for(var j = 0; j < 5 ; j++){
-                        arr[0].contents.contents[i].body.contents[7].contents[j+2] = lodash.cloneDeep(temp.temp_orderDeatail_repeat)
-                        arr[0].contents.contents[i].body.contents[7].contents[j+2].contents[1].contents[0].text = j+""
+                    arr[0].contents.contents[i].body.contents[0].text = i + "";
+                    for (var j = 0; j < 5; j++) {
+                        arr[0].contents.contents[i].body.contents[7].contents[j + 2] = lodash.cloneDeep(temp.temp_orderDeatail_repeat)
+                        arr[0].contents.contents[i].body.contents[7].contents[j + 2].contents[1].contents[0].text = j + ""
                     }
                 }
                 event.reply(arr)
             }
-            else if(msg1=="訂單"){
-                if(msg2=="訂單查詢"){
+            //----------------------------------------        
+            else if (msg1 == "訂單") {
+                if (msg2 == "訂單查詢") {
                     order.fetchOrder(storeid, msg3).then(data => {
-                        if (data == -1)       event.reply('找不到資料');                            
-                        else if (data == -9)  event.reply('執行錯誤');
-                        else{
-                            for(var i = 0; i<data.length; i++){
+                        if (data == -1) event.reply('找不到資料');
+                        else if (data == -9) event.reply('執行錯誤');
+                        else {
+                            var arr = [];
+                            arr.push(lodash.cloneDeep(temp.temp_acceptOrder))
+                            for (var i = 0; i <= 2; i++) {
                                 console.log(data[i].orderid);
+                                arr[0].contents.contents[i] = lodash.cloneDeep(temp.temp_acceptOrder_repeat)
+                                arr[0].contents.contents[i].body.contents[0].contents[0].contents[1].text = data[i].orderid;
+                                for (var j = 0; j < 5; j++) {
+                                    arr[0].contents.contents[i].body.contents[7].contents[j + 2] = lodash.cloneDeep(temp.temp_orderDeatail_repeat)
+                                    arr[0].contents.contents[i].body.contents[7].contents[j + 2].contents[1].contents[0].text =j="";
+                                }
                             }
                         }
+
                     })
-                }else if(msg2=="接受訂單"){
-                    order.acceptOrder(storeid,msg3).then(data => {
-                        if (data == -9) event.reply('執行錯誤'); 
-                        else            event.reply('已接單');
+                } else if (msg2 == "接受訂單") {
+                    order.acceptOrder(storeid, msg3).then(data => {
+                        if (data == -9) event.reply('執行錯誤');
+                        else event.reply('已接單');
                     })
-                }else if(msg2=="拒絕訂單"){
-                    order.rejectOrder(storeid,msg3).then(data => {
-                        if (data == -9) event.reply('執行錯誤'); 
-                        else            event.reply('已拒絕');
+                } else if (msg2 == "拒絕訂單") {
+                    order.rejectOrder(storeid, msg3).then(data => {
+                        if (data == -9) event.reply('執行錯誤');
+                        else event.reply('已拒絕');
                     })
-                }else if(msg2=="完成製作"){
-                    order.completedOrder(storeid,msg3).then(data => {
-                        if (data == -9) event.reply('執行錯誤'); 
-                        else            event.reply('執行完成');
+                } else if (msg2 == "完成製作") {
+                    order.completedOrder(storeid, msg3).then(data => {
+                        if (data == -9) event.reply('執行錯誤');
+                        else event.reply('執行完成');
                     })
-                }else if(msg2=="已取餐"){
-                    order.collectedOrder(storeid,msg3).then(data => {
-                        if (data == -9) event.reply('執行錯誤'); 
-                        else            event.reply('完成了一筆訂單');
+                } else if (msg2 == "已取餐") {
+                    order.collectedOrder(storeid, msg3).then(data => {
+                        if (data == -9) event.reply('執行錯誤');
+                        else event.reply('完成了一筆訂單');
                     })
-                }else if(msg2=="所有訂單"){
+                } else if (msg2 == "所有訂單") {
                     order.allOrder(storeid).then(data => {
-                        if (data == -1)       event.reply('找不到資料');                            
-                        else if (data == -9)  event.reply('執行錯誤');
-                        else{
-                            for(var i = 0; i<data.length; i++){
-                                console.log(data[i].orderid+"，"+data[i].status);
+                        if (data == -1) event.reply('找不到資料');
+                        else if (data == -9) event.reply('執行錯誤');
+                        else {
+                            for (var i = 0; i < data.length; i++) {
+                                console.log(data[i].orderid + "，" + data[i].status);
                             }
                         }
                     })
-                }else if(msg2=="今日訂單"){
-                    fetchDate=today.getFullYear()+"-"+cMonth+"-"+cDay
-                    fetchTime=cHours+":"+cMinutes+":"+cSecond      
-                    console.log(fetchDate+" "+fetchTime)
-                    order.todayOrder(storeid,fetchDate,fetchTime).then(data => {
-                        if (data == -1)       event.reply('找不到資料');                            
-                        else if (data == -9)  event.reply('執行錯誤');
-                        else{
-                            for(var i = 0; i<data.length; i++){
+                } else if (msg2 == "今日訂單") {
+                    fetchDate = today.getFullYear() + "-" + cMonth + "-" + cDay
+                    fetchTime = cHours + ":" + cMinutes + ":" + cSecond
+                    console.log(fetchDate + " " + fetchTime)
+                    order.todayOrder(storeid, fetchDate, fetchTime).then(data => {
+                        if (data == -1) event.reply('找不到資料');
+                        else if (data == -9) event.reply('執行錯誤');
+                        else {
+                            for (var i = 0; i < data.length; i++) {
                                 console.log(data[i].orderid);
                             }
                         }
                     })
-                } 
+                }
             }
- //----------------------------------------     
-            if(msg1=="店家資訊"){
-                if(msg2=="查看資訊"){
+            //----------------------------------------     
+            if (msg1 == "店家資訊") {
+                if (msg2 == "查看資訊") {
                     store.fetchStoreinfo(storeid).then(data => {
-                        if (data == -1)       event.reply('找不到資料');                            
-                        else if (data == -9)  event.reply('執行錯誤');
-                        else{
-                            for(var i = 0; i<data.length; i++){
-                                console.log("店名:"+data[i].storeName+"\n地址:"+data[i].storeAdd+"\n電話:"+data[i].storeTel);
+                        if (data == -1) event.reply('找不到資料');
+                        else if (data == -9) event.reply('執行錯誤');
+                        else {
+                            for (var i = 0; i < data.length; i++) {
+                                console.log("店名:" + data[i].storeName + "\n地址:" + data[i].storeAdd + "\n電話:" + data[i].storeTel);
                             }
                         }
                     })
                 }
-                else if(msg2=="更改資訊"){
-                    if(msg3=="更改店名"){
-                        store.updateStorename(storeid,msg4).then(data => {
+                else if (msg2 == "更改資訊") {
+                    if (msg3 == "更改店名") {
+                        store.updateStorename(storeid, msg4).then(data => {
                             if (data == -9) event.reply('執行錯誤');
-                            else            event.reply('修改完成'); 
+                            else event.reply('修改完成');
                         })
-                    }else if(msg3=="更改地址"){
-                        store.updateStoreAdd(storeid,msg4).then(data => {
+                    } else if (msg3 == "更改地址") {
+                        store.updateStoreAdd(storeid, msg4).then(data => {
                             if (data == -9) event.reply('執行錯誤');
-                            else            event.reply('修改完成');
-                       })
-                    }else if(msg3=="更改電話"){
-                        store.updateStoreTel(storeid,msg4).then(data => {
+                            else event.reply('修改完成');
+                        })
+                    } else if (msg3 == "更改電話") {
+                        store.updateStoreTel(storeid, msg4).then(data => {
                             if (data == -9) event.reply('執行錯誤');
-                            else            event.reply('修改完成');
-                       })
-                    }        
+                            else event.reply('修改完成');
+                        })
+                    }
                 }
             }
-//----------------------------------------   
-            if(msg1=="店家菜單"){
-                if(msg2=="查詢菜單"){
+            //----------------------------------------   
+            if (msg1 == "店家菜單") {
+                if (msg2 == "查詢菜單") {
                     food.fetchStoreFood(storeid).then(data => {
-                        if (data == -1)       event.reply('找不到資料');                            
-                        else if (data == -9)  event.reply('執行錯誤');
-                        else{
-                            for(var i = 0; i<data.length; i++){
-                                console.log(data[i].foodName+"，"+data[i].foodPrice+"元");
+                        if (data == -1) event.reply('找不到資料');
+                        else if (data == -9) event.reply('執行錯誤');
+                        else {
+                            for (var i = 0; i < data.length; i++) {
+                                console.log(data[i].foodName + "，" + data[i].foodPrice + "元");
                             }
                         }
                     })
                 }
-                else if(msg2="更改菜單"){
-                        if(msg3=='新增餐點'){
-                            var foodid,foodName,foodPrice,foodImg,isSale;
-                            foodid= msg4;
-                            foodName=msg5;
-                            foodPrice=msg6;
-                            foodImg=msg7;
-                            isSale=msg8;
-                            food.addFood(foodid,foodName,foodPrice,foodImg,isSale,storeid).then(data => {  
-                                console.log(foodid+";"+foodName+";"+foodPrice+";"+isSale+";"+storeid)
-                                if(data == -9){                    
-                                    console.log('執行錯誤');
-                                }else{
-                                    console.log('已增加' + data + '筆記錄');
-                                }  
-                            })
-                        }
-                        if(msg3=="更改菜名"){
-                            food.updateFoodName(storeid,msg4,msg5).then(data => {
-                                if (data == -9) event.reply('執行錯誤');
-                                else            event.reply('修改完成'); 
-                            })
-                        }else if(msg3=="更改價錢"){
-                            food.updateFoodPrice(storeid,msg4,msg5).then(data => {
-                                if (data == -9) event.reply('執行錯誤');
-                                else            event.reply('修改完成'); 
-                            })
-                        }else if(msg3=="上架餐點"){
-                            food.launchedFood(storeid,msg4).then(data => {
-                                if (data == -9) event.reply('執行錯誤');
-                                else            event.reply('修改完成'); 
-                            })
-                        }else if(msg3=="下架餐點"){
-                            food.retractFood(storeid,msg4).then(data => {
-                                if (data == -9) event.reply('執行錯誤');
-                                else            event.reply('修改完成'); 
-                            })
-                        }
+                else if (msg2 = "更改菜單") {
+                    if (msg3 == '新增餐點') {
+                        var foodid, foodName, foodPrice, foodImg, isSale;
+                        foodid = msg4;
+                        foodName = msg5;
+                        foodPrice = msg6;
+                        foodImg = msg7;
+                        isSale = msg8;
+                        food.addFood(foodid, foodName, foodPrice, foodImg, isSale, storeid).then(data => {
+                            console.log(foodid + ";" + foodName + ";" + foodPrice + ";" + isSale + ";" + storeid)
+                            if (data == -9) {
+                                console.log('執行錯誤');
+                            } else {
+                                console.log('已增加' + data + '筆記錄');
+                            }
+                        })
+                    }
+                    if (msg3 == "更改菜名") {
+                        food.updateFoodName(storeid, msg4, msg5).then(data => {
+                            if (data == -9) event.reply('執行錯誤');
+                            else event.reply('修改完成');
+                        })
+                    } else if (msg3 == "更改價錢") {
+                        food.updateFoodPrice(storeid, msg4, msg5).then(data => {
+                            if (data == -9) event.reply('執行錯誤');
+                            else event.reply('修改完成');
+                        })
+                    } else if (msg3 == "上架餐點") {
+                        food.launchedFood(storeid, msg4).then(data => {
+                            if (data == -9) event.reply('執行錯誤');
+                            else event.reply('修改完成');
+                        })
+                    } else if (msg3 == "下架餐點") {
+                        food.retractFood(storeid, msg4).then(data => {
+                            if (data == -9) event.reply('執行錯誤');
+                            else event.reply('修改完成');
+                        })
+                    }
                 }
             }
         }
