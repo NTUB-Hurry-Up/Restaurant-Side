@@ -101,7 +101,7 @@ bot.on('message', function (event) {
                             for (var i = 0; i < data.length; i++) {
                                 console.log(data[i].orderid);
                                 arr[0].contents.contents[i] = lodash.cloneDeep(temp.temp_acceptOrder_repeat)
-                                // arr[0].contents.contents[i].body.contents[0].contents[1].contents[1].text = data[i].orderid;
+                                arr[0].contents.contents[i].body.contents[1].contents[1].text = data[i].orderid;
                                 // for (var j = 0; j < 5; j++) {
                                 //     arr[0].contents.contents[i].body.contents[7].contents[j + 2] = lodash.cloneDeep(temp.temp_orderDeatail_repeat)
                                 //     arr[0].contents.contents[i].body.contents[7].contents[j + 2].contents[1].contents[0].text =j+"";
