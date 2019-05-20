@@ -104,7 +104,7 @@ bot.on('message', function (event) {
                                 arr[0].contents.contents[i].body.contents[0].contents[0].contents[1].text = data[i].orderid;
                                 for (var j = 0; j < 5; j++) {
                                     arr[0].contents.contents[i].body.contents[7].contents[j + 2] = lodash.cloneDeep(temp.temp_orderDeatail_repeat)
-                                    arr[0].contents.contents[i].body.contents[7].contents[j + 2].contents[1].contents[0].text =j="";
+                                    arr[0].contents.contents[i].body.contents[7].contents[j + 2].contents[1].contents[0].text =j+"";
                                 }
                             }
                         }
