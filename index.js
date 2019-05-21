@@ -103,7 +103,7 @@ bot.on('message', function (event) {
                                 console.log(data[i].takeDate)
                                 arr[0].contents.contents[i] = lodash.cloneDeep(temp.temp_acceptOrder_repeat)
                                 arr[0].contents.contents[i].body.contents[1].contents[1].text = data[i].orderid;
-                                arr[0].contents.contents[i].body.contents[2].contents[1].text = data[i].takeDate.substring(0,10);
+                                arr[0].contents.contents[i].body.contents[2].contents[1].text = (data[i].takeDate).getFullYear()+"-"+takeMonth+"-"+takeDate;
                                 arr[0].contents.contents[i].body.contents[2].contents[2].text = data[i].takeTime.substring(0,5);
                                 arr[0].contents.contents[i].body.contents[3].contents[1].text = data[i].name;
                                 arr[0].contents.contents[i].body.contents[4].contents[1].text = data[i].phone;
