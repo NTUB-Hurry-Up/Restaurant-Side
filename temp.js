@@ -340,12 +340,13 @@ var temp_acceptOrder_repeat={
             {
               "type": "text",
               "text": "2019-12-31 ",
-              "size": "md",
+              "size": "sm",
               "align": "center"
             },
             {
               "type": "text",
               "text": "00:00",
+              "size": "sm",
               "align": "center"
             }
           ]
