@@ -100,7 +100,6 @@ bot.on('message', function (event) {
                             arr.push(lodash.cloneDeep(temp.temp_acceptOrder))
                             for (var i = 0; i < data.length; i++) {
                                 console.log(data[i].orderid);
-                                console.log(data[i].takeDate)
                                 arr[0].contents.contents[i] = lodash.cloneDeep(temp.temp_acceptOrder_repeat)
                                 arr[0].contents.contents[i].body.contents[1].contents[1].text = data[i].orderid;
                                 arr[0].contents.contents[i].body.contents[2].contents[1].text = (data[i].takeDate).getFullYear()+"-"+(data[i].takeDate).getMonth()+"-"+(data[i].takeDate).getDate();
@@ -109,7 +108,7 @@ bot.on('message', function (event) {
                                 arr[0].contents.contents[i].body.contents[4].contents[1].text = data[i].phone;
                                 for (var j = 0; j < 5; j++) {
                                     arr[0].contents.contents[i].body.contents[7].contents[j + 2] = lodash.cloneDeep(temp.temp_acceptOrder_detail_repeat)
-                                    arr[0].contents.contents[i].body.contents[7].contents[j + 2].contents[1].text =data[i].foodName;
+                                    arr[0].contents.contents[i].body.contents[7].contents[j + 2].contents[0].text =data[i].foodName;
                                 }
                             }
                             event.reply(arr)
