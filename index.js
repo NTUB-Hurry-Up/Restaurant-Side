@@ -108,7 +108,7 @@ bot.on('message', function (event) {
                                 arr[0].contents.contents[i].body.contents[3].contents[1].text = data[i].name;
                                 arr[0].contents.contents[i].body.contents[4].contents[1].text = data[i].phone;
                                 for (var j = 0; j < 5; j++) {
-                                    arr[0].contents.contents[i].body.contents[7].contents[j + 2] = lodash.cloneDeep(temp.temp_orderDeatail_repeat)
+                                    arr[0].contents.contents[i].body.contents[7].contents[j + 2] = lodash.cloneDeep(temp.temp_acceptOrder_detail_repeat)
                                     arr[0].contents.contents[i].body.contents[7].contents[j + 2].contents[1].contents[0].text =data[i].foodName;
                                 }
                             }
