@@ -486,20 +486,17 @@ var temp_acceptOrder_detail_repeat={
   "contents": [
     {
       "type": "text",
-      "text": "餐點名稱",
-      "weight": "bold"
+      "text": "原味蛋餅"
     },
     {
       "type": "text",
-      "text": "份量",
-      "align": "center",
-      "weight": "bold"
+      "text": "3",
+      "align": "center"
     },
     {
       "type": "text",
-      "text": "單價",
-      "align": "end",
-      "weight": "bold"
+      "text": "30",
+      "align": "end"
     }
   ]
 }
