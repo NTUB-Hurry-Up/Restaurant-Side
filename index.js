@@ -90,37 +90,45 @@ bot.on('message', function (event) {
             //     event.reply(arr)
             // }
             //----------------------------------------        
-            if(msg1 == "A"){
-                var arr = [];
-                arr.push(lodash.cloneDeep(temp.temp_acceptOrder))
-                arr[0].contents.contents[0] = lodash.cloneDeep(temp.temp_acceptOrder_repeat)
-                event.reply(arr[0])
-            }else if (msg1 == "訂單") {
+            // if(msg1 == "A"){
+            //     var arr = [];
+            //     arr.push(lodash.cloneDeep(temp.temp_acceptOrder))
+            //     arr[0].contents.contents[0] = lodash.cloneDeep(temp.temp_acceptOrder_repeat)
+            //     event.reply(arr[0])}
+            if (msg1 == "訂單") {
                 if (msg2 == "訂單查詢") {
                     order.fetchOrder(storeid, msg3).then(data => {
                         if (data == -1) event.reply('找不到資料');
                         else if (data == -9) event.reply('執行錯誤');
                         else {
-                            var arr = [];
-                            arr.push(lodash.cloneDeep(temp.temp_acceptOrder))
                             for (var i = 0; i < data.length; i++) {
-                                // console.log(data[i].orderid);
-                                console.log(data[i].foodName)
-                                console.log(data[i].amount)
-                                console.log(data[i].price)
-                                arr[0].contents.contents[i] = lodash.cloneDeep(temp.temp_acceptOrder_repeat)
-                                arr[0].contents.contents[i].body.contents[1].contents[1].text = data[i].orderid;
-                                arr[0].contents.contents[i].body.contents[2].contents[1].text = (data[i].takeDate).getFullYear()+"-"+(data[i].takeDate).getMonth()+"-"+(data[i].takeDate).getDate();
-                                arr[0].contents.contents[i].body.contents[2].contents[2].text = data[i].takeTime.substring(0,5);
-                                arr[0].contents.contents[i].body.contents[3].contents[1].text = data[i].name;
-                                arr[0].contents.contents[i].body.contents[4].contents[1].text = data[i].phone;
-                                for (var j = 0; j <5; j++) {
-                                    arr[0].contents.contents[i].body.contents[7].contents[j + 1] = lodash.cloneDeep(temp.temp_acceptOrder_detail_repeat)
-                                    arr[0].contents.contents[i].body.contents[7].contents[j + 1].contents[0].text =data[i].foodName;
-                                    arr[0].contents.contents[i].body.contents[7].contents[j + 1].contents[1].text =data[i].amount;
-                                    arr[0].contents.contents[i].body.contents[7].contents[j + 1].contents[2].text =data[i].price;
+                                if (s != data[i].orderid) {
+                                    var arr = [];
+                                    var s = ""
+                                    var scnt = -1
+                                    var fcnt = 0
+                                    var fprice = 0
+                                    arr.push(lodash.cloneDeep(temp.temp_acceptOrder))
 
-
+                                    // console.log(data[i].orderid);
+                                    console.log(data[i].foodName)
+                                    console.log(data[i].amount)
+                                    console.log(data[i].price)
+                                    arr[0].contents.contents[i] = lodash.cloneDeep(temp.temp_acceptOrder_repeat)
+                                    arr[0].contents.contents[i].body.contents[1].contents[1].text = data[i].orderid;
+                                    //--------------------------------------------------------------------------
+                                    var orderMonth = ((data[i].orderDate).getMonth() + 1 < 10 ? '0' : '') + ((data[i].orderDate).getMonth() + 1)
+                                    var orderDate = ((data[i].orderDate).getDate() < 10 ? '0' : '') + (data[i].orderDate).getDate()
+                                    arr[0].contents.contents[i].body.contents[2].contents[1].text = (data[i].orderDate).getFullYear() + "-" + orderMonth + "-" + orderDate
+                                    arr[0].contents.contents[i].body.contents[2].contents[2].text = data[i].orderTime.substring(0, 5)
+                                    arr[0].contents.contents[i].body.contents[3].contents[1].text = data[i].name;
+                                    arr[0].contents.contents[i].body.contents[4].contents[1].text = data[i].phone;
+                                }
+                                for (var j = 0; j < data.length; j++) {
+                                    arr[0].contents.contents[i].body.contents[j + 7] = lodash.cloneDeep(temp.temp_acceptOrder_detail_repeat)
+                                    arr[0].contents.contents[i].body.contents[j + 7].contents[0].text = data[i].foodName;
+                                    arr[0].contents.contents[i].body.contents[j + 7].contents[1].text = data[i].amount;
+                                    arr[0].contents.contents[i].body.contents[j + 7].contents[2].text = data[i].price;
                                 }
                             }
                             event.reply(arr)

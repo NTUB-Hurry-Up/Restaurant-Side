@@ -416,26 +416,7 @@ var temp_acceptOrder_repeat = {
           }
         ]
       },
-      {
-        "type": "box",
-        "layout": "horizontal",
-        "contents": [
-          {
-            "type": "text",
-            "text": "原味蛋餅"
-          },
-          {
-            "type": "text",
-            "text": "3",
-            "align": "center"
-          },
-          {
-            "type": "text",
-            "text": "30",
-            "align": "end"
-          }
-        ]
-      }, {
+      {//7
         "type": "box",
         "layout": "horizontal",
         "contents": [
