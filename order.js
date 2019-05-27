@@ -9,7 +9,7 @@ var fetchOrder = async function (storeid, msg3) {
     let result;
 
     //讀取資料庫
-    await query('SELECT	a."orderid",a."takeDate",a."takeTime",a.userid,c."name",c.phone,b."amount",b."price",d."foodName" FROM "order" AS a, "orderDetail" AS b, "member" AS c, food AS d WHERE a.orderid=b.orderid AND a.userid=c.userid AND b.foodid=d.foodid	AND	a."status"=$1 AND a."storeid"=$2 ORDER BY a.orderid;', [msg3, storeid])
+    await query('SELECT	a."orderid",a."takeDate",a."takeTime",a.userid,c."name",c.phone,b."amount",b."price",d."foodName",d."foodid" FROM "order" AS a, "orderDetail" AS b, "member" AS c, food AS d WHERE a.orderid=b.orderid AND a.userid=c.userid AND b.foodid=d.foodid	AND	a."status"=$1 AND a."storeid"=$2 ORDER BY a.orderid;', [msg3, storeid])
         .then((data) => {
             if (data.rows.length > 0) {
                 result = data.rows;
