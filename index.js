@@ -102,9 +102,10 @@ bot.on('message', function (event) {
                         else if (data == -9) event.reply('執行錯誤');
                         else {
                             for (var i = 0; i < data.length; i++) {
+                                var s=""
                                 if (s != data[i].orderid) {
                                     var arr = [];
-                                    var s = ""
+                                    
                                     // var scnt = -1
                                     // var fcnt = 0
                                     // var fprice = 0
