@@ -124,12 +124,12 @@ bot.on('message', function (event) {
                                     arr[0].contents.contents[i].body.contents[3].contents[1].text = data[i].name;
                                     arr[0].contents.contents[i].body.contents[4].contents[1].text = data[i].phone;
                                 }
-                                for (var j = 0; j < data.length; j++) {
-                                    arr[0].contents.contents[i].body.contents[j + 7] = lodash.cloneDeep(temp.temp_acceptOrder_detail_repeat)
-                                    arr[0].contents.contents[i].body.contents[j + 7].contents[0].text = data[i].foodName;
-                                    arr[0].contents.contents[i].body.contents[j + 7].contents[1].text = data[i].amount;
-                                    arr[0].contents.contents[i].body.contents[j + 7].contents[2].text = data[i].price;
-                                }
+                                // for (var j = 0; j < data.length; j++) {
+                                //     arr[0].contents.contents[i].body.contents[j + 7] = lodash.cloneDeep(temp.temp_acceptOrder_detail_repeat)
+                                //     arr[0].contents.contents[i].body.contents[j + 7].contents[0].text = data[i].foodName;
+                                //     arr[0].contents.contents[i].body.contents[j + 7].contents[1].text = data[i].amount;
+                                //     arr[0].contents.contents[i].body.contents[j + 7].contents[2].text = data[i].price;
+                                // }
                             }
                             event.reply(arr)
                         }
