@@ -105,7 +105,6 @@ bot.on('message', function (event) {
                                 var s=""
                                 if (s != data[i].orderid) {
                                     var arr = [];
-                                    
                                     // var scnt = -1
                                     // var fcnt = 0
                                     // var fprice = 0
