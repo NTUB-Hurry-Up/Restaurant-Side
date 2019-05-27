@@ -334,6 +334,29 @@ var temp_acceptOrder_repeat = {
         "contents": [
           {
             "type": "text",
+            "text": "訂餐時間 :",
+            "weight": "bold"
+          },
+          {
+            "type": "text",
+            "text": "2019-12-31 ",
+            "size": "sm",
+            "align": "center"
+          },
+          {
+            "type": "text",
+            "text": "00:00",
+            "size": "sm",
+            "align": "center"
+          }
+        ]
+      },
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "text",
             "text": "取餐時間 :",
             "weight": "bold"
           },
@@ -357,12 +380,12 @@ var temp_acceptOrder_repeat = {
         "contents": [
           {
             "type": "text",
-            "text": "顧客姓名：",
+            "text": "顧客姓名 :",
             "weight": "bold"
           },
           {
             "type": "text",
-            "text": "Daniel",
+            "text": "幹你娘姬芭",
             "align": "start"
           },
           {
@@ -416,13 +439,14 @@ var temp_acceptOrder_repeat = {
           }
         ]
       },
-      {//7
+      {
         "type": "box",
         "layout": "horizontal",
         "contents": [
           {
             "type": "text",
-            "text": "原味蛋餅"
+            "text": "原味蛋餅",
+            "wrap": true
           },
           {
             "type": "text",
@@ -443,12 +467,12 @@ var temp_acceptOrder_repeat = {
     "layout": "vertical",
     "contents": [
       {
-        "type": "separator"
-      },
-      {
         "type": "box",
         "layout": "vertical",
         "contents": [
+          {
+            "type": "separator"
+          },
           {
             "type": "text",
             "text": "總價 :",
@@ -481,23 +505,24 @@ var temp_acceptOrder_repeat = {
 }
 var temp_acceptOrder_detail_repeat = {
   "type": "box",
-  "layout": "horizontal",
-  "contents": [
-    {
-      "type": "text",
-      "text": "原味蛋餅"
-    },
-    {
-      "type": "text",
-      "text": "3",
-      "align": "center"
-    },
-    {
-      "type": "text",
-      "text": "30",
-      "align": "end"
-    }
-  ]
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "text",
+            "text": "原味蛋餅",
+            "wrap": true
+          },
+          {
+            "type": "text",
+            "text": "3",
+            "align": "center"
+          },
+          {
+            "type": "text",
+            "text": "30",
+            "align": "end"
+          }
+        ]
 }
 //匯出
 module.exports = { temp_acceptOrder, temp_acceptOrder_repeat, temp_acceptOrder_detail_repeat };
