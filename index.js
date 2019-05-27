@@ -90,7 +90,12 @@ bot.on('message', function (event) {
             //     event.reply(arr)
             // }
             //----------------------------------------        
-            if (msg1 == "訂單") {
+            if(msg1 == "A"){
+                var arr = [];
+                arr.push(lodash.cloneDeep(temp.temp_acceptOrder))
+                arr[0].contents.contents[0] = lodash.cloneDeep(temp.temp_acceptOrder_repeat)
+                event.reply(arr[0])
+            }else if (msg1 == "訂單") {
                 if (msg2 == "訂單查詢") {
                     order.fetchOrder(storeid, msg3).then(data => {
                         if (data == -1) event.reply('找不到資料');
