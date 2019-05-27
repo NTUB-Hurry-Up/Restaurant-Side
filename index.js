@@ -101,14 +101,15 @@ bot.on('message', function (event) {
                         if (data == -1) event.reply('找不到資料');
                         else if (data == -9) event.reply('執行錯誤');
                         else {
+                            var arr = [];
+                            var s=""
+                            arr.push(lodash.cloneDeep(temp.temp_acceptOrder))
                             for (var i = 0; i < data.length; i++) {
-                                var s=""
-                                if (s != data[i].orderid) {
-                                    var arr = [];
+                                
+                                if (s != data[i].orderid) {                                   
                                     // var scnt = -1
                                     // var fcnt = 0
                                     // var fprice = 0
-                                    arr.push(lodash.cloneDeep(temp.temp_acceptOrder))
 
                                     // console.log(data[i].orderid);
                                     // console.log(data[i].foodName)
