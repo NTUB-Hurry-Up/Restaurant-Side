@@ -129,10 +129,10 @@ bot.on('message', function (event) {
                                     arr[0].contents.contents[i].body.contents[5].contents[1].text = data[i].phone;
                                 }
                                 for (var j = 0; j < data[i].length; j++) {
-                                    arr[0].contents.contents[i].body.contents[j + 7] = lodash.cloneDeep(temp.temp_acceptOrder_detail_repeat)
-                                    arr[0].contents.contents[i].body.contents[j + 7].contents[0].text = data[i].foodName;
-                                    arr[0].contents.contents[i].body.contents[j + 7].contents[1].text = data[i].amount;
-                                    arr[0].contents.contents[i].body.contents[j + 7].contents[2].text = data[i].price;
+                                    arr[0].contents.contents[i].body.contents[j + 8] = lodash.cloneDeep(temp.temp_acceptOrder_detail_repeat)
+                                    arr[0].contents.contents[i].body.contents[j + 8].contents[0].text = data[i].foodName;
+                                    arr[0].contents.contents[i].body.contents[j + 8].contents[1].text = data[i].amount;
+                                    arr[0].contents.contents[i].body.contents[j + 8].contents[2].text = data[i].price;
                                 }
                             }
                             event.reply(arr)
