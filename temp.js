@@ -285,7 +285,7 @@
     }
   ]
 }*/
-var temp_acceptOrder={
+var temp_acceptOrder = {
   "type": "flex",
   "altText": "Flex Message",
   "contents": {
@@ -293,194 +293,212 @@ var temp_acceptOrder={
     "contents": []
   }
 }
-var temp_acceptOrder_repeat={
+var temp_acceptOrder_repeat = {
   "type": "bubble",
-    "direction": "ltr",
-    "body": {
-      "type": "box",
-      "layout": "vertical",
-      "spacing": "sm",
-      "contents": [
-        {
-          "type": "text",
-          "text": "新訂單",
-          "size": "xxl",
-          "align": "center",
-          "weight": "bold"
-        },
-        {
-          "type": "box",
-          "layout": "horizontal",
-          "contents": [
-            {
-              "type": "text",
-              "text": "訂單編號 :",
-              "align": "start",
-              "weight": "bold"
-            },
-            {
-              "type": "text",
-              "text": "100000001",
-              "align": "start"
-            },
-            {
-              "type": "filler"
-            }
-          ]
-        },
-        {
-          "type": "box",
-          "layout": "horizontal",
-          "contents": [
-            {
-              "type": "text",
-              "text": "取餐時間 :",
-              "weight": "bold"
-            },
-            {
-              "type": "text",
-              "text": "2019-12-31 ",
-              "size": "sm",
-              "align": "center"
-            },
-            {
-              "type": "text",
-              "text": "00:00",
-              "size": "sm",
-              "align": "center"
-            }
-          ]
-        },
-        {
-          "type": "box",
-          "layout": "horizontal",
-          "contents": [
-            {
-              "type": "text",
-              "text": "顧客姓名：",
-              "weight": "bold"
-            },
-            {
-              "type": "text",
-              "text": "Daniel",
-              "align": "start"
-            },
-            {
-              "type": "filler"
-            }
-          ]
-        },
-        {
-          "type": "box",
-          "layout": "horizontal",
-          "contents": [
-            {
-              "type": "text",
-              "text": "顧客電話 :",
-              "weight": "bold"
-            },
-            {
-              "type": "text",
-              "text": "0988870780",
-              "size": "sm",
-              "align": "start"
-            },
-            {
-              "type": "filler"
-            }
-          ]
-        },
-        {
-          "type": "separator"
-        },
-        {
-          "type": "box",
-          "layout": "horizontal",
-          "contents": [
-            {
-              "type": "text",
-              "text": "餐點名稱",
-              "weight": "bold"
-            },
-            {
-              "type": "text",
-              "text": "份量",
-              "align": "center",
-              "weight": "bold"
-            },
-            {
-              "type": "text",
-              "text": "單價",
-              "align": "end",
-              "weight": "bold"
-            }
-          ]
-        },
-        {
-          "type": "box",
-          "layout": "horizontal",
-          "contents": [
-            {
-              "type": "text",
-              "text": "原味蛋餅"
-            },
-            {
-              "type": "text",
-              "text": "3",
-              "align": "center"
-            },
-            {
-              "type": "text",
-              "text": "30",
-              "align": "end"
-            }
-          ]
-        },
-        {
-          "type": "separator"
-        },
-        {
-          "type": "box",
-          "layout": "vertical",
-          "contents": [
-            {
-              "type": "text",
-              "text": "總價 :",
-              "size": "xl",
-              "align": "end",
-              "weight": "bold"
-            }
-          ]
-        }
-      ]
-    },
-    "footer": {
-      "type": "box",
-      "layout": "vertical",
-      "contents": [
-        {
-          "type": "button",
-          "action": {
-            "type": "message",
-            "label": "接單",
-            "text": "接單"
+  "direction": "ltr",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "spacing": "sm",
+    "contents": [
+      {
+        "type": "text",
+        "text": "新訂單",
+        "size": "xxl",
+        "align": "center",
+        "weight": "bold"
+      },
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "text",
+            "text": "訂單編號 :",
+            "align": "start",
+            "weight": "bold"
           },
-          "color": "#137907"
-        },
-        {
-          "type": "button",
-          "action": {
-            "type": "message",
-            "label": "拒絕",
-            "text": "拒絕"
+          {
+            "type": "text",
+            "text": "100000001",
+            "align": "start"
           },
-          "color": "#EF4417"
-        }
-      ]
-    }
-
+          {
+            "type": "filler"
+          }
+        ]
+      },
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "text",
+            "text": "取餐時間 :",
+            "weight": "bold"
+          },
+          {
+            "type": "text",
+            "text": "2019-12-31 ",
+            "size": "sm",
+            "align": "center"
+          },
+          {
+            "type": "text",
+            "text": "00:00",
+            "size": "sm",
+            "align": "center"
+          }
+        ]
+      },
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "text",
+            "text": "顧客姓名：",
+            "weight": "bold"
+          },
+          {
+            "type": "text",
+            "text": "Daniel",
+            "align": "start"
+          },
+          {
+            "type": "filler"
+          }
+        ]
+      },
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "text",
+            "text": "顧客電話 :",
+            "weight": "bold"
+          },
+          {
+            "type": "text",
+            "text": "0988870780",
+            "size": "sm",
+            "align": "start"
+          },
+          {
+            "type": "filler"
+          }
+        ]
+      },
+      {
+        "type": "separator"
+      },
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "text",
+            "text": "餐點名稱",
+            "weight": "bold"
+          },
+          {
+            "type": "text",
+            "text": "份量",
+            "align": "center",
+            "weight": "bold"
+          },
+          {
+            "type": "text",
+            "text": "單價",
+            "align": "end",
+            "weight": "bold"
+          }
+        ]
+      },
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "text",
+            "text": "原味蛋餅"
+          },
+          {
+            "type": "text",
+            "text": "3",
+            "align": "center"
+          },
+          {
+            "type": "text",
+            "text": "30",
+            "align": "end"
+          }
+        ]
+      }, {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "text",
+            "text": "原味蛋餅"
+          },
+          {
+            "type": "text",
+            "text": "3",
+            "align": "center"
+          },
+          {
+            "type": "text",
+            "text": "30",
+            "align": "end"
+          }
+        ]
+      }
+    ]
+  },
+  "footer": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "separator"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "總價 :",
+            "size": "xl",
+            "align": "end",
+            "weight": "bold"
+          }
+        ]
+      },
+      {
+        "type": "button",
+        "action": {
+          "type": "message",
+          "label": "接單",
+          "text": "接單"
+        },
+        "color": "#137907"
+      },
+      {
+        "type": "button",
+        "action": {
+          "type": "message",
+          "label": "拒絕",
+          "text": "拒絕"
+        },
+        "color": "#EF4417"
+      }
+    ]
+  }
 }
-var temp_acceptOrder_detail_repeat={
+var temp_acceptOrder_detail_repeat = {
   "type": "box",
   "layout": "horizontal",
   "contents": [
@@ -501,4 +519,4 @@ var temp_acceptOrder_detail_repeat={
   ]
 }
 //匯出
-module.exports = {temp_acceptOrder,temp_acceptOrder_repeat,temp_acceptOrder_detail_repeat};
+module.exports = { temp_acceptOrder, temp_acceptOrder_repeat, temp_acceptOrder_detail_repeat };
