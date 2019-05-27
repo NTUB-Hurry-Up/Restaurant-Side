@@ -105,21 +105,21 @@ bot.on('message', function (event) {
                                 if (s != data[i].orderid) {
                                     var arr = [];
                                     var s = ""
-                                    var scnt = -1
-                                    var fcnt = 0
-                                    var fprice = 0
+                                    // var scnt = -1
+                                    // var fcnt = 0
+                                    // var fprice = 0
                                     arr.push(lodash.cloneDeep(temp.temp_acceptOrder))
 
                                     // console.log(data[i].orderid);
-                                    console.log(data[i].foodName)
-                                    console.log(data[i].amount)
-                                    console.log(data[i].price)
+                                    // console.log(data[i].foodName)
+                                    // console.log(data[i].amount)
+                                    // console.log(data[i].price)
                                     arr[0].contents.contents[i] = lodash.cloneDeep(temp.temp_acceptOrder_repeat)
                                     arr[0].contents.contents[i].body.contents[1].contents[1].text = data[i].orderid;
                                     //--------------------------------------------------------------------------
-                                    var orderMonth = ((data[i].takeDate).getMonth() + 1 < 10 ? '0' : '') + ((data[i].takeDate).getMonth() + 1)
-                                    var orderDate = ((data[i].takeDate).getDate() < 10 ? '0' : '') + (data[i].takeDate).getDate()
-                                    arr[0].contents.contents[i].body.contents[2].contents[1].text = (data[i].takeDate).getFullYear() + "-" + orderMonth + "-" + orderDate
+                                    var takeMonth = ((data[i].takeDate).getMonth() + 1 < 10 ? '0' : '') + ((data[i].takeDate).getMonth() + 1)
+                                    var takeDate = ((data[i].takeDate).getDate() < 10 ? '0' : '') + (data[i].takeDate).getDate()
+                                    arr[0].contents.contents[i].body.contents[2].contents[1].text = (data[i].takeDate).getFullYear() + "-" + takeMonth + "-" + takeDate
                                     arr[0].contents.contents[i].body.contents[2].contents[2].text = data[i].takeTime.substring(0, 5)
                                     arr[0].contents.contents[i].body.contents[3].contents[1].text = data[i].name;
                                     arr[0].contents.contents[i].body.contents[4].contents[1].text = data[i].phone;
