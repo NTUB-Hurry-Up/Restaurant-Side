@@ -4,10 +4,29 @@
 const query = require('./asyncDB');
 
 //查詢未完成訂單訂單
-var fetchOrder = async function (storeid, msg3) {
+// var fetchOrder = async function (storeid, msg3) {
+//     //存放結果
+//     let result;
+
+//     //讀取資料庫
+//     await query('SELECT	a."orderid",a."takeDate",a."takeTime",a."orderDate",a."orderTime",a.userid,c."name",c.phone,b."amount",b."price",d."foodName",d."foodid" FROM "order" AS a, "orderDetail" AS b, "member" AS c, food AS d WHERE a.orderid=b.orderid AND a.userid=c.userid AND b.foodid=d.foodid	AND	a."status"=$1 AND a."storeid"=$2 ORDER BY a.orderid;', [msg3, storeid])
+//         .then((data) => {
+//             if (data.rows.length > 0) {
+//                 result = data.rows;
+//             } else {
+//                 result = -1;  //找不到資料
+//             }
+//         }, (error) => {
+//             result = -9;  //執行錯誤
+//         });
+//     //回傳執行結果
+//     return result;
+// }
+
+//未接受訂單改為接受
+var acceptOrder = async function (storeid, msg3) {
     //存放結果
     let result;
-
     //讀取資料庫
     await query('SELECT	a."orderid",a."takeDate",a."takeTime",a."orderDate",a."orderTime",a.userid,c."name",c.phone,b."amount",b."price",d."foodName",d."foodid" FROM "order" AS a, "orderDetail" AS b, "member" AS c, food AS d WHERE a.orderid=b.orderid AND a.userid=c.userid AND b.foodid=d.foodid	AND	a."status"=$1 AND a."storeid"=$2 ORDER BY a.orderid;', [msg3, storeid])
         .then((data) => {
@@ -20,20 +39,6 @@ var fetchOrder = async function (storeid, msg3) {
             result = -9;  //執行錯誤
         });
     //回傳執行結果
-    return result;
-}
-
-//未接受訂單改為接受
-var acceptOrder = async function (storeid, msg3) {
-    //存放結果
-    let result;
-    //讀取資料庫
-    await query('UPDATE	"order"	SET	status=$4	WHERE	storeid=$1	AND	orderid=$2	AND	status=$3;', [storeid, msg3, '未接單', '已接單未製作'])
-        .then((data) => {
-            result = data.rowCount;  //回傳資料數 
-        }, (error) => {
-            result = -9;  //執行錯誤
-        });
     return result;
 }
 var rejectOrder = async function (storeid, msg3) {
@@ -111,4 +116,4 @@ var todayOrder = async function (storeid, fetchDate, fetchTime) {
     return result;
 }
 //匯出
-module.exports = { fetchOrder, acceptOrder, rejectOrder, completedOrder, collectedOrder, allOrder, todayOrder };
+module.exports = { acceptOrder, rejectOrder, completedOrder, collectedOrder, allOrder, todayOrder };
