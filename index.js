@@ -141,8 +141,9 @@ bot.on('message', function (event) {
                 //     })} 
                     if (msg2 == "接受訂單") {
                         order.acceptOrder(storeid).then(data => {
-                        if (data == -9) event.reply('執行錯誤');
-                        else{
+                            if (data == -1) event.reply('找不到資料');
+                            else if (data == -9) event.reply('執行錯誤');
+                            else{
                             // event.reply('已接單');
                             var arr = [];
                             var s=""
