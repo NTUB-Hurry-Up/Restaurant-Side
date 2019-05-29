@@ -180,16 +180,18 @@ bot.on('message', function (event) {
                                 }
                             }
                             event.reply()
-                            if (msg3 == "接單") {
-                                order.acceptOrder(data[i].orderid).then(data => {
-                                    if (data == -9) event.reply('執行錯誤');
-                                    else event.reply('已接單');
-                                })
-                            } else {
-                                order.rejectOrder(data[i].orderid).then(data => {
-                                    if (data == -9) event.reply('執行錯誤');
-                                    else event.reply('已拒絕');
-                                })
+                            for (var i = 0; i < data.length; i++) {
+                                if (msg3 == "接單") {
+                                    order.acceptOrder(data[i].orderid).then(data => {
+                                        if (data == -9) event.reply('執行錯誤');
+                                        else event.reply('已接單');
+                                    })
+                                } else {
+                                    order.rejectOrder(data[i].orderid).then(data => {
+                                        if (data == -9) event.reply('執行錯誤');
+                                        else event.reply('已拒絕');
+                                    })
+                                }
                             }
 
                         }
