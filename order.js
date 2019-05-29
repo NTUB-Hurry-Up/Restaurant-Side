@@ -24,7 +24,7 @@ const query = require('./asyncDB');
 // }
 
 //未接受訂單改為接受
-var acceptOrder = async function (storeid, msg3) {
+var acceptOrder = async function (storeid) {
     //存放結果
     let result;
     //讀取資料庫
