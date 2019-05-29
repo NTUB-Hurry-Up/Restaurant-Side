@@ -139,17 +139,17 @@ bot.on('message', function (event) {
                 //         }
 
                 //     })} 
-                    if (msg2 == "接受訂單") {
-                        order.acceptOrder(storeid).then(data => {
-                            if (data == -1) event.reply('找不到資料');
-                            else if (data == -9) event.reply('執行錯誤');
-                            else{
+                if (msg2 == "接受訂單") {
+                    order.fetchacceptOrder(storeid).then(data => {
+                        if (data == -1) event.reply('找不到資料');
+                        else if (data == -9) event.reply('執行錯誤');
+                        else {
                             // event.reply('已接單');
                             var arr = [];
-                            var s=""
+                            var s = ""
                             arr.push(lodash.cloneDeep(temp.temp_acceptOrder))
-                            for (var i = 0; i < data.length; i++) {                               
-                                if (s != data[i].orderid) {                                   
+                            for (var i = 0; i < data.length; i++) {
+                                if (s != data[i].orderid) {
                                     // var scnt = -1
                                     // var fcnt = 0
                                     // var fprice = 0
@@ -161,10 +161,10 @@ bot.on('message', function (event) {
                                     arr[0].contents.contents[i] = lodash.cloneDeep(temp.temp_acceptOrder_repeat)
                                     arr[0].contents.contents[i].body.contents[1].contents[1].text = data[i].orderid;
                                     //--------------------------------------------------------------------------
-                                    var orderMonth = ((data[i].orderDate).getMonth() + 1 < 10 ? '0' : '')+((data[i].orderDate).getMonth() + 1)
-                                    var orderDate = ((data[i].orderDate).getDate() < 10 ? '0' : '')+(data[i].orderDate).getDate()
-                                    arr[0].contents.contents[i].body.contents[2].contents[1].text = (data[i].orderDate).getFullYear()+"-"+orderMonth+"-"+orderDate
-                                    arr[0].contents.contents[i].body.contents[2].contents[2].text = data[i].orderTime.substring(0,5)
+                                    var orderMonth = ((data[i].orderDate).getMonth() + 1 < 10 ? '0' : '') + ((data[i].orderDate).getMonth() + 1)
+                                    var orderDate = ((data[i].orderDate).getDate() < 10 ? '0' : '') + (data[i].orderDate).getDate()
+                                    arr[0].contents.contents[i].body.contents[2].contents[1].text = (data[i].orderDate).getFullYear() + "-" + orderMonth + "-" + orderDate
+                                    arr[0].contents.contents[i].body.contents[2].contents[2].text = data[i].orderTime.substring(0, 5)
                                     var takeMonth = ((data[i].takeDate).getMonth() + 1 < 10 ? '0' : '') + ((data[i].takeDate).getMonth() + 1)
                                     var takeDate = ((data[i].takeDate).getDate() < 10 ? '0' : '') + (data[i].takeDate).getDate()
                                     arr[0].contents.contents[i].body.contents[3].contents[1].text = (data[i].takeDate).getFullYear() + "-" + takeMonth + "-" + takeDate
@@ -179,17 +179,30 @@ bot.on('message', function (event) {
                                     arr[0].contents.contents[i].body.contents[j + 8].contents[2].text = data[i].price;
                                 }
                             }
-                            event.reply(arr)
+                            event.reply()
+                            if (msg3 == "接單") {
+                                order.acceptOrder(data[i].orderid).then(data => {
+                                    if (data == -9) event.reply('執行錯誤');
+                                    else event.reply('已接單');
+                                })
+                            } else {
+                                order.rejectOrder(data[i].orderid).then(data => {
+                                    if (data == -9) event.reply('執行錯誤');
+                                    else event.reply('已拒絕');
+                                })
+                            }
 
-                        } 
+                        }
+
+
+
+
+
+
                     })
                 }
-                // } else if (msg2 == "拒絕訂單") {
-                //     order.rejectOrder(storeid, msg3).then(data => {
-                //         if (data == -9) event.reply('執行錯誤');
-                //         else event.reply('已拒絕');
-                //     })
-                 else if (msg2 == "完成製作") {
+
+                else if (msg2 == "完成製作") {
                     order.completedOrder(storeid, msg3).then(data => {
                         if (data == -9) event.reply('執行錯誤');
                         else event.reply('執行完成');

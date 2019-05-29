@@ -24,7 +24,7 @@ const query = require('./asyncDB');
 // }
 
 //未接受訂單改為接受
-var acceptOrder = async function (storeid) {
+var fetchacceptOrder = async function (storeid) {
     //存放結果
     let result;
     //讀取資料庫
@@ -39,6 +39,18 @@ var acceptOrder = async function (storeid) {
             result = -9;  //執行錯誤
         });
     //回傳執行結果
+    return result;
+}
+var acceptOrder = async function (msg3) {
+    //存放結果
+    let result;
+    //讀取資料庫
+    await query('UPDATE	"order"	SET	status=$3	WHERE	orderid=$1	AND	status=$2;', [msg3, '未接單', '已接單未製作'])
+        .then((data) => {
+            result = data.rowCount;  //回傳資料數 
+        }, (error) => {
+            result = -9;  //執行錯誤
+        });
     return result;
 }
 var rejectOrder = async function (storeid, msg3) {
@@ -116,4 +128,4 @@ var todayOrder = async function (storeid, fetchDate, fetchTime) {
     return result;
 }
 //匯出
-module.exports = { acceptOrder, rejectOrder, completedOrder, collectedOrder, allOrder, todayOrder };
+module.exports = { fetchacceptOrder,acceptOrder, rejectOrder, completedOrder, collectedOrder, allOrder, todayOrder };
