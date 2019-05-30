@@ -253,7 +253,7 @@ bot.on('message', function (event) {
                         if (data == -9) event.reply('執行錯誤');
                         else event.reply('已接單');
                     })
-                } else if (msg2 == "拒絕"||"取消接單") {
+                } else if (msg2 == "拒絕") {
                     order.rejectOrder(storeid, msg3).then(data => {
                         if (data == -9) event.reply('執行錯誤');
                         else event.reply('已拒絕');
