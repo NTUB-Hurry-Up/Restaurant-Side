@@ -180,7 +180,9 @@ bot.on('message', function (event) {
                                         arr[0].contents.contents[ocnt].footer.contents[1].action.label = "拒絕"
                                     }else if(data[i].status == "製作中"){
                                         arr[0].contents.contents[ocnt].footer.contents[1].action.label = "完成製作"
+                                        arr[0].contents.contents[ocnt].footer.contents[1].action.text = "完成製作"
                                         arr[0].contents.contents[ocnt].footer.contents[1].action.label = "取消接單"
+                                        arr[0].contents.contents[ocnt].footer.contents[1].action.text = "完成製作"
                                     }else if(data[i].status == "等待取餐"){
                                         
                                     }
