@@ -171,10 +171,53 @@ bot.on('message', function (event) {
                             event.reply(arr)
                         }
                     })
-                } else if (msg2 == "已取餐") {
-                    order.collectedOrder(storeid, msg3).then(data => {
+                } else if (msg2 == "可取餐") {
+                    order.fetchCollectedOrder(storeid).then(data => {
                         if (data == -9) event.reply('執行錯誤');
-                        else event.reply('完成了一筆訂單');
+                        else {
+                            var order_id = ''
+                            var ocnt = -1
+                            var totalPrice = 0
+                            var arr = []
+                            arr.push(lodash.cloneDeep(temp.temp_CollectedOrder))
+                            for (var i = 0; i < data.length; i++) {
+                                if (order_id != data[i].orderid) {
+                                    ocnt++
+                                    console.log("!=================" + data[i].orderid);
+                                    arr[0].contents.contents[ocnt] = lodash.cloneDeep(temp.temp_CollectedOrder_repeat)
+                                    arr[0].contents.contents[ocnt].body.contents[0].text = data[i].status
+                                    arr[0].contents.contents[ocnt].body.contents[0].color = '#7BC5FE'
+                                    arr[0].contents.contents[ocnt].body.contents[1].contents[1].text = data[i].orderid
+                                    var orderMonth = ((data[i].orderDate).getMonth() + 1 < 10 ? '0' : '') + ((data[i].orderDate).getMonth() + 1)
+                                    var orderDate = ((data[i].orderDate).getDate() < 10 ? '0' : '') + (data[i].orderDate).getDate()
+                                    arr[0].contents.contents[ocnt].body.contents[2].contents[1].text = (data[i].orderDate).getFullYear() + "-" + orderMonth + "-" + orderDate
+                                    arr[0].contents.contents[ocnt].body.contents[2].contents[2].text = data[i].orderTime.substring(0, 5)
+
+                                    var takeMonth = ((data[i].takeDate).getMonth() + 1 < 10 ? '0' : '') + ((data[i].takeDate).getMonth() + 1)
+                                    var takeDate = ((data[i].takeDate).getDate() < 10 ? '0' : '') + (data[i].takeDate).getDate()
+                                    arr[0].contents.contents[ocnt].body.contents[3].contents[1].text = (data[i].takeDate).getFullYear() + "-" + takeMonth + "-" + takeDate
+                                    arr[0].contents.contents[ocnt].body.contents[3].contents[2].text = data[i].takeTime.substring(0, 5)
+                                    arr[0].contents.contents[ocnt].body.contents[4].contents[1].text = data[i].name
+                                    arr[0].contents.contents[ocnt].body.contents[5].contents[1].text = data[i].phone
+                                    arr[0].contents.contents[ocnt].footer.contents[1].action.label = "已取餐"
+                                    arr[0].contents.contents[ocnt].footer.contents[1].action.text = "訂單,已取餐," + data[i].orderid
+                                    arr[0].contents.contents[ocnt].footer.contents[2].action.label = "提醒取餐"
+                                    arr[0].contents.contents[ocnt].footer.contents[2].action.text =  data[i].orderid
+                                    arr[0].contents.contents[ocnt].footer.contents[3].action.label = "未取餐"
+                                    arr[0].contents.contents[ocnt].footer.contents[3].action.text = "訂單,未取餐," + data[i].orderid
+                                    order_id = data[i].orderid
+                                    totalPrice = 0
+                                }
+                                var tempRe = lodash.cloneDeep(temp.temp_CollectedOrderdetail_repeat)
+                                tempRe.contents[0].text = data[i].foodName
+                                tempRe.contents[1].text = data[i].quantity
+                                tempRe.contents[2].text = data[i].unitPrice
+                                arr[0].contents.contents[ocnt].body.contents.push(tempRe)
+                                totalPrice += data[i].unitPrice * data[i].quantity
+                                arr[0].contents.contents[ocnt].footer.contents[0].contents[1].text = "總價 :" + totalPrice
+                            }
+                            event.reply(arr)
+                        }
                     })
                 } else if (msg2 == "所有訂單") {
                     order.allOrder(storeid).then(data => {
@@ -260,6 +303,16 @@ bot.on('message', function (event) {
                     })
                 } else if(msg2 =="完成"){
                     order.completedOrder(storeid, msg3).then(data => {
+                        if (data == -9) event.reply('執行錯誤');
+                        else event.reply('完成');
+                    })
+                } else if(msg2 =="已取餐"){
+                    order.collectedOrder(storeid, msg3).then(data => {
+                        if (data == -9) event.reply('執行錯誤');
+                        else event.reply('完成');
+                    })
+                }else if(msg2 =="未取餐"){
+                    order.uncollectedOrder(storeid, msg3).then(data => {
                         if (data == -9) event.reply('執行錯誤');
                         else event.reply('完成');
                     })

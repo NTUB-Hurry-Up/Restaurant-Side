@@ -322,7 +322,7 @@ var temp_menu_repeat = {
   }
 
 }
-var temp_completedOrder={
+var temp_CollectedOrder={
   "type": "flex",
   "altText": "Flex Message",
   "contents": {
@@ -330,7 +330,7 @@ var temp_completedOrder={
     "contents": []
   }
 }
-var temp_completedOrder_repeat={
+var temp_CollectedOrder_repeat={
   "type": "bubble",
   "direction": "ltr",
   "body": {
@@ -526,6 +526,15 @@ var temp_completedOrder_repeat={
           "text": "接單"
         },
         "color": "#137907"
+      }, 
+      {
+        "type": "button",
+        "action": {
+          "type": "message",
+          "label": "提醒取餐",
+          "text": "提醒取餐"
+        },
+        "color": "#C9C90E"
       },
       {
         "type": "button",
@@ -539,7 +548,7 @@ var temp_completedOrder_repeat={
     ]
   }
 }
-var temp_completedOrderdetail_repeat={
+var temp_CollectedOrderdetail_repeat={
   "type": "box",
   "layout": "horizontal",
   "contents": [
@@ -561,4 +570,4 @@ var temp_completedOrderdetail_repeat={
   ]
 }
 //匯出
-module.exports = { temp_acceptOrder, temp_acceptOrder_repeat, temp_acceptOrder_detail_repeat,temp_completedOrder,temp_completedOrder_repeat,temp_completedOrderdetail_repeat, temp_menu, temp_menu_repeat };
+module.exports = { temp_acceptOrder, temp_acceptOrder_repeat, temp_acceptOrder_detail_repeat,temp_CollectedOrder,temp_CollectedOrder_repeat,temp_CollectedOrderdetail_repeat, temp_menu, temp_menu_repeat };

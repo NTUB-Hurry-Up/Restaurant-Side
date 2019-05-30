@@ -94,6 +94,25 @@ var completedOrder = async function (storeid, msg3) {
         });
     return result;
 }
+var fetchCollectedOrder = async function (storeid) {
+    //存放結果
+    let result;
+    //讀取資料庫
+    await query('select a.orderid, c.storeid, c.userid, e."name", e.phone, c."orderDate", c."orderTime", c."takeDate", c."takeTime", c.status, b."foodName", a.quantity, a."unitPrice" from "orderDetail" a, food b , "order" c , store d , member e where a.foodid = b.foodid and c.orderid in (select orderid from "order" where storeid = $1 and status=$2 LIMIT 10) and c.orderid = a.orderid and c.userid = e.userid and c.storeid = d.storeid ORDER BY "orderDate"desc, "orderTime"', [storeid,'等待取餐'])
+        .then((data) => {
+            if (data.rows.length > 0) {
+                result = data.rows;
+            } else {
+                result = -1;  //找不到資料
+            }
+        }, (error) => {
+            result = -9;  //執行錯誤
+        });
+    //回傳執行結果
+    return result;
+}
+
+
 var collectedOrder = async function (storeid, msg2) {
     //存放結果
     let result;
@@ -157,4 +176,4 @@ var todayOrder = async function (storeid, fetchDate) {
     return result;
 }
 //匯出
-module.exports = { fetchacceptOrder,fetchCompletedOrder,acceptOrder, rejectOrder, completedOrder, collectedOrder,uncollectedOrder, todayOrder };
+module.exports = { fetchacceptOrder,fetchCompletedOrder,fetchCollectedOrder,acceptOrder, rejectOrder, completedOrder, collectedOrder,uncollectedOrder, todayOrder };
