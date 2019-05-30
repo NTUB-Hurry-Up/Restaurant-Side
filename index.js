@@ -270,7 +270,7 @@ bot.on('message', function (event) {
                                 tempRe.contents[2].text = data[i].unitPrice
                                 arr[0].contents.contents[ocnt].body.contents.push(tempRe)
                                 totalPrice += data[i].unitPrice * data[i].quantity
-                                arr[0].contents.contents[ocnt].footer.contents[0].contents[1].text = "總價 :" + totalPrice
+                                // arr[0].contents.contents[ocnt].footer.contents[0].contents[1].text = "總價 :" + totalPrice
                             }
                             event.reply(arr)
                         }
