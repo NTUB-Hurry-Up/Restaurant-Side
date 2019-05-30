@@ -105,8 +105,10 @@ bot.on('message', function (event) {
                                     arr[0].contents.contents[ocnt].body.contents[4].contents[1].text = data[i].name
                                     arr[0].contents.contents[ocnt].body.contents[5].contents[1].text = data[i].phone
                                     if (data[i].status == "未接單") {
-                                        arr[0].contents.contents[ocnt].footer.contents[1].action.label = "接單" + data[i].orderid
-                                        arr[0].contents.contents[ocnt].footer.contents[1].action.label = "拒絕" + data[i].orderid
+                                        arr[0].contents.contents[ocnt].footer.contents[1].action.label = "接單"
+                                        arr[0].contents.contents[ocnt].footer.contents[1].action.text = "訂單,接單,"+data[i].orderid
+                                        arr[0].contents.contents[ocnt].footer.contents[2].action.label = "拒絕"
+                                        arr[0].contents.contents[ocnt].footer.contents[2].action.text = "訂單,拒絕"+data[i].orderid
                                     }
                                     order_id = data[i].orderid
                                     totalPrice = 0
