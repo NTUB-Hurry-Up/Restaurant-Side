@@ -41,11 +41,11 @@ var fetchacceptOrder = async function (storeid) {
     //回傳執行結果
     return result;
 }
-var acceptOrder = async function (msg3) {
+var acceptOrder = async function () {
     //存放結果
     let result;
     //讀取資料庫
-    await query('UPDATE	"order"	SET	status=$3	WHERE	orderid=$1	AND	status=$2;', [msg3, '未接單', '已接單未製作'])
+    await query('UPDATE	"order"	SET	status=$3	WHERE   status=$1;', ['未接單', '已接單未製作'])
         .then((data) => {
             result = data.rowCount;  //回傳資料數 
         }, (error) => {
@@ -53,11 +53,11 @@ var acceptOrder = async function (msg3) {
         });
     return result;
 }
-var rejectOrder = async function (storeid, msg3) {
+var rejectOrder = async function () {
     //存放結果
     let result;
     //讀取資料庫
-    await query('UPDATE	"order"	SET	status=$4	WHERE	storeid=$1	AND	orderid=$2	AND	status=$3;', [storeid, msg3, '未接單', '已拒絕'])
+    await query('UPDATE	"order"	SET	status=$2	WHERE   status=$1;', [ '未接單', '已拒絕'])
         .then((data) => {
             result = data.rowCount;  //回傳資料數 
         }, (error) => {
@@ -108,13 +108,13 @@ var allOrder = async function (storeid) {
     return result;
 }
 //查看今日訂單
-var todayOrder = async function (storeid, fetchDate, fetchTime) {
+var todayOrder = async function (storeid, fetchDate) {
     //存放結果
     let result;
 
     //讀取資料庫
-    await query('SELECT	* FROM	"order"	WHERE storeid=$1 AND "takeDate"=$2 AND "takeTime" BETWEEN $3 AND $4;'
-        , [storeid, fetchDate, '00:00:00', fetchTime])
+    await query('select a.orderid, c.storeid, c.userid, e."name", e.phone, c."orderDate", c."orderTime", c."takeDate", c."takeTime", c.status, b."foodName", a.quantity, a."unitPrice" from "orderDetail" a, food b , "order" c , store d , member e where a.foodid = b.foodid and c.orderid in (select orderid from "order" where storeid = $1 and "takeDate" = $2 LIMIT 10) and c.orderid = a.orderid and c.userid = e.userid and c.storeid = d.storeid ORDER BY "orderDate"desc, "orderTime"'
+        , [storeid, fetchDate])
         .then((data) => {
             if (data.rows.length > 0) {
                 result = data.rows;

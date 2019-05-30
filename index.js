@@ -76,75 +76,12 @@ bot.on('message', function (event) {
             var cMinutes = (today.getMinutes() < 10 ? '0' : '') + today.getMinutes();
             var cSecond = (today.getSeconds() < 10 ? '0' : '') + today.getMinutes();
             //----------------------------------------           
-            // if (msg1 == "A") {
-            //     var arr = [];
-            //     arr.push(lodash.cloneDeep(temp.temp_order))
-            //     for (var i = 0; i <= 2; i++) {
-            //         arr[0].contents.contents[i] = lodash.cloneDeep(temp.temp_order_repeat)
-            //         arr[0].contents.contents[i].body.contents[0].text = i + "";
-            //         for (var j = 0; j < 5; j++) {
-            //             arr[0].contents.contents[i].body.contents[7].contents[j + 2] = lodash.cloneDeep(temp.temp_orderDeatail_repeat)
-            //             arr[0].contents.contents[i].body.contents[7].contents[j + 2].contents[1].contents[0].text = j + ""
-            //         }
-            //     }
-            //     event.reply(arr)
-            // }
-            //----------------------------------------        
-            // if(msg1 == "A"){
-            //     var arr = [];
-            //     arr.push(lodash.cloneDeep(temp.temp_acceptOrder))
-            //     arr[0].contents.contents[0] = lodash.cloneDeep(temp.temp_acceptOrder_repeat)
-            //     event.reply(arr[0])}
             if (msg1 == "訂單") {
-                // if (msg2 == "訂單查詢") {
-                //     order.fetchOrder(storeid, msg3).then(data => {
-                //         if (data == -1) event.reply('找不到資料');
-                //         else if (data == -9) event.reply('執行錯誤');
-                //         else {
-                //             var arr = [];
-                //             var s=""
-                //             arr.push(lodash.cloneDeep(temp.temp_fetchOrder))
-                //             for (var i = 0; i < data.length; i++) {                               
-                //                 if (s != data[i].orderid) {                                   
-                //                     // var scnt = -1
-                //                     // var fcnt = 0
-                //                     // var fprice = 0
-
-                //                     // console.log(data[i].orderid);
-                //                     // console.log(data[i].foodName)
-                //                     // console.log(data[i].amount)
-                //                     // console.log(data[i].price)
-                //                     arr[0].contents.contents[i] = lodash.cloneDeep(temp.temp_fetchOrder_repeat)
-                //                     arr[0].contents.contents[i].body.contents[1].contents[1].text = data[i].orderid;
-                //                     //--------------------------------------------------------------------------
-                //                     var orderMonth = ((data[i].orderDate).getMonth() + 1 < 10 ? '0' : '')+((data[i].orderDate).getMonth() + 1)
-                //                     var orderDate = ((data[i].orderDate).getDate() < 10 ? '0' : '')+(data[i].orderDate).getDate()
-                //                     arr[0].contents.contents[i].body.contents[2].contents[1].text = (data[i].orderDate).getFullYear()+"-"+orderMonth+"-"+orderDate
-                //                     arr[0].contents.contents[i].body.contents[2].contents[2].text = data[i].orderTime.substring(0,5)
-                //                     var takeMonth = ((data[i].takeDate).getMonth() + 1 < 10 ? '0' : '') + ((data[i].takeDate).getMonth() + 1)
-                //                     var takeDate = ((data[i].takeDate).getDate() < 10 ? '0' : '') + (data[i].takeDate).getDate()
-                //                     arr[0].contents.contents[i].body.contents[3].contents[1].text = (data[i].takeDate).getFullYear() + "-" + takeMonth + "-" + takeDate
-                //                     arr[0].contents.contents[i].body.contents[3].contents[2].text = data[i].takeTime.substring(0, 5)
-                //                     arr[0].contents.contents[i].body.contents[4].contents[1].text = data[i].name;
-                //                     arr[0].contents.contents[i].body.contents[5].contents[1].text = data[i].phone;
-                //                 }
-                //                 for (var j = 0; j < data; j++) {
-                //                     arr[0].contents.contents[i].body.contents[j + 8] = lodash.cloneDeep(temp.temp_fetchOrder_detail_repeat)
-                //                     arr[0].contents.contents[i].body.contents[j + 8].contents[0].text = data[i].foodName;
-                //                     arr[0].contents.contents[i].body.contents[j + 8].contents[1].text = data[i].amount;
-                //                     arr[0].contents.contents[i].body.contents[j + 8].contents[2].text = data[i].price;
-                //                 }
-                //             }
-                //             event.reply(arr)
-                //         }
-
-                //     })} 
-                if (msg2 == "接受訂單") {
+                if (msg2 == "未接受訂單") {
                     order.fetchacceptOrder(storeid).then(data => {
                         if (data == -1) event.reply('找不到資料');
                         else if (data == -9) event.reply('執行錯誤');
                         else {
-                            // event.reply('已接單');
                             var arr = [];
                             var s = ""
                             arr.push(lodash.cloneDeep(temp.temp_acceptOrder))
@@ -180,31 +117,10 @@ bot.on('message', function (event) {
                                 }
                             }
                             event.reply()
-                            for (var i = 0; i < data.length; i++) {
-                                if (msg3 == "接單") {
-                                    order.acceptOrder(data[i].orderid).then(data => {
-                                        if (data == -9) event.reply('執行錯誤');
-                                        else event.reply('已接單');
-                                    })
-                                } else {
-                                    order.rejectOrder(data[i].orderid).then(data => {
-                                        if (data == -9) event.reply('執行錯誤');
-                                        else event.reply('已拒絕');
-                                    })
-                                }
-                            }
-
                         }
-
-
-
-
-
-
                     })
-                }
-
-                else if (msg2 == "完成製作") {
+                }            
+                  else if (msg2 == "完成製作") {
                     order.completedOrder(storeid, msg3).then(data => {
                         if (data == -9) event.reply('執行錯誤');
                         else event.reply('執行完成');
@@ -227,20 +143,57 @@ bot.on('message', function (event) {
                 } else if (msg2 == "今日訂單") {
                     fetchDate = today.getFullYear() + "-" + cMonth + "-" + cDay
                     fetchTime = cHours + ":" + cMinutes + ":" + cSecond
+                    
                     console.log(fetchDate + " " + fetchTime)
-                    order.todayOrder(storeid, fetchDate, fetchTime).then(data => {
+                    order.todayOrder(storeid, fetchDate).then(data => {
                         if (data == -1) event.reply('找不到資料');
                         else if (data == -9) event.reply('執行錯誤');
                         else {
+                            var order_id = ''
+                            var ocnt = -1
+                            var totalPrice = 0
+                            var arr = []
+                            arr.push(lodash.cloneDeep(temp.temp_fetchOrder))
                             for (var i = 0; i < data.length; i++) {
-                                console.log(data[i].orderid);
+                                if (order_id != data[i].orderid) {
+                                    ocnt++
+                                    console.log("!=================" + data[i].orderid);
+                                    arr[0].contents.contents[ocnt] = lodash.cloneDeep(temp.temp_fetchOrder_repeat)
+                                    arr[0].contents.contents[ocnt].body.contents[0].text = data[i].status
+                                    arr[0].contents.contents[ocnt].body.contents[1].contents[1].text = data[i].orderid
+                                    var orderMonth = ((data[i].orderDate).getMonth() + 1 < 10 ? '0' : '') + ((data[i].orderDate).getMonth() + 1)
+                                    var orderDate = ((data[i].orderDate).getDate() < 10 ? '0' : '') + (data[i].orderDate).getDate()
+                                    arr[0].contents.contents[ocnt].body.contents[2].contents[1].text = (data[i].orderDate).getFullYear() + "-" + orderMonth + "-" + orderDate
+                                    arr[0].contents.contents[ocnt].body.contents[2].contents[2].text = data[i].orderTime.substring(0, 5)
+
+                                    var takeMonth = ((data[i].takeDate).getMonth() + 1 < 10 ? '0' : '') + ((data[i].takeDate).getMonth() + 1)
+                                    var takeDate = ((data[i].takeDate).getDate() < 10 ? '0' : '') + (data[i].takeDate).getDate()
+                                    arr[0].contents.contents[ocnt].body.contents[3].contents[1].text = (data[i].takeDate).getFullYear() + "-" + takeMonth + "-" + takeDate
+                                    arr[0].contents.contents[ocnt].body.contents[3].contents[2].text = data[i].takeTime.substring(0, 5)
+                                    arr[0].contents.contents[ocnt].body.contents[4].contents[1].text = data[i].name
+                                    arr[0].contents.contents[ocnt].body.contents[5].contents[1].text = data[i].phone
+                                    if(data[i].status == "未接單"){
+                                        arr[0].contents.contents[ocnt].footer.contents[1].action.label = "接單"+data[i].orderid
+                                        arr[0].contents.contents[ocnt].footer.contents[1].action.label = "拒絕"+data[i].orderid
+                                    }
+                                    order_id = data[i].orderid
+                                    totalPrice = 0
+                                }
+                                var tempRe = lodash.cloneDeep(temp.temp_fetchOrder_detail_repeat)
+                                tempRe.contents[0].text = data[i].foodName
+                                tempRe.contents[1].text = data[i].quantity
+                                tempRe.contents[2].text = data[i].unitPrice
+                                arr[0].contents.contents[ocnt].body.contents.push(tempRe)
+                                totalPrice += data[i].unitPrice * data[i].quantity
+                                arr[0].contents.contents[ocnt].footer.contents[0].contents[1].text = "總價 :" + totalPrice
                             }
+                            event.reply(arr)
                         }
                     })
                 }
             }
             //----------------------------------------     
-            if (msg1 == "店家資訊") {
+            else if (msg1 == "店家資訊") {
                 if (msg2 == "查看資訊") {
                     store.fetchStoreinfo(storeid).then(data => {
                         if (data == -1) event.reply('找不到資料');
@@ -272,15 +225,23 @@ bot.on('message', function (event) {
                 }
             }
             //----------------------------------------   
-            if (msg1 == "店家菜單") {
+            else if (msg1 == "店家菜單") {
                 if (msg2 == "查詢菜單") {
                     food.fetchStoreFood(storeid).then(data => {
-                        if (data == -1) event.reply('找不到資料');
-                        else if (data == -9) event.reply('執行錯誤');
+                        console.log("storeid-->" + storeid)
+                        if (data == -1) { event.reply('找不到資料'); }
+                        else if (data == -9) { event.reply('執行錯誤'); }
                         else {
+                            var arr = []
+                            arr.push(lodash.cloneDeep(temp.temp_menu))
                             for (var i = 0; i < data.length; i++) {
                                 console.log(data[i].foodName + "，" + data[i].foodPrice + "元");
+                                arr[0].contents.contents[i] = lodash.cloneDeep(temp.temp_menu_repeat)
+                                // if(data[i].foodimg != null ){arr[0].contents.contents[i].hero.url = data[i].foodimg}
+                                arr[0].contents.contents[i].body.contents[0].text = data[i].foodName
+                                arr[0].contents.contents[i].body.contents[1].contents[0].contents[1].text = "NT$" + data[i].foodPrice
                             }
+                            event.reply(arr)
                         }
                     })
                 }
