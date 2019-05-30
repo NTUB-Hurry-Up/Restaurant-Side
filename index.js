@@ -104,9 +104,9 @@ bot.on('message', function (event) {
                                     arr[0].contents.contents[ocnt].body.contents[3].contents[2].text = data[i].takeTime.substring(0, 5)
                                     arr[0].contents.contents[ocnt].body.contents[4].contents[1].text = data[i].name
                                     arr[0].contents.contents[ocnt].body.contents[5].contents[1].text = data[i].phone
-                                    if(data[i].status == "未接單"){
-                                        arr[0].contents.contents[ocnt].footer.contents[1].action.label = "接單"+data[i].orderid
-                                        arr[0].contents.contents[ocnt].footer.contents[1].action.label = "拒絕"+data[i].orderid
+                                    if (data[i].status == "未接單") {
+                                        arr[0].contents.contents[ocnt].footer.contents[1].action.label = "接單" + data[i].orderid
+                                        arr[0].contents.contents[ocnt].footer.contents[1].action.label = "拒絕" + data[i].orderid
                                     }
                                     order_id = data[i].orderid
                                     totalPrice = 0
@@ -122,8 +122,7 @@ bot.on('message', function (event) {
                             event.reply(arr)
                         }
                     })
-                }            
-                  else if (msg2 == "完成製作") {
+                } else if (msg2 == "完成製作") {
                     order.completedOrder(storeid, msg3).then(data => {
                         if (data == -9) event.reply('執行錯誤');
                         else event.reply('執行完成');
@@ -175,20 +174,20 @@ bot.on('message', function (event) {
                                     arr[0].contents.contents[ocnt].body.contents[3].contents[2].text = data[i].takeTime.substring(0, 5)
                                     arr[0].contents.contents[ocnt].body.contents[4].contents[1].text = data[i].name
                                     arr[0].contents.contents[ocnt].body.contents[5].contents[1].text = data[i].phone
-                                    if(data[i].status == "未接單"){
+                                    if (data[i].status == "未接單") {
                                         arr[0].contents.contents[ocnt].footer.contents[1].action.label = "接單"
-                                        arr[0].contents.contents[ocnt].footer.contents[1].action.text= "接單"
+                                        arr[0].contents.contents[ocnt].footer.contents[1].action.text = "訂單,接單,"+data[i].orderid
                                         arr[0].contents.contents[ocnt].footer.contents[2].action.label = "拒絕"
-                                        arr[0].contents.contents[ocnt].footer.contents[2].action.text = "拒絕"
+                                        arr[0].contents.contents[ocnt].footer.contents[2].action.text = "訂單,拒絕"+data[i].orderid
 
-                                    }else if(data[i].status == "製作中"){
+                                    } else if (data[i].status == "製作中") {
                                         arr[0].contents.contents[ocnt].footer.contents[1].action.label = "完成製作"
                                         arr[0].contents.contents[ocnt].footer.contents[1].action.text = "完成製作"
                                         arr[0].contents.contents[ocnt].footer.contents[2].action.label = "取消接單"
                                         arr[0].contents.contents[ocnt].footer.contents[2].action.text = "取消接單"
 
-                                    }else if(data[i].status == "等待取餐"){
-                                        
+                                    } else if (data[i].status == "等待取餐") {
+
                                     }
 
                                     order_id = data[i].orderid
@@ -205,21 +204,18 @@ bot.on('message', function (event) {
                             event.reply(arr)
                         }
                     })
+                } else if (msg2 == "接單") {
+                    order.acceptOrder(storeid, msg3).then(data => {
+                        if (data == -9) event.reply('執行錯誤');
+                        else event.reply('已接單');
+                    })
+                } else if (msg2 == "拒絕") {
+                    order.rejectOrder(storeid, msg2).then(data => {
+                        if (data == -9) event.reply('執行錯誤');
+                        else event.reply('已拒絕');
+                    })
                 }
-            }
-            else if(msg1=="接單"){
-                order.acceptOrder(storeid,msg2).then(data => {
-                    if (data == -9) event.reply('執行錯誤');
-                    else event.reply('已接單');
-                })
-            }else if(msg1=="拒絕"){
-                order.rejectOrder(storeid, msg2).then(data => {
-                    if (data == -9) event.reply('執行錯誤');
-                    else event.reply('已拒絕');
-                })
-            }
-            //----------------------------------------     
-            else if (msg1 == "店家資訊") {
+            } else if (msg1 == "店家資訊") {
                 if (msg2 == "查看資訊") {
                     store.fetchStoreinfo(storeid).then(data => {
                         if (data == -1) event.reply('找不到資料');
@@ -230,8 +226,7 @@ bot.on('message', function (event) {
                             }
                         }
                     })
-                }
-                else if (msg2 == "更改資訊") {
+                } else if (msg2 == "更改資訊") {
                     if (msg3 == "更改店名") {
                         store.updateStorename(storeid, msg4).then(data => {
                             if (data == -9) event.reply('執行錯誤');
@@ -249,9 +244,7 @@ bot.on('message', function (event) {
                         })
                     }
                 }
-            }
-            //----------------------------------------   
-            else if (msg1 == "店家菜單") {
+            } else if (msg1 == "店家菜單") {
                 if (msg2 == "查詢菜單") {
                     food.fetchStoreFood(storeid).then(data => {
                         console.log("storeid-->" + storeid)
@@ -270,8 +263,7 @@ bot.on('message', function (event) {
                             event.reply(arr)
                         }
                     })
-                }
-                else if (msg2 = "更改菜單") {
+                } else if (msg2 = "編輯菜單") {
                     if (msg3 == '新增餐點') {
                         var foodid, foodName, foodPrice, foodImg, isSale;
                         foodid = msg4;
@@ -287,8 +279,7 @@ bot.on('message', function (event) {
                                 console.log('已增加' + data + '筆記錄');
                             }
                         })
-                    }
-                    if (msg3 == "更改菜名") {
+                    } else if (msg3 == "更改菜名") {
                         food.updateFoodName(storeid, msg4, msg5).then(data => {
                             if (data == -9) event.reply('執行錯誤');
                             else event.reply('修改完成');
