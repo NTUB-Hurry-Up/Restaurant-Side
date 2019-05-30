@@ -82,41 +82,45 @@ bot.on('message', function (event) {
                         if (data == -1) event.reply('找不到資料');
                         else if (data == -9) event.reply('執行錯誤');
                         else {
-                            var arr = [];
-                            var s = ""
+                            var order_id = ''
+                            var ocnt = -1
+                            var totalPrice = 0
+                            var arr = []
                             arr.push(lodash.cloneDeep(temp.temp_acceptOrder))
                             for (var i = 0; i < data.length; i++) {
-                                if (s != data[i].orderid) {
-                                    // var scnt = -1
-                                    // var fcnt = 0
-                                    // var fprice = 0
-
-                                    // console.log(data[i].orderid);
-                                    // console.log(data[i].foodName)
-                                    // console.log(data[i].amount)
-                                    // console.log(data[i].price)
-                                    arr[0].contents.contents[i] = lodash.cloneDeep(temp.temp_acceptOrder_repeat)
-                                    arr[0].contents.contents[i].body.contents[1].contents[1].text = data[i].orderid;
-                                    //--------------------------------------------------------------------------
+                                if (order_id != data[i].orderid) {
+                                    ocnt++
+                                    console.log("!=================" + data[i].orderid);
+                                    arr[0].contents.contents[ocnt] = lodash.cloneDeep(temp.temp_acceptOrder_repeat)
+                                    arr[0].contents.contents[ocnt].body.contents[0].text = data[i].status
+                                    arr[0].contents.contents[ocnt].body.contents[1].contents[1].text = data[i].orderid
                                     var orderMonth = ((data[i].orderDate).getMonth() + 1 < 10 ? '0' : '') + ((data[i].orderDate).getMonth() + 1)
                                     var orderDate = ((data[i].orderDate).getDate() < 10 ? '0' : '') + (data[i].orderDate).getDate()
-                                    arr[0].contents.contents[i].body.contents[2].contents[1].text = (data[i].orderDate).getFullYear() + "-" + orderMonth + "-" + orderDate
-                                    arr[0].contents.contents[i].body.contents[2].contents[2].text = data[i].orderTime.substring(0, 5)
+                                    arr[0].contents.contents[ocnt].body.contents[2].contents[1].text = (data[i].orderDate).getFullYear() + "-" + orderMonth + "-" + orderDate
+                                    arr[0].contents.contents[ocnt].body.contents[2].contents[2].text = data[i].orderTime.substring(0, 5)
+
                                     var takeMonth = ((data[i].takeDate).getMonth() + 1 < 10 ? '0' : '') + ((data[i].takeDate).getMonth() + 1)
                                     var takeDate = ((data[i].takeDate).getDate() < 10 ? '0' : '') + (data[i].takeDate).getDate()
-                                    arr[0].contents.contents[i].body.contents[3].contents[1].text = (data[i].takeDate).getFullYear() + "-" + takeMonth + "-" + takeDate
-                                    arr[0].contents.contents[i].body.contents[3].contents[2].text = data[i].takeTime.substring(0, 5)
-                                    arr[0].contents.contents[i].body.contents[4].contents[1].text = data[i].name;
-                                    arr[0].contents.contents[i].body.contents[5].contents[1].text = data[i].phone;
+                                    arr[0].contents.contents[ocnt].body.contents[3].contents[1].text = (data[i].takeDate).getFullYear() + "-" + takeMonth + "-" + takeDate
+                                    arr[0].contents.contents[ocnt].body.contents[3].contents[2].text = data[i].takeTime.substring(0, 5)
+                                    arr[0].contents.contents[ocnt].body.contents[4].contents[1].text = data[i].name
+                                    arr[0].contents.contents[ocnt].body.contents[5].contents[1].text = data[i].phone
+                                    if(data[i].status == "未接單"){
+                                        arr[0].contents.contents[ocnt].footer.contents[1].action.label = "接單"+data[i].orderid
+                                        arr[0].contents.contents[ocnt].footer.contents[1].action.label = "拒絕"+data[i].orderid
+                                    }
+                                    order_id = data[i].orderid
+                                    totalPrice = 0
                                 }
-                                for (var j = 0; j < data; j++) {
-                                    arr[0].contents.contents[i].body.contents[j + 8] = lodash.cloneDeep(temp.temp_acceptOrder_detail_repeat)
-                                    arr[0].contents.contents[i].body.contents[j + 8].contents[0].text = data[i].foodName;
-                                    arr[0].contents.contents[i].body.contents[j + 8].contents[1].text = data[i].amount;
-                                    arr[0].contents.contents[i].body.contents[j + 8].contents[2].text = data[i].price;
-                                }
+                                var tempRe = lodash.cloneDeep(temp.temp_fetchOrder_detail_repeat)
+                                tempRe.contents[0].text = data[i].foodName
+                                tempRe.contents[1].text = data[i].quantity
+                                tempRe.contents[2].text = data[i].unitPrice
+                                arr[0].contents.contents[ocnt].body.contents.push(tempRe)
+                                totalPrice += data[i].unitPrice * data[i].quantity
+                                arr[0].contents.contents[ocnt].footer.contents[0].contents[1].text = "總價 :" + totalPrice
                             }
-                            event.reply()
+                            event.reply(arr)
                         }
                     })
                 }            
@@ -173,7 +177,7 @@ bot.on('message', function (event) {
                                     arr[0].contents.contents[ocnt].body.contents[4].contents[1].text = data[i].name
                                     arr[0].contents.contents[ocnt].body.contents[5].contents[1].text = data[i].phone
                                     if(data[i].status == "未接單"){
-                                        arr[0].contents.contents[ocnt].footer.contents[1].action.label = "接單"+data[i].orderid
+                                        arr[0].contents.contents[ocnt].footer.contents[1].action.label = "接單"
                                         arr[0].contents.contents[ocnt].footer.contents[1].action.label = "拒絕"+data[i].orderid
                                     }
                                     order_id = data[i].orderid
@@ -191,6 +195,17 @@ bot.on('message', function (event) {
                         }
                     })
                 }
+            }
+            else if(msg1=="接單"){
+                order.acceptOrder(storeid, msg3).then(data => {
+                    if (data == -9) event.reply('執行錯誤');
+                    else event.reply('已接單');
+                })
+            }else if(msg1=="拒絕"){
+                order.rejectOrder(storeid, msg3).then(data => {
+                    if (data == -9) event.reply('執行錯誤');
+                    else event.reply('已拒絕');
+                })
             }
             //----------------------------------------     
             else if (msg1 == "店家資訊") {

@@ -41,11 +41,11 @@ var fetchacceptOrder = async function (storeid) {
     //回傳執行結果
     return result;
 }
-var acceptOrder = async function () {
+var acceptOrder = async function (storeid, msg3) {
     //存放結果
     let result;
     //讀取資料庫
-    await query('UPDATE	"order"	SET	status=$3	WHERE   status=$1;', ['未接單', '已接單未製作'])
+    await query('UPDATE	"order"	SET	status=$4	WHERE	storeid=$1	AND	orderid=$2	AND	status=$3;', [storeid, msg3, '未接單', '已接單未製作'])
         .then((data) => {
             result = data.rowCount;  //回傳資料數 
         }, (error) => {
@@ -53,11 +53,11 @@ var acceptOrder = async function () {
         });
     return result;
 }
-var rejectOrder = async function () {
+var rejectOrder = async function (storeid, msg3) {
     //存放結果
     let result;
     //讀取資料庫
-    await query('UPDATE	"order"	SET	status=$2	WHERE   status=$1;', [ '未接單', '已拒絕'])
+    await query('UPDATE	"order"	SET	status=$4	WHERE	storeid=$1	AND	orderid=$2	AND	status=$3;', [storeid, msg3, '未接單', '已拒絕'])
         .then((data) => {
             result = data.rowCount;  //回傳資料數 
         }, (error) => {

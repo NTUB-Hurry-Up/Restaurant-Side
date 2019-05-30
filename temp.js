@@ -332,10 +332,12 @@ var temp_fetchOrder_repeat = {
             "type": "text",
             "text": "顧客姓名:",
             "weight": "bold"
+            
           },
           {
             "type": "text",
-            "text": "幹你娘姬芭"
+            "text": "幹你娘姬芭",
+            "wrap": true
           },
           {
             "type": "filler"
