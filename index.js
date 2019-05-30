@@ -92,6 +92,7 @@ bot.on('message', function (event) {
                                     ocnt++
                                     console.log("!=================" + data[i].orderid);
                                     arr[0].contents.contents[ocnt] = lodash.cloneDeep(temp.temp_acceptOrder_repeat)
+                                    arr[0].contents.contents[ocnt].body.contents[0].text = data[i].status
                                     arr[0].contents.contents[ocnt].body.contents[1].contents[1].text = data[i].orderid
                                     var orderMonth = ((data[i].orderDate).getMonth() + 1 < 10 ? '0' : '') + ((data[i].orderDate).getMonth() + 1)
                                     var orderDate = ((data[i].orderDate).getDate() < 10 ? '0' : '') + (data[i].orderDate).getDate()
@@ -109,7 +110,17 @@ bot.on('message', function (event) {
                                         arr[0].contents.contents[ocnt].footer.contents[1].action.text = "訂單,接單,"+data[i].orderid
                                         arr[0].contents.contents[ocnt].footer.contents[2].action.label = "拒絕"
                                         arr[0].contents.contents[ocnt].footer.contents[2].action.text = "訂單,拒絕"+data[i].orderid
+
+                                    } else if (data[i].status == "製作中") {
+                                        arr[0].contents.contents[ocnt].footer.contents[1].action.label = "完成製作"
+                                        arr[0].contents.contents[ocnt].footer.contents[1].action.text = "完成製作"
+                                        arr[0].contents.contents[ocnt].footer.contents[2].action.label = "取消接單"
+                                        arr[0].contents.contents[ocnt].footer.contents[2].action.text = "取消接單"
+
+                                    } else if (data[i].status == "等待取餐") {
+
                                     }
+
                                     order_id = data[i].orderid
                                     totalPrice = 0
                                 }
