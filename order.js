@@ -28,7 +28,7 @@ var fetchacceptOrder = async function (storeid) {
     //存放結果
     let result;
     //讀取資料庫
-    await query('SELECT	a."orderid",a."takeDate",a."takeTime",a."orderDate",a."orderTime",a.userid,c."name",c.phone,b."amount",b."price",d."foodName",d."foodid" FROM "order" AS a, "orderDetail" AS b, "member" AS c, food AS d WHERE a.orderid=b.orderid AND a.userid=c.userid AND b.foodid=d.foodid	AND	a."status"=$1 AND a."storeid"=$2 ORDER BY a.orderid;', ['未接單', storeid])
+    await query('select a.orderid, c.storeid, c.userid, e."name", e.phone, c."orderDate", c."orderTime", c."takeDate", c."takeTime", c.status, b."foodName", a.quantity, a."unitPrice" from "orderDetail" a, food b , "order" c , store d , member e where a.foodid = b.foodid and c.orderid in (select orderid from "order" where storeid = $1 and "takeDate" = $2 LIMIT 10) and c.orderid = a.orderid and c.userid = e.userid and c.storeid = d.storeid ORDER BY "orderDate"desc, "orderTime"', ['未接單', storeid])
         .then((data) => {
             if (data.rows.length > 0) {
                 result = data.rows;
