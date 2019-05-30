@@ -156,7 +156,7 @@ bot.on('message', function (event) {
                                     arr[0].contents.contents[ocnt].footer.contents[1].action.label = "完成製作"
                                     arr[0].contents.contents[ocnt].footer.contents[1].action.text = "訂單,完成," + data[i].orderid
                                     arr[0].contents.contents[ocnt].footer.contents[2].action.label = "取消接單"
-                                    arr[0].contents.contents[ocnt].footer.contents[2].action.text = "訂單,取消接單," + data[i].orderid
+                                    arr[0].contents.contents[ocnt].footer.contents[2].action.text = "訂單,拒絕," + data[i].orderid
                                     order_id = data[i].orderid
                                     totalPrice = 0
                                 }
