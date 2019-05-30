@@ -314,7 +314,7 @@ bot.on('message', function (event) {
                 }else if(msg2 =="未取餐"){
                     order.uncollectedOrder(storeid, msg3).then(data => {
                         if (data == -9) event.reply('執行錯誤');
-                        else event.reply('完成');
+                        // else event.reply('');
                     })
                 }
             } else if (msg1 == "店家資訊") {
