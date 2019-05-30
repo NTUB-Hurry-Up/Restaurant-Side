@@ -202,7 +202,7 @@ bot.on('message', function (event) {
                                     arr[0].contents.contents[ocnt].footer.contents[1].action.label = "已取餐"
                                     arr[0].contents.contents[ocnt].footer.contents[1].action.text = "訂單,已取餐," + data[i].orderid
                                     arr[0].contents.contents[ocnt].footer.contents[2].action.label = "提醒取餐"
-                                    arr[0].contents.contents[ocnt].footer.contents[2].action.text =  data[i].orderid
+                                    arr[0].contents.contents[ocnt].footer.contents[2].action.text = data[i].orderid
                                     arr[0].contents.contents[ocnt].footer.contents[3].action.label = "未取餐"
                                     arr[0].contents.contents[ocnt].footer.contents[3].action.text = "訂單,未取餐," + data[i].orderid
                                     order_id = data[i].orderid
@@ -248,33 +248,41 @@ bot.on('message', function (event) {
                                     ocnt++
                                     console.log("!=================" + data[i].orderid);
                                     arr[0].contents.contents[ocnt] = lodash.cloneDeep(temp.temp_todayOrder_repeat)
-                                    arr[0].contents.contents[ocnt].body.contents[0].text = data[i].status
-                                    arr[0].contents.contents[ocnt].body.contents[1].contents[1].text = data[i].orderid
-                                    var orderMonth = ((data[i].orderDate).getMonth() + 1 < 10 ? '0' : '') + ((data[i].orderDate).getMonth() + 1)
-                                    var orderDate = ((data[i].orderDate).getDate() < 10 ? '0' : '') + (data[i].orderDate).getDate()
-                                    arr[0].contents.contents[ocnt].body.contents[2].contents[1].text = (data[i].orderDate).getFullYear() + "-" + orderMonth + "-" + orderDate
-                                    arr[0].contents.contents[ocnt].body.contents[2].contents[2].text = data[i].orderTime.substring(0, 5)
+                                    
+                                        arr[0].contents.contents[ocnt].body.contents[0].text = data[i].status
+                                        if (data[i].status == "未接單" || data[i].status == "製作中" || data[i].status == "等待取餐") {
+                                            arr[0].contents.contents[ocnt].body.contents[0].color = '#7BC5FE'  
+                                        }else if (data[i].status == "已拒絕" || data[i].status == "逾時未取餐"){
+                                            arr[0].contents.contents[ocnt].body.contents[0].color = '#FF5B5B' 
+                                        }else if (data[i].status == "已取餐") { 
+                                            arr[0].contents.contents[ocnt].body.contents[0].color = '#63BB72' 
+                                        }
+                                        arr[0].contents.contents[ocnt].body.contents[1].contents[1].text = data[i].orderid
+                                        var orderMonth = ((data[i].orderDate).getMonth() + 1 < 10 ? '0' : '') + ((data[i].orderDate).getMonth() + 1)
+                                        var orderDate = ((data[i].orderDate).getDate() < 10 ? '0' : '') + (data[i].orderDate).getDate()
+                                        arr[0].contents.contents[ocnt].body.contents[2].contents[1].text = (data[i].orderDate).getFullYear() + "-" + orderMonth + "-" + orderDate
+                                        arr[0].contents.contents[ocnt].body.contents[2].contents[2].text = data[i].orderTime.substring(0, 5)
 
-                                    var takeMonth = ((data[i].takeDate).getMonth() + 1 < 10 ? '0' : '') + ((data[i].takeDate).getMonth() + 1)
-                                    var takeDate = ((data[i].takeDate).getDate() < 10 ? '0' : '') + (data[i].takeDate).getDate()
-                                    arr[0].contents.contents[ocnt].body.contents[3].contents[1].text = (data[i].takeDate).getFullYear() + "-" + takeMonth + "-" + takeDate
-                                    arr[0].contents.contents[ocnt].body.contents[3].contents[2].text = data[i].takeTime.substring(0, 5)
-                                    arr[0].contents.contents[ocnt].body.contents[4].contents[1].text = data[i].name
-                                    arr[0].contents.contents[ocnt].body.contents[5].contents[1].text = data[i].phone                                   
-                                    order_id = data[i].orderid
-                                    totalPrice = 0
+                                        var takeMonth = ((data[i].takeDate).getMonth() + 1 < 10 ? '0' : '') + ((data[i].takeDate).getMonth() + 1)
+                                        var takeDate = ((data[i].takeDate).getDate() < 10 ? '0' : '') + (data[i].takeDate).getDate()
+                                        arr[0].contents.contents[ocnt].body.contents[3].contents[1].text = (data[i].takeDate).getFullYear() + "-" + takeMonth + "-" + takeDate
+                                        arr[0].contents.contents[ocnt].body.contents[3].contents[2].text = data[i].takeTime.substring(0, 5)
+                                        arr[0].contents.contents[ocnt].body.contents[4].contents[1].text = data[i].name
+                                        arr[0].contents.contents[ocnt].body.contents[5].contents[1].text = data[i].phone
+                                        order_id = data[i].orderid
+                                        totalPrice = 0
+                                    }
+                                    var tempRe = lodash.cloneDeep(temp.temp_todayOrderdetail_repeat)
+                                    tempRe.contents[0].text = data[i].foodName
+                                    tempRe.contents[1].text = data[i].quantity
+                                    tempRe.contents[2].text = data[i].unitPrice
+                                    arr[0].contents.contents[ocnt].body.contents.push(tempRe)
+                                    totalPrice += data[i].unitPrice * data[i].quantity
+                                    arr[0].contents.contents[ocnt].footer.contents[0].contents[1].text = "總價 :" + totalPrice
                                 }
-                                var tempRe = lodash.cloneDeep(temp.temp_todayOrderdetail_repeat)
-                                tempRe.contents[0].text = data[i].foodName
-                                tempRe.contents[1].text = data[i].quantity
-                                tempRe.contents[2].text = data[i].unitPrice
-                                arr[0].contents.contents[ocnt].body.contents.push(tempRe)
-                                totalPrice += data[i].unitPrice * data[i].quantity
-                                arr[0].contents.contents[ocnt].footer.contents[0].contents[1].text = "總價 :" + totalPrice
+                                event.reply(arr)
                             }
-                            event.reply(arr)
-                        }
-                    })
+                        })
                 } else if (msg2 == "接單") {
                     order.acceptOrder(storeid, msg3).then(data => {
                         if (data == -9) event.reply('執行錯誤');
@@ -285,20 +293,20 @@ bot.on('message', function (event) {
                         if (data == -9) event.reply('執行錯誤');
                         else event.reply('已拒絕');
                     })
-                } else if(msg2 =="完成"){
+                } else if (msg2 == "完成") {
                     order.completedOrder(storeid, msg3).then(data => {
                         if (data == -9) event.reply('執行錯誤');
                         else event.reply('完成');
                     })
-                } else if(msg2 =="已取餐"){
+                } else if (msg2 == "已取餐") {
                     order.collectedOrder(storeid, msg3).then(data => {
                         if (data == -9) event.reply('執行錯誤');
                         else event.reply('完成');
                     })
-                }else if(msg2 =="未取餐"){
+                } else if (msg2 == "未取餐") {
                     order.uncollectedOrder(storeid, msg3).then(data => {
                         if (data == -9) event.reply('執行錯誤');
-                         else event.reply('好可惜');
+                        else event.reply('好可惜');
                     })
                 }
             } else if (msg1 == "店家資訊") {
