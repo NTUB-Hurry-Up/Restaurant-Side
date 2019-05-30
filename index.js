@@ -197,12 +197,12 @@ bot.on('message', function (event) {
                 }
             }
             else if(msg1=="接單"){
-                order.acceptOrder(storeid, msg3).then(data => {
+                order.acceptOrder(storeid,msg2).then(data => {
                     if (data == -9) event.reply('執行錯誤');
                     else event.reply('已接單');
                 })
             }else if(msg1=="拒絕"){
-                order.rejectOrder(storeid, msg3).then(data => {
+                order.rejectOrder(storeid, msg2).then(data => {
                     if (data == -9) event.reply('執行錯誤');
                     else event.reply('已拒絕');
                 })
