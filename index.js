@@ -154,7 +154,7 @@ bot.on('message', function (event) {
                                     arr[0].contents.contents[ocnt].body.contents[4].contents[1].text = data[i].name
                                     arr[0].contents.contents[ocnt].body.contents[5].contents[1].text = data[i].phone
                                     arr[0].contents.contents[ocnt].footer.contents[1].action.label = "完成製作"
-                                    arr[0].contents.contents[ocnt].footer.contents[1].action.text = "訂單,完成製作," + data[i].orderid
+                                    arr[0].contents.contents[ocnt].footer.contents[1].action.text = "訂單,完成," + data[i].orderid
                                     arr[0].contents.contents[ocnt].footer.contents[2].action.label = "取消接單"
                                     arr[0].contents.contents[ocnt].footer.contents[2].action.text = "訂單,取消接單," + data[i].orderid
                                     order_id = data[i].orderid
@@ -258,7 +258,7 @@ bot.on('message', function (event) {
                         if (data == -9) event.reply('執行錯誤');
                         else event.reply('已拒絕');
                     })
-                } else if(msg2 =="完成接單"){
+                } else if(msg2 =="完成"){
                     order.completedOrder(storeid, msg3).then(data => {
                         if (data == -9) event.reply('執行錯誤');
                         else event.reply('已接單');
