@@ -178,7 +178,7 @@ bot.on('message', function (event) {
                                     arr[0].contents.contents[ocnt].body.contents[5].contents[1].text = data[i].phone
                                     if(data[i].status == "未接單"){
                                         arr[0].contents.contents[ocnt].footer.contents[1].action.label = "接單"
-                                        arr[0].contents.contents[ocnt].footer.contents[1].action.label = "拒絕"+data[i].orderid
+                                        arr[0].contents.contents[ocnt].footer.contents[1].action.label = "拒絕"
                                     }
                                     order_id = data[i].orderid
                                     totalPrice = 0
