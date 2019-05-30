@@ -93,7 +93,7 @@ var uncollectedOrder = async function (storeid, msg2) {
     //存放結果
     let result;
     //讀取資料庫
-    await query('UPDATE	"order"	SET	status=$4	WHERE	storeid=$1	AND	orderid=$2	AND	status=$3;', [storeid, msg2, '等待取餐', '未取餐'])
+    await query('UPDATE	"order"	SET	status=$4	WHERE	storeid=$1	AND	orderid=$2	AND	status=$3;', [storeid, msg2, '等待取餐', '逾時未取餐'])
         .then((data) => {
             result = data.rowCount;  //回傳資料數 
         }, (error) => {
