@@ -41,11 +41,11 @@ var fetchacceptOrder = async function (storeid) {
     //回傳執行結果
     return result;
 }
-var acceptOrder = async function (storeid, msg2) {
+var acceptOrder = async function (storeid, msg3) {
     //存放結果
     let result;
     //讀取資料庫
-    await query('UPDATE	"order"	SET	status=$4	WHERE	storeid=$1	AND	orderid=$2	AND	status=$3;', [storeid, msg2, '未接單', '製作中'])
+    await query('UPDATE	"order"	SET	status=$4	WHERE	storeid=$1	AND	orderid=$2	AND	status=$3;', [storeid, msg3, '未接單', '製作中'])
         .then((data) => {
             result = data.rowCount;  //回傳資料數 
         }, (error) => {
@@ -53,11 +53,11 @@ var acceptOrder = async function (storeid, msg2) {
         });
     return result;
 }
-var rejectOrder = async function (storeid, msg2) {
+var rejectOrder = async function (storeid, msg3) {
     //存放結果
     let result;
     //讀取資料庫
-    await query('UPDATE	"order"	SET	status=$4	WHERE	storeid=$1	AND	orderid=$2	AND	status=$3;', [storeid, msg2, '未接單', '已拒絕'])
+    await query('UPDATE	"order"	SET	status=$4	WHERE	storeid=$1	AND	orderid=$2	AND	status=$3;', [storeid, msg3, '未接單', '已拒絕'])
         .then((data) => {
             result = data.rowCount;  //回傳資料數 
         }, (error) => {
@@ -65,11 +65,28 @@ var rejectOrder = async function (storeid, msg2) {
         });
     return result;
 }
-var completedOrder = async function (storeid, msg2) {
+var fetchCompletedOrder = async function (storeid) {
     //存放結果
     let result;
     //讀取資料庫
-    await query('UPDATE	"order"	SET	status=$4	WHERE	storeid=$1	AND	orderid=$2	AND	status=$3;', [storeid, msg2, '製作中', '等待取餐'])
+    await query('select a.orderid, c.storeid, c.userid, e."name", e.phone, c."orderDate", c."orderTime", c."takeDate", c."takeTime", c.status, b."foodName", a.quantity, a."unitPrice" from "orderDetail" a, food b , "order" c , store d , member e where a.foodid = b.foodid and c.orderid in (select orderid from "order" where storeid = $1 and status=$2 LIMIT 10) and c.orderid = a.orderid and c.userid = e.userid and c.storeid = d.storeid ORDER BY "orderDate"desc, "orderTime"', [storeid,'製作中'])
+        .then((data) => {
+            if (data.rows.length > 0) {
+                result = data.rows;
+            } else {
+                result = -1;  //找不到資料
+            }
+        }, (error) => {
+            result = -9;  //執行錯誤
+        });
+    //回傳執行結果
+    return result;
+}
+var completedOrder = async function (storeid, msg3) {
+    //存放結果
+    let result;
+    //讀取資料庫
+    await query('UPDATE	"order"	SET	status=$4	WHERE	storeid=$1	AND	orderid=$2	AND	status=$3;', [storeid, msg3, '製作中', '等待取餐'])
         .then((data) => {
             result = data.rowCount;  //回傳資料數 
         }, (error) => {
@@ -140,4 +157,4 @@ var todayOrder = async function (storeid, fetchDate) {
     return result;
 }
 //匯出
-module.exports = { fetchacceptOrder,acceptOrder, rejectOrder, completedOrder, collectedOrder,uncollectedOrder, todayOrder };
+module.exports = { fetchacceptOrder,fetchCompletedOrder,acceptOrder, rejectOrder, completedOrder, collectedOrder,uncollectedOrder, todayOrder };

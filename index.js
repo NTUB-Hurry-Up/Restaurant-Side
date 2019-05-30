@@ -93,6 +93,7 @@ bot.on('message', function (event) {
                                     console.log("!=================" + data[i].orderid);
                                     arr[0].contents.contents[ocnt] = lodash.cloneDeep(temp.temp_acceptOrder_repeat)
                                     arr[0].contents.contents[ocnt].body.contents[0].text = data[i].status
+                                    arr[0].contents.contents[ocnt].body.contents[0].color = '#7BC5FE'
                                     arr[0].contents.contents[ocnt].body.contents[1].contents[1].text = data[i].orderid
                                     var orderMonth = ((data[i].orderDate).getMonth() + 1 < 10 ? '0' : '') + ((data[i].orderDate).getMonth() + 1)
                                     var orderDate = ((data[i].orderDate).getDate() < 10 ? '0' : '') + (data[i].orderDate).getDate()
@@ -105,22 +106,11 @@ bot.on('message', function (event) {
                                     arr[0].contents.contents[ocnt].body.contents[3].contents[2].text = data[i].takeTime.substring(0, 5)
                                     arr[0].contents.contents[ocnt].body.contents[4].contents[1].text = data[i].name
                                     arr[0].contents.contents[ocnt].body.contents[5].contents[1].text = data[i].phone
-                                    if (data[i].status == "未接單") {
-                                        arr[0].contents.contents[ocnt].footer.contents[1].action.label = "接單"
-                                        arr[0].contents.contents[ocnt].footer.contents[1].action.text = "訂單,接單,"+data[i].orderid
-                                        arr[0].contents.contents[ocnt].footer.contents[2].action.label = "拒絕"
-                                        arr[0].contents.contents[ocnt].footer.contents[2].action.text = "訂單,拒絕,"+data[i].orderid
 
-                                    } else if (data[i].status == "製作中") {
-                                        arr[0].contents.contents[ocnt].footer.contents[1].action.label = "完成製作"
-                                        arr[0].contents.contents[ocnt].footer.contents[1].action.text = "完成製作"
-                                        arr[0].contents.contents[ocnt].footer.contents[2].action.label = "取消接單"
-                                        arr[0].contents.contents[ocnt].footer.contents[2].action.text = "取消接單"
-
-                                    } else if (data[i].status == "等待取餐") {
-
-                                    }
-
+                                    arr[0].contents.contents[ocnt].footer.contents[1].action.label = "接單"
+                                    arr[0].contents.contents[ocnt].footer.contents[1].action.text = "訂單,接單," + data[i].orderid
+                                    arr[0].contents.contents[ocnt].footer.contents[2].action.label = "拒絕"
+                                    arr[0].contents.contents[ocnt].footer.contents[2].action.text = "訂單,拒絕," + data[i].orderid
                                     order_id = data[i].orderid
                                     totalPrice = 0
                                 }
@@ -136,9 +126,50 @@ bot.on('message', function (event) {
                         }
                     })
                 } else if (msg2 == "完成製作") {
-                    order.completedOrder(storeid, msg3).then(data => {
+                    order.fetchCompletedOrder(storeid).then(data => {
                         if (data == -9) event.reply('執行錯誤');
-                        else event.reply('執行完成');
+                        else {
+                            var order_id = ''
+                            var ocnt = -1
+                            var totalPrice = 0
+                            var arr = []
+                            arr.push(lodash.cloneDeep(temp.temp_acceptOrder))
+                            for (var i = 0; i < data.length; i++) {
+                                if (order_id != data[i].orderid) {
+                                    ocnt++
+                                    console.log("!=================" + data[i].orderid);
+                                    arr[0].contents.contents[ocnt] = lodash.cloneDeep(temp.temp_acceptOrder_repeat)
+                                    arr[0].contents.contents[ocnt].body.contents[0].text = data[i].status
+                                    arr[0].contents.contents[ocnt].body.contents[0].color = '#7BC5FE'
+                                    arr[0].contents.contents[ocnt].body.contents[1].contents[1].text = data[i].orderid
+                                    var orderMonth = ((data[i].orderDate).getMonth() + 1 < 10 ? '0' : '') + ((data[i].orderDate).getMonth() + 1)
+                                    var orderDate = ((data[i].orderDate).getDate() < 10 ? '0' : '') + (data[i].orderDate).getDate()
+                                    arr[0].contents.contents[ocnt].body.contents[2].contents[1].text = (data[i].orderDate).getFullYear() + "-" + orderMonth + "-" + orderDate
+                                    arr[0].contents.contents[ocnt].body.contents[2].contents[2].text = data[i].orderTime.substring(0, 5)
+
+                                    var takeMonth = ((data[i].takeDate).getMonth() + 1 < 10 ? '0' : '') + ((data[i].takeDate).getMonth() + 1)
+                                    var takeDate = ((data[i].takeDate).getDate() < 10 ? '0' : '') + (data[i].takeDate).getDate()
+                                    arr[0].contents.contents[ocnt].body.contents[3].contents[1].text = (data[i].takeDate).getFullYear() + "-" + takeMonth + "-" + takeDate
+                                    arr[0].contents.contents[ocnt].body.contents[3].contents[2].text = data[i].takeTime.substring(0, 5)
+                                    arr[0].contents.contents[ocnt].body.contents[4].contents[1].text = data[i].name
+                                    arr[0].contents.contents[ocnt].body.contents[5].contents[1].text = data[i].phone
+                                    arr[0].contents.contents[ocnt].footer.contents[1].action.label = "完成製作"
+                                    arr[0].contents.contents[ocnt].footer.contents[1].action.text = "訂單,完成製作," + data[i].orderid
+                                    arr[0].contents.contents[ocnt].footer.contents[2].action.label = "取消接單"
+                                    arr[0].contents.contents[ocnt].footer.contents[2].action.text = "訂單,取消接單," + data[i].orderid
+                                    order_id = data[i].orderid
+                                    totalPrice = 0
+                                }
+                                var tempRe = lodash.cloneDeep(temp.temp_acceptOrder_detail_repeat)
+                                tempRe.contents[0].text = data[i].foodName
+                                tempRe.contents[1].text = data[i].quantity
+                                tempRe.contents[2].text = data[i].unitPrice
+                                arr[0].contents.contents[ocnt].body.contents.push(tempRe)
+                                totalPrice += data[i].unitPrice * data[i].quantity
+                                arr[0].contents.contents[ocnt].footer.contents[0].contents[1].text = "總價 :" + totalPrice
+                            }
+                            event.reply(arr)
+                        }
                     })
                 } else if (msg2 == "已取餐") {
                     order.collectedOrder(storeid, msg3).then(data => {
@@ -189,9 +220,9 @@ bot.on('message', function (event) {
                                     arr[0].contents.contents[ocnt].body.contents[5].contents[1].text = data[i].phone
                                     if (data[i].status == "未接單") {
                                         arr[0].contents.contents[ocnt].footer.contents[1].action.label = "接單"
-                                        arr[0].contents.contents[ocnt].footer.contents[1].action.text = "訂單,接單,"+data[i].orderid
+                                        arr[0].contents.contents[ocnt].footer.contents[1].action.text = "訂單,接單," + data[i].orderid
                                         arr[0].contents.contents[ocnt].footer.contents[2].action.label = "拒絕"
-                                        arr[0].contents.contents[ocnt].footer.contents[2].action.text = "訂單,拒絕"+data[i].orderid
+                                        arr[0].contents.contents[ocnt].footer.contents[2].action.text = "訂單,拒絕" + data[i].orderid
 
                                     } else if (data[i].status == "製作中") {
                                         arr[0].contents.contents[ocnt].footer.contents[1].action.label = "完成製作"
@@ -222,10 +253,15 @@ bot.on('message', function (event) {
                         if (data == -9) event.reply('執行錯誤');
                         else event.reply('已接單');
                     })
-                } else if (msg2 == "拒絕") {
+                } else if (msg2 == "拒絕"||"取消接單") {
                     order.rejectOrder(storeid, msg3).then(data => {
                         if (data == -9) event.reply('執行錯誤');
                         else event.reply('已拒絕');
+                    })
+                } else if(msg2 =="完成接單"){
+                    order.completedOrder(storeid, msg3).then(data => {
+                        if (data == -9) event.reply('執行錯誤');
+                        else event.reply('已接單');
                     })
                 }
             } else if (msg1 == "店家資訊") {
@@ -239,7 +275,7 @@ bot.on('message', function (event) {
                             }
                         }
                     })
-                }else if (msg2 == "更改資訊") {
+                } else if (msg2 == "更改資訊") {
                     if (msg3 == "更改店名") {
                         store.updateStorename(storeid, msg4).then(data => {
                             if (data == -9) event.reply('執行錯誤');
