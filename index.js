@@ -109,7 +109,7 @@ bot.on('message', function (event) {
                                         arr[0].contents.contents[ocnt].footer.contents[1].action.label = "接單"
                                         arr[0].contents.contents[ocnt].footer.contents[1].action.text = "訂單,接單,"+data[i].orderid
                                         arr[0].contents.contents[ocnt].footer.contents[2].action.label = "拒絕"
-                                        arr[0].contents.contents[ocnt].footer.contents[2].action.text = "訂單,拒絕"+data[i].orderid
+                                        arr[0].contents.contents[ocnt].footer.contents[2].action.text = "訂單,拒絕,"+data[i].orderid
 
                                     } else if (data[i].status == "製作中") {
                                         arr[0].contents.contents[ocnt].footer.contents[1].action.label = "完成製作"
