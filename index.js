@@ -113,7 +113,7 @@ bot.on('message', function (event) {
                                     order_id = data[i].orderid
                                     totalPrice = 0
                                 }
-                                var tempRe = lodash.cloneDeep(temp.temp_fetchOrder_detail_repeat)
+                                var tempRe = lodash.cloneDeep(temp.temp_acceptOrder_detail_repeat)
                                 tempRe.contents[0].text = data[i].foodName
                                 tempRe.contents[1].text = data[i].quantity
                                 tempRe.contents[2].text = data[i].unitPrice
