@@ -143,7 +143,7 @@ bot.on('message', function (event) {
                 } else if (msg2 == "今日訂單") {
                     fetchDate = today.getFullYear() + "-" + cMonth + "-" + cDay
                     fetchTime = cHours + ":" + cMinutes + ":" + cSecond
-                    
+                    console.log(storeid)
                     console.log(fetchDate + " " + fetchTime)
                     order.todayOrder(storeid, fetchDate).then(data => {
                         if (data == -1) event.reply('找不到資料');
