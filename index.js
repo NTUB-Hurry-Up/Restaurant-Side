@@ -86,12 +86,12 @@ bot.on('message', function (event) {
                             var ocnt = -1
                             var totalPrice = 0
                             var arr = []
-                            arr.push(lodash.cloneDeep(temp.temp_fetchOrder))
+                            arr.push(lodash.cloneDeep(temp.temp_acceptOrder))
                             for (var i = 0; i < data.length; i++) {
                                 if (order_id != data[i].orderid) {
                                     ocnt++
                                     console.log("!=================" + data[i].orderid);
-                                    arr[0].contents.contents[ocnt] = lodash.cloneDeep(temp.temp_fetchOrder_repeat)
+                                    arr[0].contents.contents[ocnt] = lodash.cloneDeep(temp.temp_acceptOrder_repeat)
                                     arr[0].contents.contents[ocnt].body.contents[0].text = data[i].status
                                     arr[0].contents.contents[ocnt].body.contents[1].contents[1].text = data[i].orderid
                                     var orderMonth = ((data[i].orderDate).getMonth() + 1 < 10 ? '0' : '') + ((data[i].orderDate).getMonth() + 1)
@@ -124,7 +124,7 @@ bot.on('message', function (event) {
                                     order_id = data[i].orderid
                                     totalPrice = 0
                                 }
-                                var tempRe = lodash.cloneDeep(temp.temp_fetchOrder_detail_repeat)
+                                var tempRe = lodash.cloneDeep(temp.temp_acceptOrder_detail_repeat)
                                 tempRe.contents[0].text = data[i].foodName
                                 tempRe.contents[1].text = data[i].quantity
                                 tempRe.contents[2].text = data[i].unitPrice
