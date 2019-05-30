@@ -93,7 +93,7 @@ var temp_acceptOrder_repeat = {
             "type": "text",
             "text": "顧客姓名:",
             "weight": "bold"
-            
+
           },
           {
             "type": "text",
@@ -322,7 +322,7 @@ var temp_menu_repeat = {
   }
 
 }
-var temp_CollectedOrder={
+var temp_CollectedOrder = {
   "type": "flex",
   "altText": "Flex Message",
   "contents": {
@@ -330,7 +330,7 @@ var temp_CollectedOrder={
     "contents": []
   }
 }
-var temp_CollectedOrder_repeat={
+var temp_CollectedOrder_repeat = {
   "type": "bubble",
   "direction": "ltr",
   "body": {
@@ -417,7 +417,7 @@ var temp_CollectedOrder_repeat={
             "type": "text",
             "text": "顧客姓名:",
             "weight": "bold"
-            
+
           },
           {
             "type": "text",
@@ -526,7 +526,7 @@ var temp_CollectedOrder_repeat={
           "text": "接單"
         },
         "color": "#137907"
-      }, 
+      },
       {
         "type": "button",
         "action": {
@@ -548,7 +548,7 @@ var temp_CollectedOrder_repeat={
     ]
   }
 }
-var temp_CollectedOrderdetail_repeat={
+var temp_CollectedOrderdetail_repeat = {
   "type": "box",
   "layout": "horizontal",
   "contents": [
@@ -569,5 +569,227 @@ var temp_CollectedOrderdetail_repeat={
     }
   ]
 }
+var temp_todayOrder = {
+  "type": "flex",
+  "altText": "Flex Message",
+  "contents": {
+    "type": "carousel",
+    "contents": []
+  }
+}
+var temp_todayOrder_repeat = {
+  "type": "bubble",
+  "direction": "ltr",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "spacing": "sm",
+    "contents": [
+      {
+        "type": "text",
+        "text": "製作中",
+        "size": "xxl",
+        "align": "center",
+        "weight": "bold"
+      },
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "text",
+            "text": "訂單編號:",
+            "align": "start",
+            "weight": "bold"
+          },
+          {
+            "type": "text",
+            "text": "100000001",
+            "align": "start"
+          },
+          {
+            "type": "filler"
+          }
+        ]
+      },
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "text",
+            "text": "訂餐時間:",
+            "weight": "bold"
+          },
+          {
+            "type": "text",
+            "text": "2019-12-31 ",
+            "size": "sm",
+            "align": "start"
+          },
+          {
+            "type": "text",
+            "text": "00:00",
+            "size": "sm"
+          }
+        ]
+      },
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "text",
+            "text": "取餐時間:",
+            "weight": "bold"
+          },
+          {
+            "type": "text",
+            "text": "2019-12-31 ",
+            "size": "sm",
+            "align": "start"
+          },
+          {
+            "type": "text",
+            "text": "00:00",
+            "size": "sm"
+          }
+        ]
+      },
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "text",
+            "text": "顧客姓名:",
+            "weight": "bold"
+
+          },
+          {
+            "type": "text",
+            "text": "幹你娘姬芭",
+            "wrap": true
+          },
+          {
+            "type": "filler"
+          }
+        ]
+      },
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "text",
+            "text": "顧客電話:",
+            "weight": "bold"
+          },
+          {
+            "type": "text",
+            "text": "0988870780",
+            "size": "sm",
+            "align": "start"
+          },
+          {
+            "type": "filler"
+          }
+        ]
+      },
+      {
+        "type": "separator"
+      },
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "text",
+            "text": "餐點名稱",
+            "weight": "bold"
+          },
+          {
+            "type": "text",
+            "text": "份量",
+            "align": "center",
+            "weight": "bold"
+          },
+          {
+            "type": "text",
+            "text": "單價",
+            "align": "end",
+            "weight": "bold"
+          }
+        ]
+      },
+      /*{
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "text",
+            "text": "原味蛋餅",
+            "wrap": true
+          },
+          {
+            "type": "text",
+            "text": "3",
+            "align": "center"
+          },
+          {
+            "type": "text",
+            "text": "30",
+            "align": "end"
+          }
+        ]
+      }*/
+    ]
+  },
+  "footer": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "separator"
+          },
+          {
+            "type": "text",
+            "text": "總價 :",
+            "size": "xl",
+            "align": "end",
+            "weight": "bold"
+          }
+        ]
+      }
+    ]
+  }
+
+}
+var temp_todayOrderdetail_repeat = {
+  "type": "box",
+  "layout": "horizontal",
+  "contents": [
+    {
+      "type": "text",
+      "text": "原味蛋餅",
+      "wrap": true
+    },
+    {
+      "type": "text",
+      "text": "3",
+      "align": "center"
+    },
+    {
+      "type": "text",
+      "text": "30",
+      "align": "end"
+    }
+  ]
+}
+
 //匯出
-module.exports = { temp_acceptOrder, temp_acceptOrder_repeat, temp_acceptOrder_detail_repeat,temp_CollectedOrder,temp_CollectedOrder_repeat,temp_CollectedOrderdetail_repeat, temp_menu, temp_menu_repeat };
+module.exports = { temp_acceptOrder, temp_acceptOrder_repeat, temp_acceptOrder_detail_repeat, temp_CollectedOrder, temp_CollectedOrder_repeat, temp_CollectedOrderdetail_repeat, temp_todayOrder, temp_todayOrder_repeat, temp_todayOrderdetail_repeat, temp_menu, temp_menu_repeat };
