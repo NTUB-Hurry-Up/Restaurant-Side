@@ -38,7 +38,7 @@ var fetchOrder = async function (orderid) {
     //存放結果
     let result;
     //讀取資料庫
-    await query('select a.orderid, c.storeid, c.userid, e."name", e.phone, c."orderDate", c."orderTime", c."takeDate", c."takeTime", c.status, b."foodName", a.quantity, a."unitPrice" from "orderDetail" a, food b, "order" c, store d, member e where c.orderid = $1 and a.foodid = b.foodid and c.orderid = a.orderid and c.orderid = a.orderid and c.userid = e.userid and c.storeid = d.storeid', [storeid])
+    await query('select a.orderid, c.storeid, c.userid, e."name", e.phone, c."orderDate", c."orderTime", c."takeDate", c."takeTime", c.status, b."foodName", a.quantity, a."unitPrice" from "orderDetail" a, food b, "order" c, store d, member e where c.orderid = $1 and a.foodid = b.foodid and c.orderid = a.orderid and c.orderid = a.orderid and c.userid = e.userid and c.storeid = d.storeid', [orderid])
         .then((data) => {
             if (data.rows.length > 0) {
                 result = data.rows;
@@ -233,4 +233,4 @@ var todayOrder = async function (storeid, fetchDate) {
     return result;
 }
 //匯出
-module.exports = { fetchacceptOrder, fetchCompletedOrder, fetchCollectedOrder, acceptOrder, rejectOrder, completedOrder, collectedOrder, uncollectedOrder, todayOrder, fetchOrderRecord, fetchOrder };
+module.exports = { fetchacceptOrder, fetchCompletedOrder, fetchCollectedOrder, acceptOrder, rejectOrder, completedOrder, collectedOrder, uncollectedOrder, todayOrder, fetchOrderRecord, fetchOrder, updateOrder };
