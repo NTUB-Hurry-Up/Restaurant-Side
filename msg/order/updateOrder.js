@@ -106,8 +106,7 @@ var updateOrder = function (event, storeid, action_status, orderid, lodash) {
                                     totalPrice += data1[i].unitPrice * data1[i].quantity
                                 }
                                 arr[0].contents.contents[0].footer.contents[0].contents[1].text = "總價 :" + totalPrice
-                                event.reply(arr);
-
+                                event.reply([{ 'type': 'text', 'text': '已更新訂單狀態' }, arr]);
                             }
                         })
                     } else {
