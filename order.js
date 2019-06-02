@@ -3,25 +3,6 @@
 //引用操作資料庫的物件
 const query = require('./asyncDB');
 
-//查詢未完成訂單訂單
-// var fetchOrder = async function (storeid, msg3) {
-//     //存放結果
-//     let result;
-
-//     //讀取資料庫
-//     await query('SELECT	a."orderid",a."takeDate",a."takeTime",a."orderDate",a."orderTime",a.userid,c."name",c.phone,b."amount",b."price",d."foodName",d."foodid" FROM "order" AS a, "orderDetail" AS b, "member" AS c, food AS d WHERE a.orderid=b.orderid AND a.userid=c.userid AND b.foodid=d.foodid	AND	a."status"=$1 AND a."storeid"=$2 ORDER BY a.orderid;', [msg3, storeid])
-//         .then((data) => {
-//             if (data.rows.length > 0) {
-//                 result = data.rows;
-//             } else {
-//                 result = -1;  //找不到資料
-//             }
-//         }, (error) => {
-//             result = -9;  //執行錯誤
-//         });
-//     //回傳執行結果
-//     return result;
-// }
 var fetchOrderRecord = async function (storeid, status, takeDate) {
     //存放結果
     let result;
@@ -53,6 +34,39 @@ var fetchOrderRecord = async function (storeid, status, takeDate) {
     //回傳執行結果
     return result;
 }
+var fetchOrder = async function (orderid) {
+    //存放結果
+    let result;
+    //讀取資料庫
+    await query('select a.orderid, c.storeid, c.userid, e."name", e.phone, c."orderDate", c."orderTime", c."takeDate", c."takeTime", c.status, b."foodName", a.quantity, a."unitPrice" from "orderDetail" a, food b, "order" c, store d, member e where c.orderid = $1 and a.foodid = b.foodid and c.orderid = a.orderid and c.orderid = a.orderid and c.userid = e.userid and c.storeid = d.storeid', [storeid])
+        .then((data) => {
+            if (data.rows.length > 0) {
+                result = data.rows;
+            } else {
+                result = -1;  //找不到資料
+            }
+        }, (error) => {
+            result = -9;  //執行錯誤
+        });
+    //回傳執行結果
+    return result;
+}
+var updateOrder = async function (storeid, orderid, status) {
+    //存放結果
+    let result;
+    //讀取資料庫
+    await query('UPDATE "order" SET status=$3 WHERE storeid=$1	AND	orderid=$2;', [storeid, orderid, status])
+        .then((data) => {
+            if (data.rows.length > 0) {
+                result = data.rows;
+            } else {
+                result = -1;  //找不到資料
+            }
+        }, (error) => {
+            result = -9;  //執行錯誤
+        });
+    return result;
+}
 //未接受訂單改為接受
 var fetchacceptOrder = async function (storeid) {
     //存放結果
@@ -69,6 +83,18 @@ var fetchacceptOrder = async function (storeid) {
             result = -9;  //執行錯誤
         });
     //回傳執行結果
+    return result;
+}
+var rejectOrder = async function (storeid, orderid) {
+    //存放結果
+    let result;
+    //讀取資料庫
+    await query('UPDATE "order" SET status=$5 WHERE storeid=$1	AND	orderid=$2;', [storeid, orderid])
+        .then((data) => {
+            result = data.rowCount;  //回傳資料數 
+        }, (error) => {
+            result = -9;  //執行錯誤
+        });
     return result;
 }
 var acceptOrder = async function (storeid, msg3) {
@@ -95,6 +121,7 @@ var rejectOrder = async function (storeid, msg3) {
         });
     return result;
 }
+
 var fetchCompletedOrder = async function (storeid) {
     //存放結果
     let result;
@@ -206,4 +233,4 @@ var todayOrder = async function (storeid, fetchDate) {
     return result;
 }
 //匯出
-module.exports = { fetchacceptOrder, fetchCompletedOrder, fetchCollectedOrder, acceptOrder, rejectOrder, completedOrder, collectedOrder, uncollectedOrder, todayOrder, fetchOrderRecord };
+module.exports = { fetchacceptOrder, fetchCompletedOrder, fetchCollectedOrder, acceptOrder, rejectOrder, completedOrder, collectedOrder, uncollectedOrder, todayOrder, fetchOrderRecord, fetchOrder };

@@ -51,24 +51,24 @@ var orderRecord = function (event, storeid, order_status, lodash) {
                         if (data[i].status == "未接單") {
                             temp_re.body.contents[0].color = '#7BC5FE'
                             temp_re.footer.contents[1].action.label = "接單"
-                            temp_re.footer.contents[1].action.text = "訂單,接單," + data[i].orderid
+                            temp_re.footer.contents[1].action.text = "訂單,更新進度,接單," + data[i].orderid
                             temp_re.footer.contents[2].action.label = "拒絕"
-                            temp_re.footer.contents[2].action.text = "訂單,拒絕," + data[i].orderid
+                            temp_re.footer.contents[2].action.text = "訂單,更新進度,拒絕," + data[i].orderid
                         } else if (data[i].status == "製作中") {
                             temp_re.body.contents[0].color = '#7BC5FE'
                             temp_re.footer.contents[1].action.label = "製作完成"
-                            temp_re.footer.contents[1].action.text = "訂單,接單," + data[i].orderid
+                            temp_re.footer.contents[1].action.text = "訂單,更新進度,等待取餐," + data[i].orderid
                             temp_re.footer.contents[2].action.label = "取消接單"
-                            temp_re.footer.contents[2].action.text = "訂單,拒絕," + data[i].orderid
+                            temp_re.footer.contents[2].action.text = "訂單,更新進度,拒絕," + data[i].orderid
                         } else if (data[i].status == "等待取餐") {
                             temp_re.body.contents[0].color = '#7BC5FE'
                             temp_re.footer.contents[1].action.label = "已取餐"
-                            temp_re.footer.contents[1].action.text = "訂單,接單," + data[i].orderid
+                            temp_re.footer.contents[1].action.text = "訂單,更新進度,已取餐," + data[i].orderid
                             temp_re.footer.contents[2].action.label = "逾時未取餐"
-                            temp_re.footer.contents[2].action.text = "訂單,逾時未取餐," + data[i].orderid
+                            temp_re.footer.contents[2].action.text = "訂單,更新進度,逾時未取餐," + data[i].orderid
                             temp_re.footer.contents.push(lodash.cloneDeep(temp_re.footer.contents[2]))
                             temp_re.footer.contents[3].action.label = "提醒顧客取餐"
-                            temp_re.footer.contents[3].action.text = "訂單,提醒顧客取餐," + data[i].orderid
+                            temp_re.footer.contents[3].action.text = "訂單,更新進度,提醒顧客取餐," + data[i].orderid
                             temp_re.footer.contents[3].color = "#000000"
                         } else if (data[i].status == "已取餐") {
                             temp_re.body.contents[0].color = '#63BB72'

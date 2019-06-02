@@ -11,6 +11,7 @@ const store = require('./store');
 const food = require('./food');
 const temp = require('./temp');
 const orderRecord = require('./msg/order/orderRecord');
+const updateOrder = require('./msg/order/updateOrder');
 //----------------------------------------
 // 填入自己在Line Developers的channel值
 //----------------------------------------
@@ -60,7 +61,7 @@ bot.on('message', function (event) {
             var msg8 = NewArray[7];
             console.log(msg1 + ";" + msg2 + ";" + msg3 + ";" + msg4 + ";" + msg5)
             //----------------------------------------     
-            
+
             //----------------------------------------           
             if (msg1 == "訂單") {
                 if (msg2 == "查詢") {
@@ -69,61 +70,6 @@ bot.on('message', function (event) {
                     else if (msg3 == "等待取餐") { orderRecord.orderRecord(event, storeid, "等待取餐", lodash) }
                     else if (msg3 == "已取餐") { orderRecord.orderRecord(event, storeid, "已取餐", lodash) }
                     else if (msg3 == "今日訂單") { orderRecord.orderRecord(event, storeid, "今日訂單", lodash) }
-                } else if (msg2 == "今日訂單") {
-                    
-                    fetchDate = today.getFullYear() + "-" + cMonth + "-" + cDay
-                    fetchTime = cHours + ":" + cMinutes + ":" + cSecond
-                    console.log(storeid)
-                    console.log(fetchDate + " " + fetchTime)
-                    order.todayOrder(storeid, fetchDate).then(data => {
-                        if (data == -1) event.reply('找不到資料');
-                        else if (data == -9) event.reply('執行錯誤');
-                        else {
-                            var order_id = ''
-                            var ocnt = -1
-                            var totalPrice = 0
-                            var arr = []
-                            arr.push(lodash.cloneDeep(temp.temp_todayOrder))
-                            for (var i = 0; i < data.length; i++) {
-                                if (order_id != data[i].orderid) {
-                                    ocnt++
-                                    console.log("!=================" + data[i].orderid);
-                                    arr[0].contents.contents[ocnt] = lodash.cloneDeep(temp.temp_todayOrder_repeat)
-
-                                    arr[0].contents.contents[ocnt].body.contents[0].text = data[i].status
-                                    if (data[i].status == "未接單" || data[i].status == "製作中" || data[i].status == "等待取餐") {
-                                        arr[0].contents.contents[ocnt].body.contents[0].color = '#7BC5FE'
-                                    } else if (data[i].status == "已拒絕" || data[i].status == "逾時未取餐") {
-                                        arr[0].contents.contents[ocnt].body.contents[0].color = '#FF5B5B'
-                                    } else if (data[i].status == "已取餐") {
-                                        arr[0].contents.contents[ocnt].body.contents[0].color = '#63BB72'
-                                    }
-                                    arr[0].contents.contents[ocnt].body.contents[1].contents[1].text = data[i].orderid
-                                    var orderMonth = ((data[i].orderDate).getMonth() + 1 < 10 ? '0' : '') + ((data[i].orderDate).getMonth() + 1)
-                                    var orderDate = ((data[i].orderDate).getDate() < 10 ? '0' : '') + (data[i].orderDate).getDate()
-                                    arr[0].contents.contents[ocnt].body.contents[2].contents[1].text = (data[i].orderDate).getFullYear() + "-" + orderMonth + "-" + orderDate
-                                    arr[0].contents.contents[ocnt].body.contents[2].contents[2].text = data[i].orderTime.substring(0, 5)
-
-                                    var takeMonth = ((data[i].takeDate).getMonth() + 1 < 10 ? '0' : '') + ((data[i].takeDate).getMonth() + 1)
-                                    var takeDate = ((data[i].takeDate).getDate() < 10 ? '0' : '') + (data[i].takeDate).getDate()
-                                    arr[0].contents.contents[ocnt].body.contents[3].contents[1].text = (data[i].takeDate).getFullYear() + "-" + takeMonth + "-" + takeDate
-                                    arr[0].contents.contents[ocnt].body.contents[3].contents[2].text = data[i].takeTime.substring(0, 5)
-                                    arr[0].contents.contents[ocnt].body.contents[4].contents[1].text = data[i].name
-                                    arr[0].contents.contents[ocnt].body.contents[5].contents[1].text = data[i].phone
-                                    order_id = data[i].orderid
-                                    totalPrice = 0
-                                }
-                                var tempRe = lodash.cloneDeep(temp.temp_todayOrderdetail_repeat)
-                                tempRe.contents[0].text = data[i].foodName
-                                tempRe.contents[1].text = data[i].quantity
-                                tempRe.contents[2].text = data[i].unitPrice
-                                arr[0].contents.contents[ocnt].body.contents.push(tempRe)
-                                totalPrice += data[i].unitPrice * data[i].quantity
-                                arr[0].contents.contents[ocnt].footer.contents[0].contents[1].text = "總價 :" + totalPrice
-                            }
-                            event.reply(arr)
-                        }
-                    })
                 } else if (msg2 == "接單") {
                     order.acceptOrder(storeid, msg3).then(data => {
                         if (data == -9) event.reply('執行錯誤');
@@ -149,6 +95,12 @@ bot.on('message', function (event) {
                         if (data == -9) event.reply('執行錯誤');
                         else event.reply('好可惜');
                     })
+                } else if (msg2 == "更新進度") {
+                    if (msg3 == "接單" || msg3 == "拒絕" || msg3 == "等待取餐" || msg3 == "已取餐" || msg3 == "逾時未取餐") {
+                        var orderid = msg4
+                        var new_status = msg3
+                        orderRecord.orderRecord(event, storeid, new_status, orderid, lodash)
+                    }
                 }
             } else if (msg1 == "店家資訊") {
                 if (msg2 == "查看資訊") {
