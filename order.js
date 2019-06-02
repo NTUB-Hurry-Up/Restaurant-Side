@@ -55,10 +55,10 @@ var updateOrder = async function (storeid, orderid, status) {
     //存放結果
     let result;
     //讀取資料庫
-    await query('UPDATE "order" SET status=$3 WHERE storeid=$1	AND	orderid=$2;', [storeid, orderid, status])
+    await query('UPDATE "order" SET status=$3 WHERE storeid=$1	AND	orderid=$2 RETURNING orderid, status;', [storeid, orderid, status])
         .then((data) => {
             if (data.rows.length > 0) {
-                result = data.rows;
+                result = data.rows[0];
             } else {
                 result = -1;  //找不到資料
             }

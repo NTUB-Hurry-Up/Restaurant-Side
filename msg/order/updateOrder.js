@@ -33,7 +33,7 @@ var updateOrder = function (event, storeid, action_status, orderid, lodash) {
                     }
 
                     if (flag) {
-                        order.updateOrder(storeid, orderid, action_status).then(data2 => {
+                        order.updateOrder(storeid, orderid, new_status).then(data2 => {
                             if (data2 == -1) {
                                 event.reply('沒有紀錄B');
                             } else if (data2 == -9) {
@@ -45,20 +45,20 @@ var updateOrder = function (event, storeid, action_status, orderid, lodash) {
                                 var temp_re = lodash.cloneDeep(temp.temp_acceptOrder_repeat)
                                 for (var i = 0; i < data1.length; i++) {
                                     if (i == 0) {
-                                        temp_re.body.contents[0].text = new_status
-                                        if (new_status == "未接單") {
+                                        temp_re.body.contents[0].text = data2.status
+                                        if (data2.status == "未接單") {
                                             temp_re.body.contents[0].color = '#7BC5FE'
                                             temp_re.footer.contents[1].action.label = "接單"
                                             temp_re.footer.contents[1].action.text = "訂單,更新進度,接單," + data1[i].orderid
                                             temp_re.footer.contents[2].action.label = "拒絕"
                                             temp_re.footer.contents[2].action.text = "訂單,更新進度,拒絕," + data1[i].orderid
-                                        } else if (new_status == "製作中") {
+                                        } else if (data2.status == "製作中") {
                                             temp_re.body.contents[0].color = '#7BC5FE'
                                             temp_re.footer.contents[1].action.label = "製作完成"
                                             temp_re.footer.contents[1].action.text = "訂單,更新進度,等待取餐," + data1[i].orderid
                                             temp_re.footer.contents[2].action.label = "取消接單"
                                             temp_re.footer.contents[2].action.text = "訂單,更新進度,拒絕," + data1[i].orderid
-                                        } else if (new_status == "等待取餐") {
+                                        } else if (data2.status == "等待取餐") {
                                             temp_re.body.contents[0].color = '#7BC5FE'
                                             temp_re.footer.contents[1].action.label = "已取餐"
                                             temp_re.footer.contents[1].action.text = "訂單,更新進度,已取餐," + data1[i].orderid
@@ -68,15 +68,15 @@ var updateOrder = function (event, storeid, action_status, orderid, lodash) {
                                             temp_re.footer.contents[3].action.label = "提醒顧客取餐"
                                             temp_re.footer.contents[3].action.text = "訂單,更新進度,提醒顧客取餐," + data1[i].orderid
                                             temp_re.footer.contents[3].color = "#000000"
-                                        } else if (new_status == "已取餐") {
+                                        } else if (data2.status == "已取餐") {
                                             temp_re.body.contents[0].color = '#63BB72'
-                                        } else if (new_status == "逾時未取餐") {
+                                        } else if (data2.status == "逾時未取餐") {
                                             temp_re.body.contents[0].color = '#FF5B5B'
-                                        } else if (new_status == "已拒絕") {
+                                        } else if (data2.status == "已拒絕") {
                                             temp_re.body.contents[0].color = '#FF5B5B'
                                         }
 
-                                        temp_re.body.contents[1].contents[1].text = data1[i].orderid
+                                        temp_re.body.contents[1].contents[1].text = data2.orderid
                                         var orderMonth = ((data1[i].orderDate).getMonth() + 1 < 10 ? '0' : '') + ((data1[i].orderDate).getMonth() + 1)
                                         var orderDate = ((data1[i].orderDate).getDate() < 10 ? '0' : '') + (data1[i].orderDate).getDate()
                                         temp_re.body.contents[2].contents[1].text = (data1[i].orderDate).getFullYear() + "-" + orderMonth + "-" + orderDate
