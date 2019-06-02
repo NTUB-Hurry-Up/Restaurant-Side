@@ -70,10 +70,16 @@ var updateOrder = function (event, storeid, action_status, orderid, lodash) {
                                             temp_re.footer.contents[3].color = "#000000"
                                         } else if (data2.status == "已取餐") {
                                             temp_re.body.contents[0].color = '#63BB72'
+                                            temp_re.footer.contents.pop()
+                                            temp_re.footer.contents.pop()
                                         } else if (data2.status == "逾時未取餐") {
                                             temp_re.body.contents[0].color = '#FF5B5B'
+                                            temp_re.footer.contents.pop()
+                                            temp_re.footer.contents.pop()
                                         } else if (data2.status == "已拒絕") {
                                             temp_re.body.contents[0].color = '#FF5B5B'
+                                            temp_re.footer.contents.pop()
+                                            temp_re.footer.contents.pop()
                                         }
 
                                         temp_re.body.contents[1].contents[1].text = data2.orderid
@@ -89,19 +95,18 @@ var updateOrder = function (event, storeid, action_status, orderid, lodash) {
                                         temp_re.body.contents[4].contents[1].text = data1[i].name
                                         temp_re.body.contents[5].contents[1].text = data1[i].phone
                                         //
-                                        
+                                        arr[0].contents.contents[0] = temp_re
 
                                     }
                                     var de_tempRe = lodash.cloneDeep(temp.temp_acceptOrder_detail_repeat)
                                     de_tempRe.contents[0].text = data1[i].foodName
                                     de_tempRe.contents[1].text = data1[i].quantity
                                     de_tempRe.contents[2].text = data1[i].unitPrice
-                                    temp_re.body.contents.push(de_tempRe)
+                                    arr[0].contents.contents[0].body.contents.push(de_tempRe)
                                     totalPrice += data1[i].unitPrice * data1[i].quantity
                                 }
-                                temp_re.footer.contents[0].contents[1].text = "總價 :" + totalPrice
-                                arr[0].contents.contents.push(temp_re) 
-                                
+                                arr[0].contents.contents[0].footer.contents[0].contents[1].text = "總價 :" + totalPrice
+                                event.reply(arr);
 
                             }
                         })
