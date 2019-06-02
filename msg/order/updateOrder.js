@@ -6,7 +6,7 @@ const order = require('./../../order');
 //------------------------------------------
 // 查詢所有的店家
 //------------------------------------------
-var updateOrder = function (event, storeid, new_status, orderid, lodash) {
+var updateOrder = function (event, storeid, action_status, orderid, lodash) {
     event.source.profile().then(function (profile) {
         order.fetchOrder(orderid).then(data1 => {
             if (data1 == -1) {
@@ -16,14 +16,24 @@ var updateOrder = function (event, storeid, new_status, orderid, lodash) {
             } else {
 
                 var flag = Boolean(false);
+                var new_status = ""
                 if (storeid == data1[0].storeid) {
 
-                    if (data1[0].status == "未接單" && (new_status == "接單" || new_status == "拒絕")) { flag = Boolean(true) }
-                    else if (data1[0].status == "製作中" && (new_status == "等待取餐" || new_status == "拒絕")) { flag = Boolean(true) }
-                    else if (data1[0].status == "等待取餐" && (new_status == "已取餐" || new_status == "逾時未取餐")) { flag = Boolean(true) }
+                    if (data1[0].status == "未接單") {
+                        if (action_status == "接單") { flag = Boolean(true); new_status = "製作中" }
+                        else if (action_status == "拒絕") { flag = Boolean(true); new_status = "已拒絕" }
+                    } else if (data1[0].status == "製作中") {
+
+                        if (action_status == "等待取餐") { flag = Boolean(true); new_status = "製作中" }
+                        else if (action_status == "拒絕") { flag = Boolean(true); new_status = "已拒絕" }
+
+                    } else if (data1[0].status == "等待取餐") {
+                        if (action_status == "已取餐") { flag = Boolean(true); new_status = "已取餐" }
+                        else if (action_status == "逾時未取餐") { flag = Boolean(true); new_status = "逾時未取餐" }
+                    }
 
                     if (flag) {
-                        order.updateOrder(storeid, orderid, new_status).then(data2 => {
+                        order.updateOrder(storeid, orderid, action_status).then(data2 => {
                             if (data2 == -1) {
                                 event.reply('沒有紀錄B');
                             } else if (data2 == -9) {
