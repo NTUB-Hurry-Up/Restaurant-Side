@@ -22,20 +22,34 @@ const query = require('./asyncDB');
 //     //回傳執行結果
 //     return result;
 // }
-var fetchOrderRecord = async function (storeid, status) {
+var fetchOrderRecord = async function (storeid, status, takeDate) {
     //存放結果
     let result;
     //讀取資料庫
-    await query('select a.orderid, c.storeid, c.userid, e."name", e.phone, c."orderDate", c."orderTime", c."takeDate", c."takeTime", c.status, b."foodName", a.quantity, a."unitPrice" from "orderDetail" a, food b, "order" c, store d, member e where a.foodid = b.foodid and c.orderid in ( select orderid from "order" where storeid = $1 and status = $2 LIMIT 10 ) and c.orderid = a.orderid and c.userid = e.userid and c.storeid = d.storeid ORDER BY "takeDate" desc, "takeTime" desc', [storeid, status])
-        .then((data) => {
-            if (data.rows.length > 0) {
-                result = data.rows;
-            } else {
-                result = -1;  //找不到資料
-            }
-        }, (error) => {
-            result = -9;  //執行錯誤
-        });
+    if (takeDate == "" || takeDate == null || takeDate.length == 0) {
+        await query('select a.orderid, c.storeid, c.userid, e."name", e.phone, c."orderDate", c."orderTime", c."takeDate", c."takeTime", c.status, b."foodName", a.quantity, a."unitPrice" from "orderDetail" a, food b, "order" c, store d, member e where a.foodid = b.foodid and c.orderid in ( select orderid from "order" where storeid = $1 and status = $2 LIMIT 10 ) and c.orderid = a.orderid and c.userid = e.userid and c.storeid = d.storeid ORDER BY "takeDate" desc, "takeTime" desc', [storeid, status])
+            .then((data) => {
+                if (data.rows.length > 0) {
+                    result = data.rows;
+                } else {
+                    result = -1;  //找不到資料
+                }
+            }, (error) => {
+                result = -9;  //執行錯誤
+            });
+    } else if (takeDate != "") {
+        await query('select a.orderid, c.storeid, c.userid, e."name", e.phone, c."orderDate", c."orderTime", c."takeDate", c."takeTime", c.status, b."foodName", a.quantity, a."unitPrice" from "orderDetail" a, food b, "order" c, store d, member e where a.foodid = b.foodid and c.orderid in ( select orderid from "order" where storeid = $1 and "takeDate" = $2 LIMIT 10 ) and c.orderid = a.orderid and c.userid = e.userid and c.storeid = d.storeid ORDER BY "takeTime" desc', [storeid, takeDate])
+            .then((data) => {
+                if (data.rows.length > 0) {
+                    result = data.rows;
+                } else {
+                    result = -1;  //找不到資料
+                }
+            }, (error) => {
+                result = -9;  //執行錯誤
+            });
+    }
+
     //回傳執行結果
     return result;
 }
