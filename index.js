@@ -127,7 +127,8 @@ bot.on('message', function (event) {
                     })
                 } else if (msg2 == "完成製作") {
                     order.fetchCompletedOrder(storeid).then(data => {
-                        if (data == -9) event.reply('執行錯誤');
+                        if (data == -1) event.reply('找不到資料');
+                        else if (data == -9) event.reply('執行錯誤');
                         else {
                             var order_id = ''
                             var ocnt = -1
@@ -173,7 +174,8 @@ bot.on('message', function (event) {
                     })
                 } else if (msg2 == "可取餐") {
                     order.fetchCollectedOrder(storeid).then(data => {
-                        if (data == -9) event.reply('執行錯誤');
+                        if (data == -1) event.reply('找不到資料');
+                        else if (data == -9) event.reply('執行錯誤');
                         else {
                             var order_id = ''
                             var ocnt = -1
@@ -219,17 +221,7 @@ bot.on('message', function (event) {
                             event.reply(arr)
                         }
                     })
-                } /*else if (msg2 == "所有訂單") {
-                    order.allOrder(storeid).then(data => {
-                        if (data == -1) event.reply('找不到資料');
-                        else if (data == -9) event.reply('執行錯誤');
-                        else {
-                            for (var i = 0; i < data.length; i++) {
-                                console.log(data[i].orderid + "，" + data[i].status);
-                            }
-                        }
-                    })
-                }*/ else if (msg2 == "今日訂單") {
+                }else if (msg2 == "今日訂單") {
                     fetchDate = today.getFullYear() + "-" + cMonth + "-" + cDay
                     fetchTime = cHours + ":" + cMinutes + ":" + cSecond
                     console.log(storeid)
@@ -309,7 +301,7 @@ bot.on('message', function (event) {
                         else event.reply('好可惜');
                     })
                 }
-            } else if (msg1 == "店家資訊") {
+            }else if (msg1 == "店家資訊") {
                 if (msg2 == "查看資訊") {
                     store.fetchStoreinfo(storeid).then(data => {
                         if (data == -1) event.reply('找不到資料');
@@ -320,7 +312,7 @@ bot.on('message', function (event) {
                             }
                         }
                     })
-                } else if (msg2 == "更改資訊") {
+                }else if (msg2 == "更改資訊") {
                     if (msg3 == "更改店名") {
                         store.updateStorename(storeid, msg4).then(data => {
                             if (data == -9) event.reply('執行錯誤');
