@@ -24,7 +24,7 @@ var updateOrder = function (event, storeid, action_status, orderid, lodash) {
                         else if (action_status == "拒絕") { flag = Boolean(true); new_status = "已拒絕" }
                     } else if (data1[0].status == "製作中") {
 
-                        if (action_status == "等待取餐") { flag = Boolean(true); new_status = "製作中" }
+                        if (action_status == "等待取餐") { flag = Boolean(true); new_status = "等待取餐" }
                         else if (action_status == "拒絕") { flag = Boolean(true); new_status = "已拒絕" }
 
                     } else if (data1[0].status == "等待取餐") {
