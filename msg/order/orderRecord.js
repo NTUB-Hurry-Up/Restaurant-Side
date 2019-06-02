@@ -22,13 +22,13 @@ var cMonth = (today.getMonth() + 1 < 10 ? '0' : '') + (today.getMonth() + 1);
 var cDay = (today.getDate() < 10 ? '0' : '') + today.getDate();
 var cMinutes = (today.getMinutes() < 10 ? '0' : '') + today.getMinutes();
 var cSecond = (today.getSeconds() < 10 ? '0' : '') + today.getMinutes();
-// var fetchTime = cHours + ":" + cMinutes + ":" + cSecond
+var fetchDate = ""
 //------------------------------------------
 // 查詢所有的店家
 //------------------------------------------
 var orderRecord = function (event, storeid, order_status, lodash) {
     event.source.profile().then(function (profile) {
-        if (order_status == "今日訂單") { var fetchDate = today.getFullYear() + "-" + cMonth + "-" + cDay; order_status = "今日訂單" }
+        if (order_status == "今日訂單") { fetchDate = today.getFullYear() + "-" + cMonth + "-" + cDay;}
         console.log("--------------------------------------" + order_status + ", " + fetchDate)
         order.fetchOrderRecord(storeid, order_status, fetchDate).then(data => {
             if (data == -1) {
