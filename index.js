@@ -70,6 +70,7 @@ bot.on('message', function (event) {
                     else if (msg3 == "製作中的訂單") { orderRecord.orderRecord(event, storeid, "製作中", lodash) }
                     else if (msg3 == "等待取餐的訂單") { orderRecord.orderRecord(event, storeid, "等待取餐", lodash) }
                     else if (msg3 == "已取餐的訂單") { orderRecord.orderRecord(event, storeid, "已取餐", lodash) }
+                    else if (msg3 == "已拒絕的訂單") { orderRecord.orderRecord(event, storeid, "已拒絕", lodash) }
                     else if (msg3 == "今日訂單") { orderRecord.orderRecord(event, storeid, "今日訂單", lodash) }
                 } else if (msg2 == "更新進度") {
                     if (msg3 == "接單" || msg3 == "拒絕" || msg3 == "等待取餐" || msg3 == "已取餐" || msg3 == "逾時未取餐") {
