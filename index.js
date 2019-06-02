@@ -68,8 +68,9 @@ bot.on('message', function (event) {
                     else if (msg3 == "製作中") { orderRecord.orderRecord(event, storeid, "製作中", lodash) }
                     else if (msg3 == "等待取餐") { orderRecord.orderRecord(event, storeid, "等待取餐", lodash) }
                     else if (msg3 == "已取餐") { orderRecord.orderRecord(event, storeid, "已取餐", lodash) }
+                    else if (msg3 == "今日訂單") { orderRecord.orderRecord(event, storeid, "今日訂單", lodash) }
                 } else if (msg2 == "今日訂單") {
-                    orderRecord.orderRecord(event, storeid, "今日訂單", lodash)
+                    
                     fetchDate = today.getFullYear() + "-" + cMonth + "-" + cDay
                     fetchTime = cHours + ":" + cMinutes + ":" + cSecond
                     console.log(storeid)
