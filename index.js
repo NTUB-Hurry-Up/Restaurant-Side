@@ -64,9 +64,7 @@ bot.on('message', function (event) {
 
             //----------------------------------------           
             
-            if(msg1 == "A"){
-                event.reply(temp.temp_acceptOrder_repeat)
-            }else if (msg1 == "訂單") {
+            if (msg1 == "訂單") {
                 if (msg2 == "查詢") {
                     if (msg3 == "未接受的訂單") { orderRecord.orderRecord(event, storeid, "未接單", lodash) }
                     else if (msg3 == "製作中") { orderRecord.orderRecord(event, storeid, "製作中", lodash) }
