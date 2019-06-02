@@ -70,6 +70,12 @@ bot.on('message', function (event) {
                     else if (msg3 == "等待取餐") { orderRecord.orderRecord(event, storeid, "等待取餐", lodash) }
                     else if (msg3 == "已取餐") { orderRecord.orderRecord(event, storeid, "已取餐", lodash) }
                     else if (msg3 == "今日訂單") { orderRecord.orderRecord(event, storeid, "今日訂單", lodash) }
+                } else if (msg2 == "更新進度") {
+                    if (msg3 == "接單" || msg3 == "拒絕" || msg3 == "等待取餐" || msg3 == "已取餐" || msg3 == "逾時未取餐") {
+                        var orderid = msg4
+                        var new_status = msg3
+                        orderRecord.orderRecord(event, storeid, new_status, orderid, lodash)
+                    }
                 } else if (msg2 == "接單") {
                     order.acceptOrder(storeid, msg3).then(data => {
                         if (data == -9) event.reply('執行錯誤');
@@ -95,12 +101,6 @@ bot.on('message', function (event) {
                         if (data == -9) event.reply('執行錯誤');
                         else event.reply('好可惜');
                     })
-                } else if (msg2 == "更新進度") {
-                    if (msg3 == "接單" || msg3 == "拒絕" || msg3 == "等待取餐" || msg3 == "已取餐" || msg3 == "逾時未取餐") {
-                        var orderid = msg4
-                        var new_status = msg3
-                        orderRecord.orderRecord(event, storeid, new_status, orderid, lodash)
-                    }
                 }
             } else if (msg1 == "店家資訊") {
                 if (msg2 == "查看資訊") {

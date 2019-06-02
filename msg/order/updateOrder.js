@@ -10,7 +10,7 @@ var updateOrder = function (event, storeid, new_status, orderid, lodash) {
     event.source.profile().then(function (profile) {
         order.fetchOrder(orderid).then(data1 => {
             if (data1 == -1) {
-                event.reply('沒有紀錄');
+                event.reply('沒有紀錄A');
             } else if (data1 == -9) {
                 event.reply('執行錯誤');
             } else {
@@ -25,7 +25,7 @@ var updateOrder = function (event, storeid, new_status, orderid, lodash) {
                     if (flag) {
                         order.updateOrder(storeid, orderid, new_status).then(data1 => {
                             if (data2 == -1) {
-                                event.reply('沒有紀錄');
+                                event.reply('沒有紀錄B');
                             } else if (data2 == -9) {
                                 event.reply('執行錯誤');
                             } else {
