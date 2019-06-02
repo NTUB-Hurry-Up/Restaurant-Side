@@ -72,10 +72,16 @@ var orderRecord = function (event, storeid, order_status, lodash) {
                             temp_re.footer.contents[3].color = "#000000"
                         } else if (data[i].status == "已取餐") {
                             temp_re.body.contents[0].color = '#63BB72'
+                            temp_re.footer.contents.pop()
+                            temp_re.footer.contents.pop()
                         } else if (data[i].status == "逾時未取餐") {
                             temp_re.body.contents[0].color = '#FF5B5B'
+                            temp_re.footer.contents.pop()
+                            temp_re.footer.contents.pop()
                         } else if (data[i].status == "已拒絕") {
                             temp_re.body.contents[0].color = '#FF5B5B'
+                            temp_re.footer.contents.pop()
+                            temp_re.footer.contents.pop()
                         }
 
                         temp_re.body.contents[1].contents[1].text = data[i].orderid
