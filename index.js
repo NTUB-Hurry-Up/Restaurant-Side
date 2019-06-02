@@ -74,7 +74,7 @@ bot.on('message', function (event) {
                     if (msg3 == "接單" || msg3 == "拒絕" || msg3 == "等待取餐" || msg3 == "已取餐" || msg3 == "逾時未取餐") {
                         var orderid = msg4
                         var new_status = msg3
-                        orderRecord.orderRecord(event, storeid, new_status, orderid, lodash)
+                        updateOrder.updateOrder(event, storeid, new_status, orderid, lodash)
                     }
                 } else if (msg2 == "接單") {
                     order.acceptOrder(storeid, msg3).then(data => {
