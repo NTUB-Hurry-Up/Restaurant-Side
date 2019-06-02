@@ -106,7 +106,18 @@ var updateOrder = function (event, storeid, action_status, orderid, lodash) {
                                     totalPrice += data1[i].unitPrice * data1[i].quantity
                                 }
                                 arr[0].contents.contents[0].footer.contents[0].contents[1].text = "總價 :" + totalPrice
-                                event.reply([{ 'type': 'text', 'text': '已更新訂單狀態' }, arr[0]]);
+                                if (data2.status != "已取餐") { event.reply([{ 'type': 'text', 'text': '已更新訂單狀態' }, arr[0]]); }
+                                else if (data2.status == "已取餐") {
+                                    event.reply([
+                                        { 'type': 'text', 'text': '已更新訂單狀態' },
+                                        arr[0],
+                                        {
+                                            type: 'sticker',
+                                            packageId: '2',
+                                            stickerId: '144'
+                                        }
+                                    ]);
+                                }
                             }
                         })
                     } else {
