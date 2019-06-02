@@ -79,7 +79,7 @@ bot.on('message', function (event) {
             //----------------------------------------           
             if (msg1 == "訂單") {
                 if (msg2 == "查詢") {
-                    if (msg3 == "未接受的訂單") { orderRecord.orderRecord(event, storeid, "未接受", lodash) }
+                    if (msg3 == "未接受的訂單") { orderRecord.orderRecord(event, storeid, "未接單", lodash) }
                     else if (msg3 == "製作中") { orderRecord.orderRecord(event, storeid, "製作中", lodash) }
                     else if (msg3 == "等待取餐") { orderRecord.orderRecord(event, storeid, "等待取餐", lodash) }
                     else if (msg3 == "已取餐") { orderRecord.orderRecord(event, storeid, "已取餐", lodash) }
