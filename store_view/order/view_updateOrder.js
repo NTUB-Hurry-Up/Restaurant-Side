@@ -1,7 +1,7 @@
 
 //引用操作資料庫的物件
-const temp = require('./../../temp');
-const order = require('./../../order');
+const temp = require('./../view_temp');
+const order = require('./../../store_route/route_order');
 
 //------------------------------------------
 // 查詢所有的店家

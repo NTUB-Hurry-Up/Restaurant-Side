@@ -5,13 +5,13 @@ var linebot = require('linebot');
 var express = require('express');
 var lodash = require('lodash');
 //----------------------------------------
-const member = require('./member');
-const order = require('./order');
-const store = require('./store');
-const food = require('./food');
-const temp = require('./temp');
-const orderRecord = require('./msg/order/orderRecord');
-const updateOrder = require('./msg/order/updateOrder');
+// const member = require('./member');
+// const store = require('./store');
+// const food = require('./food');
+// const order = require('./order');
+// const temp = require('./store_view/view_temp');
+const store_orderRecord = require('./store_view/order/view_orderRecord');
+const store_updateOrder = require('./store_view/order/view_updateOrder');
 //----------------------------------------
 // 填入自己在Line Developers的channel值
 //----------------------------------------
@@ -55,31 +55,24 @@ bot.on('message', function (event) {
             var msg2 = NewArray[1];
             var msg3 = NewArray[2];
             var msg4 = NewArray[3];
-            var msg5 = NewArray[4];
-            var msg6 = NewArray[5];
-            var msg7 = NewArray[6];
-            var msg8 = NewArray[7];
-            console.log(msg1 + ";" + msg2 + ";" + msg3 + ";" + msg4 + ";" + msg5)
-            //----------------------------------------     
-
-            //----------------------------------------           
-            
+            console.log(msg1 + ";" + msg2 + ";" + msg3 + ";" + msg4 )
+            //----------------------------------------                         
             if (msg1 == "訂單") {
                 if (msg2 == "查詢") {
-                    if (msg3 == "未接受的訂單") { orderRecord.orderRecord(event, storeid, "未接單", lodash) }
-                    else if (msg3 == "製作中的訂單") { orderRecord.orderRecord(event, storeid, "製作中", lodash) }
-                    else if (msg3 == "等待取餐的訂單") { orderRecord.orderRecord(event, storeid, "等待取餐", lodash) }
-                    else if (msg3 == "已取餐的訂單") { orderRecord.orderRecord(event, storeid, "已取餐", lodash) }
-                    else if (msg3 == "已拒絕的訂單") { orderRecord.orderRecord(event, storeid, "已拒絕", lodash) }
-                    else if (msg3 == "今日訂單") { orderRecord.orderRecord(event, storeid, "今日訂單", lodash) }
+                    if (msg3 == "未接受的訂單") { store_orderRecord.orderRecord(event, storeid, "未接單", lodash) }
+                    else if (msg3 == "製作中的訂單") { store_orderRecord.orderRecord(event, storeid, "製作中", lodash) }
+                    else if (msg3 == "等待取餐的訂單") { store_orderRecord.orderRecord(event, storeid, "等待取餐", lodash) }
+                    else if (msg3 == "已取餐的訂單") { store_orderRecord.orderRecord(event, storeid, "已取餐", lodash) }
+                    else if (msg3 == "已拒絕的訂單") { store_orderRecord.orderRecord(event, storeid, "已拒絕", lodash) }
+                    else if (msg3 == "今日訂單") { store_orderRecord.orderRecord(event, storeid, "今日訂單", lodash) }
                 } else if (msg2 == "更新進度") {
                     if (msg3 == "接單" || msg3 == "拒絕" || msg3 == "等待取餐" || msg3 == "已取餐" || msg3 == "逾時未取餐") {
                         var orderid = msg4
                         var new_status = msg3
-                        updateOrder.updateOrder(event, storeid, new_status, orderid, lodash)
+                        store_updateOrder.updateOrder(event, storeid, new_status, orderid, lodash)
                     }
                 }
-            } else if (msg1 == "店家資訊") {
+            } /*else if (msg1 == "店家資訊") {
                 if (msg2 == "查看資訊") {
                     store.fetchStoreinfo(storeid).then(data => {
                         if (data == -1) event.reply('找不到資料');
@@ -165,7 +158,7 @@ bot.on('message', function (event) {
                         })
                     }
                 }
-            }
+            }*/
         }
     );
 });
