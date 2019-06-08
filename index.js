@@ -5,11 +5,11 @@ var linebot = require('linebot');
 var express = require('express');
 var lodash = require('lodash');
 //----------------------------------------
-// const member = require('./member');
-// const store = require('./store');
-// const food = require('./food');
-// const order = require('./order');
-// const temp = require('./store_view/view_temp');
+const member = require('./member');
+const store = require('./store');
+const food = require('./food');
+const order = require('./order');
+const temp = require('./store_view/view_temp');
 const store_orderRecord = require('./store_view/order/view_orderRecord');
 const store_updateOrder = require('./store_view/order/view_updateOrder');
 //----------------------------------------
