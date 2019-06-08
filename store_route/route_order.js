@@ -1,7 +1,7 @@
 'use strict';
 
 //引用操作資料庫的物件
-const query = require('./asyncDB');
+const query = require('./../asyncDB');
 
 var fetchOrderRecord = async function (storeid, status, takeDate) {
     //存放結果
