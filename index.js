@@ -55,7 +55,7 @@ bot.on('message', function (event) {
             var msg2 = NewArray[1];
             var msg3 = NewArray[2];
             var msg4 = NewArray[3];
-            console.log(msg1 + ";" + msg2 + ";" + msg3 + ";" + msg4 )
+            console.log(storeid+";"+msg1 + ";" + msg2 + ";" + msg3 + ";" + msg4 )
             //----------------------------------------                         
             if (msg1 == "訂單") {
                 if (msg2 == "查詢") {
