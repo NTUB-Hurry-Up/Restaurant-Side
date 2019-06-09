@@ -1,7 +1,7 @@
 
 //引用操作資料庫的物件
-const temp = require('./../../view/store_temp');
-const order = require('./../../route/store_order');
+const store_temp = require('./../../view/store_temp');
+const store_order = require('./../../route/store_order');
 
 //------------------------------------------
 // today formate
@@ -30,7 +30,7 @@ var orderRecord = function (event, storeid, order_status, lodash) {
     event.source.profile().then(function (profile) {
         if (order_status == "今日訂單") { fetchDate = today.getFullYear() + "-" + cMonth + "-" + cDay;}
         console.log("--------------------------------------" + order_status + ", " + fetchDate)
-        order.fetchOrderRecord(storeid, order_status, fetchDate).then(data => {
+        store_order.fetchOrderRecord(storeid, order_status, fetchDate).then(data => {
             if (data == -1) {
                 event.reply('沒有紀錄');
             } else if (data == -9) {
@@ -40,12 +40,12 @@ var orderRecord = function (event, storeid, order_status, lodash) {
                 var ocnt = -1
                 var totalPrice = 0
                 var arr = []
-                arr.push(lodash.cloneDeep(temp.temp_acceptOrder))
+                arr.push(lodash.cloneDeep(store_temp.temp_acceptOrder))
                 for (var i = 0; i < data.length; i++) {
                     if (order_id != data[i].orderid) {
                         ocnt++
                         console.log("!=================" + data[i].orderid);
-                        var temp_re = lodash.cloneDeep(temp.temp_acceptOrder_repeat)
+                        var temp_re = lodash.cloneDeep(store_temp.temp_acceptOrder_repeat)
                         temp_re.body.contents[0].text = data[i].status
 
                         if (data[i].status == "未接單") {
@@ -102,7 +102,7 @@ var orderRecord = function (event, storeid, order_status, lodash) {
                         order_id = data[i].orderid
                         totalPrice = 0
                     }
-                    var de_tempRe = lodash.cloneDeep(temp.temp_acceptOrder_detail_repeat)
+                    var de_tempRe = lodash.cloneDeep(store_temp.temp_acceptOrder_detail_repeat)
                     de_tempRe.contents[0].text = data[i].foodName
                     de_tempRe.contents[1].text = data[i].quantity
                     de_tempRe.contents[2].text = data[i].unitPrice

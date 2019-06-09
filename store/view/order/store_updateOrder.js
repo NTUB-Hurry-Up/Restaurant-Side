@@ -1,14 +1,14 @@
 
 //引用操作資料庫的物件
-const temp = require('./../../view/store_temp');
-const order = require('./../../route/store_order');
+const store_temp = require('./../../view/store_temp');
+const store_order = require('./../../route/store_order');
 
 //------------------------------------------
 // 查詢所有的店家
 //------------------------------------------
 var updateOrder = function (event, storeid, action_status, orderid, lodash) {
     event.source.profile().then(function (profile) {
-        order.fetchOrder(orderid).then(data1 => {
+        store_order.fetchOrder(orderid).then(data1 => {
             if (data1 == -1) {
                 event.reply('沒有紀錄A');
             } else if (data1 == -9) {
@@ -33,7 +33,7 @@ var updateOrder = function (event, storeid, action_status, orderid, lodash) {
                     }
 
                     if (flag) {
-                        order.updateOrder(storeid, orderid, new_status).then(data2 => {
+                        store_order.updateOrder(storeid, orderid, new_status).then(data2 => {
                             if (data2 == -1) {
                                 event.reply('沒有紀錄B');
                             } else if (data2 == -9) {
@@ -41,8 +41,8 @@ var updateOrder = function (event, storeid, action_status, orderid, lodash) {
                             } else {
                                 var arr = []
                                 var totalPrice = 0
-                                arr.push(lodash.cloneDeep(temp.temp_acceptOrder))
-                                var temp_re = lodash.cloneDeep(temp.temp_acceptOrder_repeat)
+                                arr.push(lodash.cloneDeep(store_temp.temp_acceptOrder))
+                                var temp_re = lodash.cloneDeep(store_temp.temp_acceptOrder_repeat)
                                 for (var i = 0; i < data1.length; i++) {
                                     if (i == 0) {
                                         temp_re.body.contents[0].text = data2.status
@@ -98,7 +98,7 @@ var updateOrder = function (event, storeid, action_status, orderid, lodash) {
                                         arr[0].contents.contents[0] = temp_re
 
                                     }
-                                    var de_tempRe = lodash.cloneDeep(temp.temp_acceptOrder_detail_repeat)
+                                    var de_tempRe = lodash.cloneDeep(store_temp.temp_acceptOrder_detail_repeat)
                                     de_tempRe.contents[0].text = data1[i].foodName
                                     de_tempRe.contents[1].text = data1[i].quantity
                                     de_tempRe.contents[2].text = data1[i].unitPrice
