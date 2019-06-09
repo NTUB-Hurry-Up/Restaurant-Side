@@ -6,12 +6,12 @@ var express = require('express');
 var lodash = require('lodash');
 //----------------------------------------
 const member = require('./member');
-const store = require('./store');
-const food = require('./food');
-const order = require('./store_route/route_order');
-const temp = require('./store_view/view_temp');
-const store_orderRecord = require('./store_view/order/view_orderRecord');
-const store_updateOrder = require('./store_view/order/view_updateOrder');
+// const store = require('./store');
+// const food = require('./food');
+// const order = require('./store_route/route_order');
+// const temp = require('./store_view/view_temp');
+const store_orderRecord = require('./store/view/order/view_orderRecord');
+const store_updateOrder = require('./store/view/order/view_updateOrder');
 //----------------------------------------
 // 填入自己在Line Developers的channel值
 //----------------------------------------
