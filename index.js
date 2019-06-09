@@ -10,8 +10,8 @@ const member = require('./member');
 // const food = require('./food');
 // const order = require('./store_route/route_order');
 // const temp = require('./store_view/view_temp');
-const store_orderRecord = require('./store/view/order/view_orderRecord');
-const store_updateOrder = require('./store/view/order/view_updateOrder');
+const store_orderRecord = require('./store/view/order/store_orderRecord');
+const store_updateOrder = require('./store/view/order/store_updateOrder');
 //----------------------------------------
 // 填入自己在Line Developers的channel值
 //----------------------------------------

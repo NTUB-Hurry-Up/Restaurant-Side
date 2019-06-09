@@ -1,7 +1,7 @@
 
 //引用操作資料庫的物件
-const temp = require('./../../view/view_temp');
-const order = require('./../../route/route_order');
+const temp = require('./../../view/store_temp');
+const order = require('./../../route/store_order');
 
 //------------------------------------------
 // today formate
