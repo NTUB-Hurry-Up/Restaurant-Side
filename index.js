@@ -56,10 +56,7 @@ bot.on('message', function (event) {
             var msg3 = NewArray[2];
             var msg4 = NewArray[3];
             console.log(storeid+";"+msg1 + ";" + msg2 + ";" + msg3 + ";" + msg4 )
-            //----------------------------------------      
-            if(msg1 == "A"){
-                event.reply('A')
-            }                   
+            //----------------------------------------          
             if (msg1 == "訂單") {
                 if (msg2 == "查詢") {
                     if (msg3 == "未接受的訂單") { store_orderRecord.orderRecord(event, storeid, "未接單", lodash) }
