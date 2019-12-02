@@ -29,7 +29,6 @@ var LP_noticeStore = function (orderid, transactionId) {
                 if (i == 0) {
                     temp_re.body.contents[0].text = data1[i].status
                     // console.log("-----------"+data1[i].LP_transactionid+", "+transactionId)
-                    if (data1[i].LP_transactionid == transactionId) { temp_re.body.contents[0].text += " (已付款)" }
                     if (data1[i].status == "未接單") {
                         temp_re.body.contents[0].color = '#7BC5FE'
                         temp_re.footer.contents[1].action.label = "接單"
@@ -72,6 +71,11 @@ var LP_noticeStore = function (orderid, transactionId) {
                     temp_re.body.contents[3].contents[2].text = data1[i].takeTime.substring(0, 5)
                     temp_re.body.contents[4].contents[1].text = data1[i].name
                     temp_re.body.contents[5].contents[1].text = data1[i].phone
+                    if (data1[i].LP_transactionid != null && data1[i].LP_transactionid != "" && (data1[i].status == "未接單" || data1[i].status == "製作中" || data1[i].status == "等待取餐" || data1[i].status == "已取餐")) {
+                        if(data1[i].status != "已取餐"){temp_re.body.contents[0].text += " (已付款)"}
+                        temp_re.body.contents[6].contents[1].text = "LINE Pay"
+                        temp_re.body.contents[6].contents[2].text = "(已付款)"
+                    }
                     //
                     arr[0].contents.contents[0] = temp_re
 
