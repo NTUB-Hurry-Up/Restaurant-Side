@@ -39,6 +39,8 @@ var updateOrder = function (event, storeid, action_status, orderid, lodash) {
                             } else if (data2 == -9) {
                                 event.reply('執行錯誤');
                             } else {
+                                if (data2.status == "未接單") { axios.get('https://linebot108508.herokuapp.com/noticeCus?orderid=' + orderid + "&status=accept") }
+                                else if (data2.status == "等待取餐") { axios.get('https://linebot108508.herokuapp.com/noticeCus?orderid=' + orderid + "&status=wait") }
                                 var arr = []
                                 var totalPrice = 0
                                 arr.push(lodash.cloneDeep(store_temp.temp_acceptOrder))
